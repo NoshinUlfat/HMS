@@ -27,19 +27,27 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", credentials);
-    //  if (res.data.isAdmin) {
-        console.log("VCVC ",res.data)
+      if (res.data.isUserAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
 
-        console.log("login ",res.data.details);///////////
-        //navigate("/");
-        navigate("/student/dashboard/",res.data);        //NOSHIN
+        navigate("/");
+        //navigate("/student/dashboard/",res.data);        //NOSHIN
       // } else {
       //   dispatch({
       //     type: "LOGIN_FAILURE",
       //     payload: { message: "You are not allowed!" },
       //   });
-      // }
+       } else if (res.data.isUserProvost) {
+        console.log("Provost")
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+
+        navigate("/provost/dashboard/",res.data); 
+       } else {
+        console.log("VCVC ",res.data)
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+
+        navigate("/student/dashboard/",res.data); 
+       }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }

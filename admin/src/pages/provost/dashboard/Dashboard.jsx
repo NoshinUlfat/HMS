@@ -11,15 +11,53 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 
 import {profileData} from "./../dashboard/dashboardData"
 
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { useContext } from "react"
+import { AuthContext } from "../../../context/AuthContext"
+import axios from "axios";
 
 const DashboardProvost = () => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState("");
-
+  
+  
+  
   const { user } = useContext(AuthContext);
-    console.log(user.username);
+  console.log("sdfs ",user.username);//data.username);
+  
+  const [credentials, setCredentials] = useState({
+    id: user._id,
+    username: user.username,
+    email: undefined,
+    phone: undefined,
+    present_address: undefined,
+    post: undefined,
+    department: undefined,
+    designation: undefined,
+  });
+
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    console.log(e);/////////////
+ 
+
+    var url = "/provosts/"+user._id;
+    console.log("URL ",url)
+    try {
+      const res = await axios.put(url, credentials);
+    
+        console.log("VCVCccccccccccccc ",res.data)
+
+        console.log("logindwcwfff ",res.data.details);///////////
+ 
+    } catch (err) {
+      console.log(err)
+    }
+  };
   
 
   return (
@@ -35,13 +73,13 @@ const DashboardProvost = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src= {profileData.profileImg}
+                src= {user.img}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{profileData.profileTitle}</h1>
-                {
+                <h1 className="itemTitle">{user.username}</h1>
+                {/* {
                   profileData.profileData.map(
                     (item,index) => {
                       return (
@@ -52,7 +90,35 @@ const DashboardProvost = () => {
                       );
                     }
                   )
-                }
+                } */}
+
+                
+                <div className="detailItem" key = "1">
+                  <span className="itemKey">Email : </span>
+                  <span className="itemValue">{user.email}</span>
+                </div>
+                <div className="detailItem" key = "2">
+                  <span className="itemKey">Phone : </span>
+                  <span className="itemValue">{user.phone}</span>
+                </div>
+                <div className="detailItem" key = "3">
+                  <span className="itemKey">Address : </span>
+                  <span className="itemValue">{user.present_address}</span>
+                </div>
+                <div className="detailItem" key = "4">
+                  <span className="itemKey">Post : </span>
+                  <span className="itemValue">{user.post}</span>
+                </div>
+                <div className="detailItem" key = "5">
+                  <span className="itemKey">Dept : </span>
+                  <span className="itemValue">{user.department}</span>
+                </div>
+                <div className="detailItem" key = "6">
+                  <span className="itemKey">Designation : </span>
+                  <span className="itemValue">{user.designation}</span>
+                </div>
+
+
               </div>
             </div>
           </div>
@@ -69,7 +135,8 @@ const DashboardProvost = () => {
                   src={
                     file
                       ? URL.createObjectURL(file)
-                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                      : user.img
+                      //"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                   }
                   alt=""
                 />
@@ -87,7 +154,7 @@ const DashboardProvost = () => {
                       style={{ display: "none" }}
                     />
 
-                  {                  
+                  {/* {                  
                   profileData.profileData.map(
                     (item,index) => {
                       return (
@@ -97,8 +164,34 @@ const DashboardProvost = () => {
                       </div>
                       );
                     })
-                  }
-                  <button>Send</button>
+                  } */}
+
+                  <div className="detailItem" key = "1">
+                    <label>Email : </label>
+                    <input type='Email' placeholder={user.email} id="email" onChange={handleChange}/>
+                  </div>
+                  <div className="detailItem" key = "2">
+                    <label>Phone : </label>
+                    <input type='text' placeholder={user.phone} id="phone" onChange={handleChange} />
+                  </div>
+                  <div className="detailItem" key = "3">
+                    <label>Present Address : </label>
+                    <input type='text' placeholder={user.present_address} id="present_address" onChange={handleChange} />
+                  </div>
+                  <div className="detailItem" key = "4">
+                    <label>Post : </label>
+                    <input type='text' placeholder={user.post} id="post" onChange={handleChange} />
+                  </div>
+                  <div className="detailItem" key = "5">
+                    <label>Department : </label>
+                    <input type='text' placeholder={user.department} id="department" onChange={handleChange} />
+                  </div>
+                  <div className="detailItem" key = "6">
+                    <label>Designation : </label>
+                    <input type='text' placeholder={user.designation} id="designation" onChange={handleChange} />
+                  </div>
+
+                  <button onClick={handleClick}>Send</button>
                   </div>
                 </form>
               </div>

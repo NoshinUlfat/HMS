@@ -8,6 +8,7 @@ import roomsRoute from "./routes/rooms.js";
 
 import studentsRoute from "./routes/students.js";
 import roomAllotsRoute from "./routes/roomAllots.js";
+import provostRoute from "./routes/provosts.js";
 
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -39,6 +40,7 @@ app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/students", studentsRoute);
 app.use("/api/roomAllots", roomAllotsRoute);
+app.use("/api/provosts", provostRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

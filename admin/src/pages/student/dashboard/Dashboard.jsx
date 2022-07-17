@@ -34,7 +34,6 @@ const DashboardStd =  () => {
     //dispatch({ payload: res.data.details });
   
      console.log("KOCHU  ");
-     console.log("BAL ",res.data," ",user.username," ",user._id)
   } catch(err) {
     console.log(err);
   }
@@ -128,6 +127,7 @@ const DashboardStd =  () => {
                   <span className="itemKey">Room No : </span>
                   <span className="itemValue">{user.roomNo}</span>
                 </div>
+
               </div>
             </div>
           </div>

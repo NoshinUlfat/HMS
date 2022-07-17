@@ -28,7 +28,7 @@ export const login = async (req, res, next) => {
     console.log("CHECK ",req.body.username );
 
     const userAdmin = await User.findOne({ username: req.body.username });
-    const userStudent = await Student.findOne({ studentID: req.body.username });
+    const userStudent = await Student.findOne({ studentId: req.body.username });
     const userProvost = await Provost.findOne({ username: req.body.username });
 
     //console.log("Author login ",userStudent.studentID);

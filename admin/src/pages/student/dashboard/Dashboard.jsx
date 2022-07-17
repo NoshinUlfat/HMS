@@ -104,8 +104,8 @@ const DashboardStd =  () => {
                 } */}
                
                <div className="detailItem" key = "1">
-                  <span className="itemKey">Student Id : </span>
-                  <span className="itemValue">{user.studentID}</span>
+                  <span className="itemKey">Student ID : </span>
+                  <span className="itemValue">{user.studentId}</span>
                 </div>
                 <div className="detailItem" key = "2">
                   <span className="itemKey">Email : </span>

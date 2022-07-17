@@ -1,7 +1,7 @@
 import express from "express";
 import {
     updateRoomAllotment
-} from "../controllers/roomAllot.js";
+} from "../controllers/roomAllotment.js";
 
 
 const router = express.Router();

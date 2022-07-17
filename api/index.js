@@ -7,7 +7,7 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 
 import studentsRoute from "./routes/students.js";
-import roomAllotsRoute from "./routes/roomAllots.js";
+import roomAllotsRoute from "./routes/roomAllotments.js";
 import provostRoute from "./routes/provosts.js";
 
 import cookieParser from "cookie-parser";

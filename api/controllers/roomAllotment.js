@@ -6,7 +6,7 @@ export const updateRoomAllotment = async (req, res, next) => {
   try {
 
     console.log("I AM IN ROOM REQUEST");
-    console.log(req.body);
+    console.log(req.body)
     const newRequest = new RoomAllotment({
       ...req.body,
     });

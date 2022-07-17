@@ -1,18 +1,39 @@
-import User from "../models/User.js";
-import bcrypt from "bcryptjs";
-import { createError } from "../utils/error.js";
-import jwt from "jsonwebtoken";
 import Student from "../models/Student.js";
 
-
-export const showData = async (req, res, next) => {
+export const updateStudent = async (req,res,next)=>{
   try {
-    const userStudent = await Student.findOne({ username: req.body.username });
 
-    console.log("B ",userStudent.username);
-
-    const isAdmin = false;
-    res.json({ details:  isAdmin });
+    console.log("BBBBBBBBBB ",req.params.id);
+    const updatedStudent = await Student.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    res.status(200).json(updatedStudent);
+  } catch (err) {
+    next(err);
+  }
+}
+export const deleteStudent = async (req,res,next)=>{
+  try {
+    await Student.findByIdAndDelete(req.params.id);
+    res.status(200).json("Student has been deleted.");
+  } catch (err) {
+    next(err);
+  }
+}
+export const getStudent = async (req,res,next)=>{
+  try {
+    const student = await Student.findById(req.params.id);
+    res.status(200).json(student);
+  } catch (err) {
+    next(err);
+  }
+}
+export const getStudents = async (req,res,next)=>{
+  try {
+    const students = await Student.find();
+    res.status(200).json(students);
   } catch (err) {
     next(err);
   }

@@ -23,12 +23,19 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
-    const userAdmin = await User.findOne({ username: req.body.username });
-    const userStudent = await Student.findOne({ username: req.body.username });
 
-    console.log("Author login ",userStudent.username)
+    console.log("CHECK ",req.body.username );
+
+    const userAdmin = await User.findOne({ username: req.body.username });
+    const userStudent = await Student.findOne({ studentID: req.body.username });
+
+    console.log("Author login ",userStudent.studentID)
     let user = userAdmin;
-    if(!userAdmin) user = userStudent;
+    let isUserAdmin = true;
+    if(!userAdmin) {
+      user = userStudent;
+      isUserAdmin = false;
+    }
 
     if (!user) return next(createError(404, "User not found!"));
 
@@ -41,7 +48,7 @@ export const login = async (req, res, next) => {
       return next(createError(400, "Wrong password or username!"));
 
     const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      { id: user._id, isAdmin: isUserAdmin },
       process.env.JWT
     );
 

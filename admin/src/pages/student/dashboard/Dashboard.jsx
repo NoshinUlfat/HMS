@@ -43,7 +43,7 @@ const DashboardStd =  () => {
     id: user._id,
     username: user.username,
     email: undefined,
-    mobile_no: undefined,
+    phone: undefined,
     present_address: undefined,
     permanent_address: undefined,
   });
@@ -57,8 +57,11 @@ const DashboardStd =  () => {
     e.preventDefault();
     console.log(e);/////////////
  
+
+    var url = "/students/"+user._id;
+    console.log("URL ",url)
     try {
-      const res = await axios.post("/auth/updateStudent", credentials2);
+      const res = await axios.put(url, credentials2);
     
         console.log("VCVCccccccccccccc ",res.data)
 
@@ -82,7 +85,7 @@ const DashboardStd =  () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src= {user.image}
+                src= {user.img}
                 alt=""
                 className="itemImg"
               />
@@ -100,27 +103,30 @@ const DashboardStd =  () => {
                     }
                   )
                 } */}
-                <div className="formInput">
-                  <div className="detailItem" key = "1">
-                    <span className="itemKey">Email : </span>
-                    <span className="itemValue">{user.email}</span>
-                  </div>
-                  <div className="detailItem" key = "2">
-                    <span className="itemKey">Phone : </span>
-                    <span className="itemValue">{user.mobile_no}</span>
-                  </div>
-                  <div className="detailItem" key = "3">
-                    <span className="itemKey">Address : </span>
-                    <span className="itemValue">{user.present_address}</span>
-                  </div>
-                  <div className="detailItem" key = "4">
-                    <span className="itemKey">Level-Term : </span>
-                    <span className="itemValue">{user.level}-{user.term}</span>
-                  </div>
-                  <div className="detailItem" key = "5">
-                    <span className="itemKey">Room No : </span>
-                    <span className="itemValue">{user.roomNo}</span>
-                  </div>
+               
+               <div className="detailItem" key = "1">
+                  <span className="itemKey">Student Id : </span>
+                  <span className="itemValue">{user.studentID}</span>
+                </div>
+                <div className="detailItem" key = "2">
+                  <span className="itemKey">Email : </span>
+                  <span className="itemValue">{user.email}</span>
+                </div>
+                <div className="detailItem" key = "3">
+                  <span className="itemKey">Phone : </span>
+                  <span className="itemValue">{user.phone}</span>
+                </div>
+                <div className="detailItem" key = "4">
+                  <span className="itemKey">Address : </span>
+                  <span className="itemValue">{user.present_address}</span>
+                </div>
+                <div className="detailItem" key = "5">
+                  <span className="itemKey">Level-Term : </span>
+                  <span className="itemValue">{user.level}-{user.term}</span>
+                </div>
+                <div className="detailItem" key = "6">
+                  <span className="itemKey">Room No : </span>
+                  <span className="itemValue">{user.roomNo}</span>
                 </div>
               </div>
             </div>
@@ -138,7 +144,7 @@ const DashboardStd =  () => {
                   src={
                     file
                       ? URL.createObjectURL(file)
-                      : user.image
+                      : user.img
                       // "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                   }
                   alt=""
@@ -174,7 +180,7 @@ const DashboardStd =  () => {
                   </div>
                   <div className="detailItem" key = "2">
                     <label>Phone : </label>
-                    <input type='text' placeholder={user.mobile_no} id="phone" onChange={handleChange} />
+                    <input type='text' placeholder={user.phone} id="phone" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "3">
                     <label>Present Address : </label>

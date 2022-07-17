@@ -5,7 +5,7 @@ const RoomSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    price: {
+    currentPeople: {
       type: Number,
       required: true,
     },

@@ -1,43 +1,101 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
 import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./roomrequest.scss"
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import axios from "axios";
+
+
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 const RoomRequest = () => {
+  const [file, setFile] = useState("");
+  const [info, setInfo] = useState({});
+  
+  const { user } = useContext(AuthContext);
+  var urlConnection = "/roomAllots/"+user.studentID;
+  console.log("URL ",urlConnection)
+
+  console.log("ID CHECK",user.studentID)
+
+  const handleChangeText = (e) => {
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    console.log(info)
+  };
+
+  const handleChangeCheckBox = (e) => {
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.checked }));
+    console.log(info)
+  };
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "upload");
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/lamadev/image/upload",
+        data
+      );
+      
+      const { url } = uploadRes.data;
+      const newRequest = {
+        ...info,
+        file: url,
+        studentID: user.studentID,
+        approvalStatus: "pending",
+      };
+
+      console.log(newRequest)
+      const res = await axios.post(urlConnection, newRequest);
+    
+      console.log(uploadRes.data)
+      
+    }
+    catch {
+      console.log("Error Asche")
+    }
+  };
   return (
     <div className='roomRequest'>
         <Sidebar info={SideBarDataStd}/>
         <div className="roomRequestContainer">
           <Navbar/>
           <form action="#" method="post">
-            <label htmlFor="rooms">Preferred Room No(Optional): </label>
-            <input type="text" id='rooms' placeholder="Available Rooms"/>
-            <label htmlFor="textarea">Why do you need this room?</label>
-            <textarea name="" id="textarea" cols="500" rows="20" placeholder='Application'></textarea>
+            <label htmlFor="preferredRoomNo">Preferred Room No(Optional): </label>
+            <input type="text" id='preferredRoomNo' placeholder="Available Rooms" onChange={handleChangeText}/>
+            <br></br>
+            <label htmlFor="message">Why do you need this room?</label>
+            <textarea name="" id="message" cols="500" rows="18" placeholder='Application' onChange={handleChangeText}></textarea>
 
             <div className="skills">
               <p>Skills</p>
               <div className="left">
                 <div className="skill">
-                  <label htmlFor="sport">Sports</label>
-                  <input type="checkbox" name="" id="sport" />
+                  <label htmlFor="sports">Sports
+                  <input type="checkbox" name="" id="sports" onChange={handleChangeCheckBox}/>
+                  </label>
                 </div>
 
                 <div className="skill">
-                  <label htmlFor="debate">Debate</label>
-                  <input type="checkbox" name="" id="debate" />
+                  <label htmlFor="debate">Debate
+                  <input type="checkbox" name="" id="debate" onChange={handleChangeCheckBox}/>
+                  </label>
                 </div>
 
                 <div className="skill">
-                  <label htmlFor="acting">Acting</label>
-                  <input type="checkbox" name="" id="acting" />
+                  <label htmlFor="acting">Acting
+                  <input type="checkbox" name="" id="acting" onChange={handleChangeCheckBox}/>
+                  </label>
                 </div>
 
                 <div className="skill">
-                  <label htmlFor="others">Others</label>
-                  <input type="checkbox" name="" id="others" />
+                  <label htmlFor="other">Others
+                  <input type="checkbox" name="" id="other" onChange={handleChangeCheckBox}/>
+                  </label>
                 </div>
               </div>
               <div className="right">
@@ -47,12 +105,13 @@ const RoomRequest = () => {
                 <input
                   type="file"
                   id="file"
-                  style={{ display: "none" }}
+                  onChange={(e) => setFile(e.target.files[0])}
+                  // style={{ display: "none" }}
                 />
               </div>
             </div>
 
-            <button type="submit">Submit Application</button>
+            <button type="submit" onClick={handleClick}>Submit Application</button>
           </form>
         </div>
     </div>

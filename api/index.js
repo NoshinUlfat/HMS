@@ -7,7 +7,7 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 
 import studentsRoute from "./routes/students.js";
-import roomAllotsRoute from "./routes/roomAllotments.js";
+import roomAllotmentsRoute from "./routes/roomAllotments.js";
 import provostRoute from "./routes/provosts.js";
 
 import cookieParser from "cookie-parser";
@@ -39,7 +39,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/students", studentsRoute);
-app.use("/api/roomAllots", roomAllotsRoute);
+app.use("/api/roomAllotments", roomAllotmentsRoute);
 app.use("/api/provosts", provostRoute);
 
 app.use((err, req, res, next) => {

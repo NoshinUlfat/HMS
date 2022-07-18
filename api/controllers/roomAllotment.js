@@ -17,3 +17,12 @@ export const updateRoomAllotment = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getRoomRequests = async (req,res,next)=>{
+  try {
+    const requests = await RoomAllotment.find();
+    res.status(200).json(requests);
+  } catch (err) {
+    next(err);
+  }
+}

@@ -1,6 +1,7 @@
 import express from "express";
 import {
-    updateRoomAllotment
+    updateRoomAllotment,
+    getRoomRequests,
 } from "../controllers/roomAllotment.js";
 
 
@@ -19,7 +20,7 @@ const router = express.Router();
 // })
 
 //UPDATE
-router.post("/:studentID", updateRoomAllotment);
+router.post("/:studentId", updateRoomAllotment);
 //router.put("/:id", updateRoomAllotment);
 
 //DELETE
@@ -29,6 +30,6 @@ router.post("/:studentID", updateRoomAllotment);
 // router.get("/:id", verifyStudent, getStudent);
 
 // //GET ALL
-// router.get("/", verifyAdmin, getStudents);
+router.get("/", getRoomRequests);
 
 export default router;

@@ -16,7 +16,7 @@ const RoomRequest = () => {
   const [info, setInfo] = useState({});
   
   const { user } = useContext(AuthContext);
-  var urlConnection = "/roomAllots/"+user.studentID;
+  var urlConnection = "/roomAllotments/"+user.studentID;
   console.log("URL ",urlConnection)
 
   console.log("ID CHECK",user.studentID)

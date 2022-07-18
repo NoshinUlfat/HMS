@@ -65,11 +65,12 @@ const RoomRequest = () => {
         <div className="roomRequestContainer">
           <Navbar/>
           <form action="#" method="post">
+            <br></br>
             <label htmlFor="preferredRoomNo">Preferred Room No(Optional): </label>
             <input type="text" id='preferredRoomNo' placeholder="Available Rooms" onChange={handleChangeText}/>
-            <br></br>
+            
             <label htmlFor="message">Why do you need this room?</label>
-            <textarea name="" id="message" cols="500" rows="18" placeholder='Application' onChange={handleChangeText}></textarea>
+            <textarea name="" id="message" cols="500" rows="15" placeholder='Application' onChange={handleChangeText}></textarea>
 
             <div className="skills">
               <p>Skills</p>
@@ -86,11 +87,11 @@ const RoomRequest = () => {
                   </label>
                 </div>
 
-                <div className="skill">
+                {/* <div className="skill">
                   <label htmlFor="acting">Acting
                   <input type="checkbox" name="" id="acting" onChange={handleChangeCheckBox}/>
                   </label>
-                </div>
+                </div> */}
 
                 <div className="skill">
                   <label htmlFor="other">Others

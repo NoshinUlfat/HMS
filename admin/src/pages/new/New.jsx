@@ -1,9 +1,9 @@
-import "./new.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import "./new.scss";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -19,12 +19,17 @@ const New = ({ inputs, title }) => {
     data.append("file", file);
     data.append("upload_preset", "upload");
     try {
+      console.log("ABC");
+      console.log(data.values);
+      console.log("ABC");
       const uploadRes = await axios.post(
         "https://api.cloudinary.com/v1_1/lamadev/image/upload",
         data
       );
+  
 
       const { url } = uploadRes.data;
+      //console.log(uploadRes.data);
 
       const newUser = {
         ...info,

@@ -14,3 +14,27 @@ export const updateProvost = async (req,res,next)=>{
     next(err);
   }
 }
+export const deleteProvost = async (req,res,next)=>{
+  try {
+    await Provost.findByIdAndDelete(req.params.id);
+    res.status(200).json("Provost has been deleted.");
+  } catch (err) {
+    next(err);
+  }
+}
+export const getProvost = async (req,res,next)=>{
+  try {
+    const srovost = await Provost.findById(req.params.id);
+    res.status(200).json(srovost);
+  } catch (err) {
+    next(err);
+  }
+}
+export const getProvosts = async (req,res,next)=>{
+  try {
+    const srovosts = await Provost.find();
+    res.status(200).json(srovosts);
+  } catch (err) {
+    next(err);
+  }
+}

@@ -27,7 +27,7 @@ export const SideBarDataStd = [
             {
                 id : 1,
                 name: 'Menus',
-                path: '/',
+                path: '/student/dining',
                 icon: <DiningIcon className='icon'/>,
             }
         ],
@@ -45,13 +45,25 @@ export const SideBarDataStd = [
             {
                 id : 2,
                 name: 'Certificate',
-                path: '/',
+                path: '/student/certificate',
                 icon: <CardMembershipIcon className='icon'/>,
             }
         ],
     },
     {
         id : 4,
+        title: 'Services',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Request Service',
+                path: '/student/service',
+                icon: <BedroomChildIcon className='icon'/>,
+            },
+        ],
+    },
+    {
+        id : 5,
         title: 'Notice',
         sideBarInfo: [
             {

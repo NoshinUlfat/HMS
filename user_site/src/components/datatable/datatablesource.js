@@ -1,3 +1,84 @@
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
+
+
+// function getUserData({ name }) {
+//   let responseDataTemp = [];  // Calculates output
+//   useEffect(() => {
+//     axios.get("/roomAllotments")   
+//                     .then(res => {
+//                         // object destructuring
+//                         const room = res.data[0].preferredRoomNo;
+//                         console.log("IN ",res.data[0]," ",room)
+//                         responseDataTemp.push(room);
+
+                        
+//                     });
+//   });
+//           // Calculates output
+// }
+
+
+ //let responseData = [];
+// async function getUserData() {
+//   let responseDataTemp = [];
+// 	try {
+// 		const response = await axios.get("/roomAllotments")   
+//                     .then(res => {
+//                         // object destructuring
+//                         const room = res.data[0].preferredRoomNo;
+//                         console.log("IN ",res.data[0]," ",room)
+//                         responseDataTemp.push(room);
+
+                        
+//                     });
+
+//                     console.log("INcdsdcsds ",responseDataTemp[0])
+//                     dataCopy(responseDataTemp)
+// 	}
+// 	catch (error) {
+// 		console.log(error);
+// 	}
+//   return null;
+// }
+
+// function dataCopy (data){
+//   responseData = data;
+// }
+
+// let response = getUserData()
+// console.log("Fsdsd  ",responseData[0]);
+
+// console.log("AAABBBBBBBBBBBBB")
+// console.log(responseData[0]);
+// console.log("AAA")
+
+
+// let responseData = null;
+
+// let AuthUser = function() {
+//   return axios.get("/roomAllotments").then(token => { return token } )
+// }
+
+// let userToken = AuthUser()
+// console.log(userToken) // Promise { <pending> }
+
+// userToken.then(function(result) {
+//    console.log("DO ",result) // "Some User token"
+//    responseData = result.data;
+// })
+
+// console.log("DcdcdO ",responseData) 
+
+
+
+// let AuthUser = function() {
+//   return axios.get("/roomAllotments")
+// }
+
+// let userToken =  AuthUser()
+// console.log("dfgvdg ",userToken) // your data
+
 export const userColumns = [
     // { field: "id", headerName: "ID", width: 70 },
     {
@@ -131,3 +212,6 @@ export const userColumns = [
       LT: '1-2',
     },
   ];
+
+
+

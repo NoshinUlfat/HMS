@@ -1,7 +1,11 @@
 import express from "express";
 import {
-  updateProvost
+  updateProvost,
+  deleteProvost,
+  getProvost,
+  getProvosts
 } from "../controllers/provost.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -21,12 +25,15 @@ const router = express.Router();
 router.put("/:id", updateProvost);
 
 //DELETE
-// router.delete("/:id", verifyStudent, deleteStudent);
+//router.delete("/:id", verifyAdmin, deleteProvost);
+router.delete("/:id", deleteProvost);
 
-// //GET
-// router.get("/:id", verifyStudent, getStudent);
+//GET
+//router.get("/:id", verifyAdmin, getProvost);
+router.get("/:id", getProvost);
 
-// //GET ALL
-// router.get("/", verifyAdmin, getStudents);
+//GET ALL
+//router.get("/", verifyAdmin, getProvosts);
+router.get("/", getProvosts);
 
 export default router;

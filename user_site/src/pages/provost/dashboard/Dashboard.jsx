@@ -191,7 +191,7 @@ const DashboardProvost = () => {
                     <input type='text' placeholder={user.designation} id="designation" onChange={handleChange} />
                   </div>
 
-                  <button onClick={handleClick}>Send</button>
+                  <button onClick={handleClick}>Save</button>
                   </div>
                 </form>
               </div>

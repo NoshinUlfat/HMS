@@ -4,18 +4,16 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { provostInputs, studentInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
-import NewHotel from "./pages/newHotel/NewHotel";
+import { provostColumns,studentColumns,hallColumns,roomColumns,userColumns } from "./datatablesource";
+import NewHall from "./pages/newHall/NewHall";
 import NewRoom from "./pages/newRoom/NewRoom";
-import DashboardProvost from "./pages/provost/dashboard/Dashboard";
-import RoomApplicationList from "./pages/provost/roomApplictionList/RoomApplicationList";
-import DashboardStd from "./pages/student/dashboard/Dashboard";
-import RoomRequest from "./pages/student/roomrequest/RoomRequest";
+import NewProvost from "./pages/newProvost/NewProvost";
+import NewStudent from "./pages/newStudent/NewStudent";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -44,6 +42,58 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="provosts">
+            <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={provostColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path=":provostId"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <NewProvost inputs={provostInputs} title="Add New Provost" />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="students">
+            <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={studentColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path=":studentId"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <NewStudent inputs={studentInputs} title="Add New Studnet" />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
             <Route path="users">
               <Route
                 index
@@ -70,12 +120,12 @@ function App() {
                 }
               />
             </Route>
-            <Route path="hotels">
+            <Route path="halls">
               <Route
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={hotelColumns} />
+                    <List columns={hallColumns} />
                   </ProtectedRoute>
                 }
               />
@@ -91,7 +141,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewHotel  />
+                    <NewHall  />
                   </ProtectedRoute>
                 }
               />
@@ -122,15 +172,6 @@ function App() {
                 }
               />
             </Route>
-            <Route index element={<Home/>} />
-              <Route path="provost">
-                <Route path="Dashboard" element={<DashboardProvost/>} /> 
-                 <Route path="roomRequests" element={<RoomApplicationList/>} />
-              </Route>
-              <Route path="student">
-                <Route path="Dashboard" element={<DashboardStd/>} />
-                <Route path="roomRequest" element={<RoomRequest/>} />
-              </Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -8,6 +8,7 @@ import {rommRequestProgress} from '../../../components/progressbar/progressbarDa
 import Datatable from "../../../components/datatable/DataTable"
 
 import { userRows } from "./../../../components/datatable/datatablesource";
+import axios from "axios";
 
 const RoomApplicationList = () => {
     const [id,setID] = useState(null)
@@ -20,6 +21,18 @@ const RoomApplicationList = () => {
             return userRows.filter((x) => x.id === id)
         }
         return null
+    }
+
+
+    try {
+      const res = axios.get("/roomAllotments");
+    
+        console.log("VCVCccccccccccccc ",res.data)
+
+        console.log("logindwcwfff ",res.data.details);///////////
+ 
+    } catch (err) {
+      console.log(err)
     }
 
     return (

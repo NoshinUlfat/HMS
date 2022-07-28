@@ -15,6 +15,8 @@ import NewRoom from "./pages/newRoom/NewRoom";
 import NewProvost from "./pages/newProvost/NewProvost";
 import NewStudent from "./pages/newStudent/NewStudent";
 
+//import DashboardStd from "../user_site/pages/student/dashboard/Dashboard";
+
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -173,6 +175,8 @@ function App() {
               />
             </Route>
           </Route>
+
+          
         </Routes>
       </BrowserRouter>
     </div>

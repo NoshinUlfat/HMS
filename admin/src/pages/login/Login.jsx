@@ -17,33 +17,47 @@ const Login = () => {
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(e);/////////////
+ 
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", credentials);
-      if (res.data.isAdmin) {
+      if (res.data.isUserAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
 
         navigate("/");
-      } else {
-        dispatch({
-          type: "LOGIN_FAILURE",
-          payload: { message: "You are not allowed!" },
-        });
-      }
+        //navigate("/student/dashboard/",res.data);        //NOSHIN
+      // } else {
+      //   dispatch({
+      //     type: "LOGIN_FAILURE",
+      //     payload: { message: "You are not allowed!" },
+      //   });
+       } else if (res.data.isUserProvost) {
+        console.log("Provost")
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+
+        navigate("/provost/dashboard/",res.data); 
+       } else {
+        console.log("VCVC ",res.data)
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+
+        navigate("/student/dashboard/",res.data); 
+       }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
 
   return (
-    <div className="bg"> 
-    <div className="login"> 
-    
+    // <body>
+    <div className="login">
       <div className="lContainer">
+      <h1 className="text">Welcome to Titumir Hall</h1>
         <input
           type="text"
           placeholder="username"
@@ -63,8 +77,8 @@ const Login = () => {
         </button>
         {error && <span>{error.message}</span>}
       </div>
-      </div>
     </div>
+    // </body>
   );
 };
 

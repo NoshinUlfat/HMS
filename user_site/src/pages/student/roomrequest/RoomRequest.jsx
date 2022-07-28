@@ -16,10 +16,10 @@ const RoomRequest = () => {
   const [info, setInfo] = useState({});
   
   const { user } = useContext(AuthContext);
-  var urlConnection = "/roomAllotments/"+user.studentID;
+  var urlConnection = "/roomAllotments/"+user.studentId;
   console.log("URL ",urlConnection)
 
-  console.log("ID CHECK",user.studentID)
+  console.log("ID CHECK",user.studentId)
 
   const handleChangeText = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -45,11 +45,13 @@ const RoomRequest = () => {
       const newRequest = {
         ...info,
         file: url,
-        studentID: user.studentID,
+        studentId: user.studentId,
         approvalStatus: "pending",
       };
 
+      console.log("Bla")
       console.log(newRequest)
+      console.log("DCDC ".urlConnection)
       const res = await axios.post(urlConnection, newRequest);
     
       console.log(uploadRes.data)

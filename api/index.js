@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
-import hotelsRoute from "./routes/hotels.js";
+import hallsRoute from "./routes/halls.js";
 import roomsRoute from "./routes/rooms.js";
 
 import studentsRoute from "./routes/students.js";
@@ -36,7 +36,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
-app.use("/api/hotels", hotelsRoute);
+app.use("/api/halls", hallsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/students", studentsRoute);
 app.use("/api/roomAllotments", roomAllotmentsRoute);

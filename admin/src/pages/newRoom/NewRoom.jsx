@@ -9,10 +9,10 @@ import axios from "axios";
 
 const NewRoom = () => {
   const [info, setInfo] = useState({});
-  const [hotelId, setHotelId] = useState(undefined);
+  const [hallId, setHallId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
 
-  const { data, loading, error } = useFetch("/hotels");
+  const { data, loading, error } = useFetch("/halls");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -22,7 +22,7 @@ const NewRoom = () => {
     e.preventDefault();
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
     try {
-      await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      await axios.post(`/rooms/${hallId}`, { ...info, roomNumbers });
     } catch (err) {
       console.log(err);
     }
@@ -59,16 +59,16 @@ const NewRoom = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Choose a hotel</label>
+                <label>Choose a Hall</label>
                 <select
-                  id="hotelId"
-                  onChange={(e) => setHotelId(e.target.value)}
+                  id="hallId"
+                  onChange={(e) => setHallId(e.target.value)}
                 >
                   {loading
                     ? "loading"
                     : data &&
-                      data.map((hotel) => (
-                        <option key={hotel._id} value={hotel._id}>{hotel.name}</option>
+                      data.map((hall) => (
+                        <option key={hall._id} value={hall._id}>{hall.name}</option>
                       ))}
                 </select>
               </div>

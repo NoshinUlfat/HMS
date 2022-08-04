@@ -1,17 +1,19 @@
-import "./roomApplicationList.scss"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Datatable from "../../../components/datatable/DataTable"
 import Navbar from '../../../components/navbar/Navbar'
+import Progressbar from '../../../components/progressbar/Progressbar'
+import { rommRequestProgress } from '../../../components/progressbar/progressbarData'
 import Sidebar from '../../../components/sidebar/Sidebar'
 import { SideBarDataProvost } from "../../../components/sidebar/SideBarData"
-import Progressbar from '../../../components/progressbar/Progressbar'
-import {rommRequestProgress} from '../../../components/progressbar/progressbarData'
-import Datatable from "../../../components/datatable/DataTable"
+import "./roomApplicationList.scss"
 
-import { userRows } from "./../../../components/datatable/datatablesource";
-import axios from "axios";
+import axios from "axios"
+import { userRows } from "./../../../components/datatable/datatablesource"
 
 const RoomApplicationList = () => {
     const [id,setID] = useState(null)
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const showInfo = num => {
         setID(num)
@@ -24,16 +26,33 @@ const RoomApplicationList = () => {
     }
 
 
-    try {
-      const res = axios.get("/roomAllotments");
-    
-        console.log("VCVCccccccccccccc ",res.data)
+    useEffect(() => {
+      const fetchData = async () => {
+      setLoading(true);
+      try {
+        // const res = axios.get("/roomAllotments");
+      
+        // console.log("VCVCccccccccccccc ",res.data)
 
-        console.log("logindwcwfff ",res.data.details);///////////
- 
-    } catch (err) {
-      console.log(err)
-    }
+        // console.log("logindwcwfff ",res.data.details);///////////
+        const { data: response } = await axios.get("/roomAllotments");
+        setData(response);
+
+        console.log("VCVCccccccccccccc ",response);
+  
+      } catch (err) {
+        console.log(err)
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("DATA ",data)
+  console.log("LOAD ",loading)
+
+  
 
     return (
         <div className='roomApplicationList'>
@@ -44,7 +63,23 @@ const RoomApplicationList = () => {
               <div className="left">
               <div className="editButton">
             </div>
-            <h1 className="title">Information</h1>
+            
+            <h1 className="title">Information </h1>
+            {loading?"Loading":(
+              <>
+              <div>Hello</div>
+              <div className="Ff">
+            {data.map((student) => (
+              <div className="studentId">{student._id}</div>
+            ))}
+            </div> 
+              </>
+            )}
+            {/* <div className="Ff">
+            {data.map((student) => (
+              <div className="studentId">{student._id}</div>
+            ))}
+            </div> */}
             {id?
             <div className="item">
             

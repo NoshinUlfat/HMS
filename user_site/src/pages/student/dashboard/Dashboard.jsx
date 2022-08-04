@@ -14,6 +14,9 @@ import { AuthContext } from "../../../context/AuthContext"
 import axios from "axios";
 
 
+import Alert from '@mui/material/Alert';
+
+
 const DashboardStd =  () => {
  // const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -54,7 +57,7 @@ const DashboardStd =  () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(e);/////////////
+    console.log("EEE ",e);/////////////
  
 
     var url = "/students/"+user._id;
@@ -65,6 +68,8 @@ const DashboardStd =  () => {
         console.log("VCVCccccccccccccc ",res.data)
 
         console.log("logindwcwfff ",res.data.details);///////////
+
+       
  
     } catch (err) {
       console.log(err)

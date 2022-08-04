@@ -69,7 +69,7 @@ export const SideBarDataStd = [
             {
                 id : 1,
                 name: 'General',
-                path: '/',
+                path: '/student/notice',
                 icon: <ContentPasteIcon className='icon'/>,
             }
         ],
@@ -132,7 +132,7 @@ export const SideBarDataProvost = [
             {
                 id : 1,
                 name: 'Assign Notice',
-                path: '/',
+                path: '/provost/assignNotice',
                 icon: <NoteAltIcon className='icon'/>,
             },
             {

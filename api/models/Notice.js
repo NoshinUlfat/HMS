@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const noticeSchema = mongoose.Schema({
 
@@ -10,4 +10,4 @@ date: { type: Date, default: Date.now, required: true },
 
 });
 
-module.exports = mongoose.model("Notice", noticeSchema);
+export default mongoose.model("Notice", noticeSchema);

@@ -14,11 +14,14 @@ import NewHotel from "./pages/newHotel/NewHotel";
 import NewRoom from "./pages/newRoom/NewRoom";
 import DashboardProvost from "./pages/provost/dashboard/Dashboard";
 import RoomApplicationList from "./pages/provost/roomApplictionList/RoomApplicationList";
+import AssignNotice from "./pages/provost/assignNotice/AssignNotice";
 import DashboardStd from "./pages/student/dashboard/Dashboard";
 import RoomRequest from "./pages/student/roomrequest/RoomRequest";
 import Dining from "./pages/student/dining/Dining"
 import Service from "./pages/student/service/Service"
 import Certificate from "./pages/student/certificate/Certificate"
+import NoticedStd from "./pages/student/notice/Notice";
+import OnlineStd from "./pages/student/online/Online";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -129,6 +132,7 @@ function App() {
               <Route path="provost">
                 <Route path="Dashboard" element={<DashboardProvost/>} /> 
                  <Route path="roomRequests" element={<RoomApplicationList/>} />
+                 <Route path="assignNotice" element={<AssignNotice/>} />
               </Route>
               <Route path="student">
                 <Route path="Dashboard" element={<DashboardStd/>} />
@@ -136,6 +140,9 @@ function App() {
                 <Route path="dining" element={<Dining/>} />
                 <Route path="certificate" element={<Certificate/>} />
                 <Route path="service" element={<Service/>} />
+                <Route path="notice" element={<NoticedStd/>} />
+
+                <Route path="online" element={<OnlineStd/>} />
               </Route>
           </Route>
         </Routes>

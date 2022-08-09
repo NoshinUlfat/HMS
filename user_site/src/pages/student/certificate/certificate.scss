@@ -18,62 +18,56 @@
               padding: 20px;
               position: relative;
 
-              .listBox {
-                .itemTitle {
-                  margin-bottom: 10px;
-                  color: #555;
-                }
-    
-                .lisBox-Details {
-                  margin-bottom: 10px;
-                  font-size: 14px;
-    
-                  .listItem-box {
+              .buttons{
+                .editButton {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    padding: 5px;
                     font-size: 15px;
                     font-weight: bold;
-                    color: #7451f8;
-                    background-color: #7551f818;
+                    background-color: #D5CAFC;
+                    border: solid;
+                    border-color: #B9A8FB;
                     cursor: pointer;
-                    border-color: #4c21ed;
-                    border-width: 2px;
-                    border-style: solid;
-                    border-radius: 0px 0px 0px 0px;
-                    
-                   
-                    
-                    // .icon {
-                    //     padding-right: 5px;
-                    //     font-size: 15px;
-                    // }
-
-                  }
-                  .listItem-box :hover{
-                    background-color: #4c21ed;
-                  }
-                  
+                    border-radius: 0px 0px 0px 5px;
+   
+                    .icon {
+                    font-size: 15px;
+                    }
                 }
-              }
-      
-            //   .buttons{
-            //     .editButton {
-            //         position: absolute;
-            //         //top: 0;
-            //         //right: 0;
-            //         padding: 5px;
-            //         font-size: 15px;
-            //         color: #7451f8;
-            //         background-color: #7551f818;
-            //         cursor: pointer;
-            //         border-radius: 0px 0px 0px 5px;
-
-                    
-                    
-            //         .icon {
-            //         font-size: 15px;
-            //         }
-            //     }
                 
-            //   }
+              }
+
+              .list-boxOutter{
+                padding-top: 20px;
+
+                .listBox {
+                  border-style: solid;
+                  border-color: #D5CAFC;
+                  padding: 10px;
+  
+                 .list-boxInner {
+                    background-color: #F1EDFE;
+                    padding-left: 2px;
+                    padding-right: 2px;
+                  }
+  
+                  .itemTitle {
+                    margin-bottom: 10px;
+                    color: #555;
+                  }
+      
+                  .lisBox-Details {
+                    margin-bottom: 10px;
+      
+                  }
+               }
+              }
+              
+              
+      
+              
 
               .item {
                 display: flex;

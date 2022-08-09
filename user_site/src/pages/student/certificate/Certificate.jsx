@@ -1,22 +1,18 @@
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined"
-import EditIcon from '@mui/icons-material/Edit'
 import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
-import Popup from '../../../components/popup/Popup'
 import Sidebar from '../../../components/sidebar/Sidebar'
 import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
-import "./certificate.scss";
+import "./certificate.scss"
 
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
+import axios from "axios"
 import { useContext } from "react"
 import { AuthContext } from "../../../context/AuthContext"
-import axios from "axios";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import CreateIcon from '@mui/icons-material/Create';
+
 
 
 const Certificate =  () => {
@@ -62,64 +58,93 @@ const Certificate =  () => {
                 
                 <div className="top">
                     <div className="left">
+
+                        <div className="buttons">
+                            <div className="buttonDetails" key="1">
+                                <div className="editButton" >
+                                    <span onClick={() => setShow(true)}> <CreateIcon className='icon'/> Write Application</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="list-boxOutter">
+
                         <div className="listBox">
-                            
-                                <List style={{maxHeight: '100%', overflow: 'auto', height: '100px'}} >
+                            <h2>Already Approved</h2>
+
+                            <List style={{maxHeight: '100%', overflow: 'auto', height: '110px'}} >
+                                <div class="list-boxInner"> 
                                     <ListItem>
-                                    <div className="listBox-Details" key="1">
-                                        <div className="listItem-box">APP 1</div>
-                                        </div>
+                                        <ListItemButton >
+                                        <ListItemText primary="Sports certificate 1"/>
+                                        </ListItemButton>
                                     </ListItem>
                                     <ListItem >
                                         <ListItemButton>
-                                        <ListItemIcon>
-                                            {/* <DraftsIcon /> */}
-                                        </ListItemIcon>
-                                        <ListItemText primary="Drafts" />
+                                        <ListItemText primary="Sports certificate 2" />
                                         </ListItemButton>
                                     </ListItem>
-                                </List>
-                            
-                            <div className="buttonDetails" key="2">
-                                
-                            </div>
-                            <div className="buttonDetails" key="3">
-                                
-                            </div>
-                            <div className="buttonDetails" key="4">
-                                
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="right">
-                    <Popup show={show} onClose={() => setShow(false)} className= "popup">
-                        {/* <h1>Hello</h1> */}
-                    <div className="insidePop">
-                        <div className="top">
-                         <h1>Renovation</h1>    {/* ..............CHANGE THE TITLE ACCORDING TO SELECTION HOOMAN.............. */}
-                        </div>
-                        <div className="bottom">
-                        
-                        <div className="right">
-                            <form>
-                            <div className="formInput">
-                              
-                                <div className="detailItem" key = "1">
-                                    <label htmlFor="message"><b>Application</b></label>
-                                    <textarea name="" id="message" cols="80" rows="12" placeholder='Write Your Complaint Here' ></textarea>
+                                    <ListItem >
+                                        <ListItemButton>
+                                        <ListItemText primary="Sports certificate 3" />
+                                        </ListItemButton>
+                                    </ListItem>
                                 </div>
+                            </List>
+                        </div>
 
-                            <button onClick={handleClick}>Send</button>
+                        <div className="listBox">
+                            <h2>Waiting for Approval</h2>
 
-                            </div>
-                            </form>
+                            <List style={{maxHeight: '100%', overflow: 'auto', height: '110px'}} >
+                                <div class="list-boxInner"> 
+                                    <ListItem>
+                                        <ListItemButton >
+                                        <ListItemText primary="Sports certificate 1"/>
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem >
+                                        <ListItemButton>
+                                        <ListItemText primary="Sports certificate 2" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem >
+                                        <ListItemButton>
+                                        <ListItemText primary="Sports certificate 3" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </div>
+                            </List>
                         </div>
+
+                        <div className="listBox">
+                            <h2>All Applications</h2>
+
+                            <List style={{maxHeight: '100%', overflow: 'auto', height: '110px'}} >
+                                <div class="list-boxInner"> 
+                                    <ListItem>
+                                        <ListItemButton >
+                                        <ListItemText primary="Sports certificate 1"/>
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem >
+                                        <ListItemButton>
+                                        <ListItemText primary="Sports certificate 2" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem >
+                                        <ListItemButton>
+                                        <ListItemText primary="Sports certificate 3" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </div>
+                            </List>
                         </div>
-                        </div>
-                    </Popup>
+
                     </div>
+
+                    </div>
+                    
                 </div>
             </div>
         </div>

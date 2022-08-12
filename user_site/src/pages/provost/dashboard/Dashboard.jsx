@@ -18,6 +18,7 @@ import axios from "axios";
 const DashboardProvost = () => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState("");
+  const [info, setInfo] = useState({});
   
   
   
@@ -36,7 +37,7 @@ const DashboardProvost = () => {
   });
 
   const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
   };
 
@@ -44,15 +45,29 @@ const DashboardProvost = () => {
     e.preventDefault();
     console.log(e);/////////////
  
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "upload");
 
-    var url = "/provosts/"+user._id;
-    console.log("URL ",url)
+    var main_url = "/provosts/"+user._id;
+    console.log("URL ",main_url)
     try {
-      const res = await axios.put(url, credentials);
-    
-        console.log("VCVCccccccccccccc ",res.data)
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/lamadev/image/upload",
+        data
+      );
 
-        console.log("logindwcwfff ",res.data.details);///////////
+      const { url } = uploadRes.data;
+      const newRequest = {
+        ...info,
+        img: url,
+      };
+      
+      const res = await axios.put(main_url, newRequest);
+    
+      console.log("VCVCccccccccccccc ",res.data)
+
+      console.log("logindwcwfff ",res.data.details);///////////
  
     } catch (err) {
       console.log(err)

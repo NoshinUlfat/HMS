@@ -5,7 +5,11 @@
 import mongoose from "mongoose";
 
 const roomalotementSchema = mongoose.Schema({
-
+    studentsId: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Student",
+        required : true
+    },
     studentId: {type: String},
     preferredRoomNo: {type: Number},
     message: {type: String, maxLength: 200},
@@ -14,6 +18,8 @@ const roomalotementSchema = mongoose.Schema({
     other: { type: Boolean, default: false},
     approvalStatus: {type: String, enum: ["pending", "accepted", "declined"], required: true, default: "pending"},
     file: { type: String},
-});
+},
+    { timestamps: true }
+);
 
 export default mongoose.model("RoomAllotment", roomalotementSchema)

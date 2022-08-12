@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const noticeSchema = mongoose.Schema({
 
+provostId: {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : "Provost",
+},
+
 title: { type: String, required: true},
 noticeType : { type: String, required: true},
 attachments: { type: Buffer},

@@ -19,8 +19,12 @@ import DashboardStd from "./pages/student/dashboard/Dashboard";
 import RoomRequest from "./pages/student/roomrequest/RoomRequest";
 import Dining from "./pages/student/dining/Dining"
 import Service from "./pages/student/service/Service"
-import Certificate from "./pages/student/certificate/Certificate"
-import NoticedStd from "./pages/student/notice/Notice";
+import CertificateStd from "./pages/student/certificate/Certificate"
+import NoticedStd from "./pages/student/noticeStudent/Notice";
+import CertificateProvost from "./pages/provost/certificate/Certificate";
+import FundRequest from "./pages/provost/fundRequest/FundRequest";
+import DefaulterList from "./pages/provost/defaulterList/DefaulterList";
+import NoticedProvost from "./pages/provost/noticeProvost/Notice";
 import OnlineStd from "./pages/student/online/Online";
 
 function App() {
@@ -132,15 +136,19 @@ function App() {
               <Route path="provost">
                 <Route path="Dashboard" element={<DashboardProvost/>} /> 
                  <Route path="roomRequests" element={<RoomApplicationList/>} />
+                 <Route path="certificates" element={<CertificateProvost/>} />
+                 <Route path="fundRequests" element={<FundRequest/>} />
+                 <Route path="defaulterLists" element={<DefaulterList/>} />
                  <Route path="assignNotice" element={<AssignNotice/>} />
+                 <Route path="noticeProvost" element={<NoticedProvost/>} />
               </Route>
               <Route path="student">
                 <Route path="Dashboard" element={<DashboardStd/>} />
                 <Route path="roomRequest" element={<RoomRequest/>} />
                 <Route path="dining" element={<Dining/>} />
-                <Route path="certificate" element={<Certificate/>} />
+                <Route path="certificate" element={<CertificateStd/>} />
                 <Route path="service" element={<Service/>} />
-                <Route path="notice" element={<NoticedStd/>} />
+                <Route path="noticeStudent" element={<NoticedStd/>} />
 
                 <Route path="online" element={<OnlineStd/>} />
               </Route>

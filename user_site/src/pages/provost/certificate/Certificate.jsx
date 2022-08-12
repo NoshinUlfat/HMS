@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import Datatable from "../../../components/datatable/DataTable"
 import Navbar from '../../../components/navbar/Navbar'
@@ -5,24 +6,18 @@ import Progressbar from '../../../components/progressbar/Progressbar'
 import { rommRequestProgress } from '../../../components/progressbar/progressbarData'
 import Sidebar from '../../../components/sidebar/Sidebar'
 import { SideBarDataProvost } from "../../../components/sidebar/SideBarData"
-import "./roomApplicationList.scss"
+import "./certificate.scss"
 
 import axios from "axios"
 
 import { userRows } from "./../../../components/datatable/datatablesource"
 import { DataGrid } from "@mui/x-data-grid";
 import {datatable,datatableTitle,link,cellWithImg,cellImg,cellWithStatus,cellAction} from "../../../components/datatable/datatable.scss"
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import CreateIcon from '@mui/icons-material/Create';
 
 const RoomApplicationList = () => {
     const [id,setID] = useState(null)
     const [data, setData] = useState([]);
-    const [colName, setcolName] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [show, setShow] = useState(false);
-
-    let studentNameData = []
 
     const showInfo = num => {
         setID(num)
@@ -41,15 +36,7 @@ const RoomApplicationList = () => {
         const { data: response } = await axios.get("/roomAllotments");
         setData(response);
 
-        console.log("VCVCccccccccccccc ",response[0].studentsId);
-        var keys = Object.keys( response );
-        for( var i = 0,length = keys.length; i < length; i++ ) {
-          studentNameData[i] = response[ keys[ i ] ].studentsId.username
-          console.log(studentNameData[i]);
-        }
-
-        setcolName(studentNameData)
-        console.log("BBBBBBBBBBBB   ",studentNameData)
+        console.log("VCVCccccccccccccc ",response);
   
       } catch (err) {
         console.log(err)
@@ -60,8 +47,6 @@ const RoomApplicationList = () => {
     fetchData();
   }, []);
 
-
-  
   console.log("DATA ",data)
   console.log("LOAD ",loading)
 
@@ -72,37 +57,35 @@ const RoomApplicationList = () => {
         return null
     }
 
-    let userColumns = []
 
-    if(!loading){
-    //  console.log("VCVCV   ",data.studentsId)
-    userColumns = [
+
+    const userColumns = [
+      // { field: "id", headerName: "ID", width: 70 },
       {
-        field: '',
-        headerName: "Profile",
-        width: 180,
+        field: "username",
+        headerName: "Name",
+        width: 230,
         renderCell: (params) => {
           return (
             <div className="cellWithImg">
-              <img className="cellImg" src={params.row.studentsId.img} alt="" />   
-              {params.row.username}
+              {/* <img className="cellImg" src={params.row.img} alt="avatar" />
+              {params.row.username} */}
             </div>
           );
         },
       },
       {
         field: 'studentId',
-        headerName: "Student ID",
-        width: 230,
+        headerName: "SID",
+        width: 100,
       },
     
-      // {
-      //   field: 'sports',
-      //   headerName: "Level-Term",
-      //   width: 100,
-      // },
+      {
+        field: "LT",
+        headerName: "LT",
+        width: 100,
+      },
     ];
-   } 
 
     const handleDelete = (id) => {
       setData(data.filter((item) => item._id !== id));
@@ -112,7 +95,7 @@ const RoomApplicationList = () => {
       {
         field: "action",
         headerName: "Action",
-        width: 230,
+        width: 200,
         renderCell: (params) => {
           return (
             <div className="cellAction">
@@ -130,7 +113,7 @@ const RoomApplicationList = () => {
         },
       },
     ];
-    
+
     const userRows = [
       {
         id: 1,
@@ -168,18 +151,59 @@ const RoomApplicationList = () => {
   
 
     return (
-        <div className='roomApplicationList'>
+        <div className='certificate'>
           {loading?"Loading":(
             <>
               <Sidebar info={SideBarDataProvost}/>
-              <div className="roomApplicationListContainer">
+              <div className="certificateContainer">
                 <Navbar/>
                 <div className="top">
                 <div className="left">
-                  
+                <div className="editButton">
+              </div>
+              
+              <h1 className="title">Information </h1>
+              {/* {loading?"Loading":(
+                <> */}
+                {/* <div>Hello</div>
+                <div className="Ff">
+                  {data.map((student) => (
+                    <div className="studentId">{student._id}</div>
+                  ))}
+                </div>  */}
+              
+            
+              {id?
+              <div className="item">
+              
+                {/* <img
+                  src= {item()[0].img}
+                  alt=""
+                  className="itemImg"
+                /> */}
+                <div className="details">
+                  {/* <h1 className="itemTitle">{item()[0].username}</h1> */}
+                  <div className="detailItem" >
+                      <span className="itemKey">SID : </span>
+                      <span className="itemValue">{item()[0].studentId}</span>
+                  </div>
+                  <div className="detailItem" >
+                      <span className="itemKey">Email : </span>
+                      {/* <span className="itemValue">{item()[0].email}</span> */}
+                  </div>
+                  <div className="detailItem" >
+                      <span className="itemKey">SID : </span>
+                      {/* <span className="itemValue">{item()[0].LT}</span> */}
+                  </div>
+                </div>  
+              </div>
+              : <p>  </p> }   
+              {/* </>
+              )}         */}
+            </div>
 
-
-                  {/* <Datatable showInfo = {showInfo} /> */}
+                <div className="right">
+                    {/* <Datatable showInfo = {showInfo} /> */}
 
                     {/* {loading?"Loading":(
                     <> */}
@@ -193,8 +217,8 @@ const RoomApplicationList = () => {
                         rows={data}
                         columns={userColumns.concat(actionColumn)}
                         getRowId={(row) => row._id}
-                        pageSize={7}
-                        rowsPerPageOptions={[7]}
+                        pageSize={6}
+                        rowsPerPageOptions={[6]}
                         checkboxSelection
                       />
                     </div>
@@ -205,79 +229,9 @@ const RoomApplicationList = () => {
                       <button className="btnApproved">Approve Selected</button>
                       <button className="btnRejected">Reject Selected</button>
                     </div>
-                </div>
 
-                <div className="right">
-                <div className="editButton"></div>
-              
-              <h1 className="title">Information </h1>
-          
-        
-              {id?
-              <div className="item">
-              
-                <div className="details">
-                  <div className="detailItem" >
-                    <img
-                      src= {item()[0].studentsId.img}
-                      alt=""
-                      className="itemImg"
-                    />
                   </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Student Name : </span>
-                      <span className="itemValue">{item()[0].studentsId.username}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Student ID : </span>
-                      <span className="itemValue">{item()[0].studentId}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Email : </span>
-                      <span className="itemValue">{item()[0].studentsId.email}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">CGPA : </span>
-                      <span className="itemValue">{item()[0].studentsId.cgpa}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Level-Term : </span>
-                      <span className="itemValue">{item()[0].studentsId.level}-{item()[0].studentsId.term}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Present Address : </span>
-                      <span className="itemValue">{item()[0].studentsId.present_address}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Permanent Address : </span>
-                      <span className="itemValue">{item()[0].studentsId.permanent_address}</span>
-                  </div>
-                  <div className="detailItem" >
-                      <span className="itemKey">Cocurriculam Activities : </span>
-                      {item()[0].sports?(<span className="itemValue"> Sports </span>)
-                      :<p></p>}
-                      {item()[0].debate?(<span className="itemValue"> Debate </span>)
-                      :<p></p>}
-                      {item()[0].other?(<span className="itemValue"> Others </span>)
-                      :<p></p>}
-                  </div>
-                  <div className="detailItem" >
-                    <span className="itemValue">
-                      <div className="buttons">
-                          <div className="editButton" >
-                            <span onClick={() => setShow(true)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
-                          </div>
-                      </div>
-                    </span>
-                  </div>
-                </div>  
-              </div>
-              : <p>  </p> }   
-              {/* </>
-              )}         */}
-
                 </div>
-               </div>
                   
                 <div className="bottom">
                   <div className='progressbar'>

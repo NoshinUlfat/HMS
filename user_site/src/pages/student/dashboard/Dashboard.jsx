@@ -21,6 +21,7 @@ const DashboardStd =  () => {
  // const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [file, setFile] = useState("");
+  const [info, setInfo] = useState({});
   
   
   
@@ -48,26 +49,43 @@ const DashboardStd =  () => {
     phone: undefined,
     present_address: undefined,
     permanent_address: undefined,
+    img: undefined,
   });
 
   const handleChange = (e) => {
-    setCredentials2((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     console.log("EEE ",e);/////////////
- 
 
-    var url = "/students/"+user._id;
-    console.log("URL ",url)
+
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "upload");
+
+    var main_url = "/students/"+user._id;
+    console.log("URL ",main_url)
     try {
-      const res = await axios.put(url, credentials2);
-    
-        console.log("VCVCccccccccccccc ",res.data)
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/lamadev/image/upload",
+        data
+      );
 
-        console.log("logindwcwfff ",res.data.details);///////////
+      const { url } = uploadRes.data;
+      const newRequest = {
+        ...info,
+        img: url,
+      };
+
+
+      const res = await axios.put(main_url, newRequest);
+    
+      console.log("VCVCccccccccccccc ",res.data)
+
+      console.log("logindwcwfff ",res.data.details);///////////
 
        
  

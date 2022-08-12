@@ -1,7 +1,7 @@
-.roomApplicationList {
+.certificate {
     display: flex;
 
-    .roomApplicationListContainer {
+    .certificateContainer {
         flex: 6;
         display: flex;
         flex-direction: column;
@@ -12,48 +12,35 @@
             gap: 20px;
       
             .left{
-              flex: 2;
-              padding-left: 30px; 
-              padding-right: 30px;
-              padding-bottom: 20px;
-              -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-              box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-              position: relative;
-      
-              .submitBtns{
-                margin-top: 30px;
-                display: flex;
-                justify-content: space-around;
-
-                .btnApproved,.btnRejected {
-                  // width: 100%;
-                  height: 50px;
-                  padding: 10px;
-                  border: none;
-                  background-color: green;
-                  color: white;
-                  border-radius: 5px;
-                  font-weight: bold;
-                  font-size: 18px;
-                  cursor: pointer;
-                  margin-top: 15px;
-                  margin-bottom: 30px;
-                }
-                .btnRejected {
-                  background-color: red;
-                }
-              }
-      
-              
-            }
-            .right{
               flex: 1;
               -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
               box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
               padding: 20px;
               position: relative;
+      
+              .editButton {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 5px;
+                font-size: 15px;
+                color: #7451f8;
+                background-color: #7551f818;
+                cursor: pointer;
+                border-radius: 0px 0px 0px 5px;
 
+                // .popup {
+                //   background-color: red;
+                //   .insidePop {
+                //     background-color: red;
+                //   }
+                // }
 
+                .icon {
+                  font-size: 15px;
+                }
+              }
+      
               .item {
                 display: flex;
                 gap: 20px;
@@ -83,33 +70,38 @@
       
                     .itemValue {
                       font-weight: 300;
-                      .buttons{
-                        .editButton {
-                            position: absolute;
-                            padding: 5px;
-                            font-size: 15px;
-                            font-weight: bold;
-                            background-color: #D5CAFC;
-                            border: solid;
-                            border-color: #B9A8FB;
-                            cursor: pointer;
-                            border-radius: 0px 0px 0px 5px;
-           
-                            .icon {
-                            font-size: 15px;
-                            }
-                        }
-                        
-                      }
                     }
                   }
                 }
               }
+            }
+            .right{
+              flex: 2;
+              padding: 20px; 
 
+              .submitBtns{
+                margin-top: 30px;
+                display: flex;
+                justify-content: space-around;
 
-              
-
-             
+                .btnApproved,.btnRejected {
+                  // width: 100%;
+                  height: 50px;
+                  padding: 10px;
+                  border: none;
+                  background-color: green;
+                  color: white;
+                  border-radius: 5px;
+                  font-weight: bold;
+                  font-size: 18px;
+                  cursor: pointer;
+                  margin-top: 15px;
+                  margin-bottom: 30px;
+                }
+                .btnRejected {
+                  background-color: red;
+                }
+              }
             }
 
           }

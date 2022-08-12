@@ -10,6 +10,8 @@ export const assignNotice = async (req, res, next) => {
       });
   
       await newRequest.save();
+
+      
       res.status(200).send("Request has been created.");
     } catch (err) {
       next(err);

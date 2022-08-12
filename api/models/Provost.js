@@ -2,6 +2,11 @@ import mongoose from "mongoose";
  
 const provostSchema = mongoose.Schema({
  
+    hallId: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Hall"
+    },
+
     username: {type: String, required: true, maxLength: 200},
     post  : {type: String, required: true, maxLength: 200, default: "Professor"},
     department : {type: String, required: true, maxLength: 200, default: "CSE"},

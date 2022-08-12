@@ -3,7 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "./datatablesource";
 import { useState } from "react";
 
-const Datatable = ({showInfo}) => {
+const Datatable = ({showInfo, rowData}) => {
+
+  console.log("INFOOOOOOOOO  ",showInfo)
+  console.log("ROWS ",userRows)
+  console.log("Cols ",userColumns)
+  console.log("Row data ",rowData)
+
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
@@ -41,8 +47,8 @@ const Datatable = ({showInfo}) => {
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={6}
+        rowsPerPageOptions={[6]}
         checkboxSelection
       />
     </div>

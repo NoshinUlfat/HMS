@@ -20,7 +20,7 @@ export const updateRoomAllotment = async (req, res, next) => {
 
 export const getRoomRequests = async (req,res,next)=>{
   try {
-    const requests = await RoomAllotment.find();
+    const requests = await RoomAllotment.find().populate('studentsId');
     res.status(200).json(requests);
   } catch (err) {
     next(err);

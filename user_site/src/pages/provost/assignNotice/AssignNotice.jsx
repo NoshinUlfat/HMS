@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataProvost } from "../../../components/sidebar/SideBarData"
 import "./assignNotice.scss"
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
@@ -64,7 +64,7 @@ const AssignNotice =  () => {
    
   return (
     <div className='assignNotice'>
-        <Sidebar info={SideBarDataStd}/>
+        <Sidebar info={SideBarDataProvost}/>
         <div className="assignNoticeContainer">
           <Navbar/>
           <form action="#" method="post">

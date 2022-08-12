@@ -30,6 +30,7 @@ const RoomRequest = () => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.checked }));
     console.log(info)
   };
+
   const handleClick = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -44,7 +45,7 @@ const RoomRequest = () => {
       const { url } = uploadRes.data;
       const newRequest = {
         ...info,
-        file: url,
+        img: url,
         studentId: user.studentId,
         approvalStatus: "pending",
       };

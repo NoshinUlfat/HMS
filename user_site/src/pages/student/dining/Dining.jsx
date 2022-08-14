@@ -7,6 +7,9 @@ import Sidebar from '../../../components/sidebar/Sidebar'
 import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./dining.scss"
 
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -20,6 +23,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { mealDataList } from "./diningDataSource.js"
 
 const adapter = new AdapterDateFns();
 
@@ -40,13 +44,24 @@ export const StyleWrapper = styled.div`
 
 const Dining =  () => {
 
-    const state = {
-        modal: false,
-        calendarWeekends: true,
-        event: []
-      };
+    const { user } = useContext(AuthContext);
+    const [value, setValue] = useState(adapter.date());
 
-      const [value, setValue] = useState(adapter.date());
+    const [meal, setMeal] = useState(mealDataList.filter((item) => 
+      new Date(item.date).setUTCHours(0, 0, 0, 0) === adapter.date().setUTCHours(0, 0, 0, 0)
+    ))
+
+    console.log("user: " +user.studentId)
+    console.log(meal)
+
+
+    const handleCalanderClick = async (dateValue) => {
+      try {
+          setMeal(mealDataList.filter((item) => 
+            new Date(item.date).setUTCHours(0, 0, 0, 0) === dateValue.setUTCHours(0, 0, 0, 0)
+        ));
+      } catch (err) {}
+    };
 
     return (
         <div className='dining'>
@@ -66,6 +81,7 @@ const Dining =  () => {
                           value={value}
                           onChange={(newValue) => {
                             setValue(newValue);
+                            handleCalanderClick(newValue);
                           }}
                           renderInput={(params) => <TextField {...params} />}
                           dayOfWeekFormatter={(day) => `${day}.`}
@@ -77,57 +93,28 @@ const Dining =  () => {
                     </div>
                 </div>
 
-                <div className="right"></div>
+                <div className="right">
+                  {meal.map((item, index) => (
+                    <div className="meal" key = {index}>
+                      <h1 className="title">{item.mealHour}</h1>
+                      <div className="item">
+                        <div className="detailItem" >
+                          <span className="itemKey">Food Items : </span>
+                          <span className="itemValue">
+                            <ol>
+                              <li></li>
+                            </ol>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
                </div>
                   
                 <div className="bottom">
                 </div>
-
-                {/* <div className="top">
-                <div className="left">
-                    <div className="calendar-box">
-                    <div className="calendar" >
-                        
-                    <StyleWrapper>
-                        <FullCalendar defaultView="dayGridMonth" 
-                            plugins={[ dayGridPlugin, interactionPlugin ]}  
-                            // events={[
-                            //     { title: 'event 1', allDay: true, start: '2020-05-29', end: '2020-05-30' },
-                            //     { title: 'event 2', allDay: true, start: '2020-05-29', end: '2020-05-30'}
-                            //]}
-                        />
-                    </StyleWrapper>
-                </div></div></div></div> */}
-{/* dateClick={this.handleDateClick} select={this.handleSelectClick} selectable='true'  */}
-
-
-{/* <FullCalendar
-  plugins={[ dayGridPlugin ]}
-  initialView="dayGridMonth"
-  weekends={false}
-  events={[
-    { title: 'event 1', date: '2022-07-21' },
-    { title: 'event 2', date: '2021-07-02' }
-  ]}
-/> */}
-                
-                {/* <FullCalendar
-                defaultView="timeGridDay"
-                header={{
-                  left: "prev,next today",
-                  center: "title",
-                  right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
-                }}
-                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                //ref={this.calendarComponentRef}
-                //weekends={this.state.calendarWeekends}
-                //events={this.state.event}
-                //eventClick={this.handleEventClick}
-                nowIndicator='true'
-                height='parent'
-              /> */}
-
             </div>
         </div>
     )

@@ -39,6 +39,7 @@ const studentSchema = new mongoose.Schema(
     img: {
         type: String
       },
+    isMessManager : {type: Boolean, required: true, default: false},
   },
   { timestamps: true }
 );

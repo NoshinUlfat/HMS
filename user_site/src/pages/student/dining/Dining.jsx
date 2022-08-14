@@ -24,6 +24,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { mealDataList } from "./diningDataSource.js"
+import Dialog from '../../../components/dialog/Dialog'
 
 const adapter = new AdapterDateFns();
 
@@ -95,25 +96,32 @@ const Dining =  () => {
 
                 <div className="right">
                   {meal.map((item, index) => (
+                    // {item.mealStarus ?
                     <div className="meal" key = {index}>
-                      <h1 className="title">{item.mealHour}</h1>
+                      <h1 className="mealTitle">{item.mealHour}</h1>
                       <div className="item">
                         <div className="detailItem" >
                           <span className="itemKey">Food Items : </span>
                           <span className="itemValue">
                             <ol>
-                              <li></li>
+                            {item.items.map((foodItem, index) => (
+                              <li key = {index}>{foodItem.mealItemName}</li>
+                            ))}
                             </ol>
                           </span>
                         </div>
                       </div>
                     </div>
+                    // :<p></p>}
                   ))}
                 </div>
 
                </div>
                   
                 <div className="bottom">
+                  <div className="modal">
+                    <Dialog/>
+                  </div>
                 </div>
             </div>
         </div>

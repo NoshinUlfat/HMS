@@ -15,8 +15,13 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
 import CalendarPicker, { CalendarPickerProps } from "@mui/lab/CalendarPicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+
+const adapter = new AdapterDateFns();
 
 
 
@@ -41,7 +46,8 @@ const Dining =  () => {
         event: []
       };
 
-      
+      const [value, setValue] = useState(adapter.date());
+
     return (
         <div className='dining'>
             <Sidebar info={SideBarDataStd}/>
@@ -50,6 +56,35 @@ const Dining =  () => {
                 <Navbar/>
 
                 <div className="top">
+                <div className="left">
+                    <div className="Calander">
+                      <div className="CalanderTitle"></div>
+                      <div className="CalanderBody">
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <StaticDatePicker
+                          displayStaticWrapperAs="desktop"
+                          value={value}
+                          onChange={(newValue) => {
+                            setValue(newValue);
+                          }}
+                          renderInput={(params) => <TextField {...params} />}
+                          dayOfWeekFormatter={(day) => `${day}.`}
+                          toolbarFormat="eee dd MMMM"
+                          showToolbar
+                        />
+                      </LocalizationProvider>
+                      </div>
+                    </div>
+                </div>
+
+                <div className="right"></div>
+
+               </div>
+                  
+                <div className="bottom">
+                </div>
+
+                {/* <div className="top">
                 <div className="left">
                     <div className="calendar-box">
                     <div className="calendar" >
@@ -63,7 +98,7 @@ const Dining =  () => {
                             //]}
                         />
                     </StyleWrapper>
-                </div></div></div></div>
+                </div></div></div></div> */}
 {/* dateClick={this.handleDateClick} select={this.handleSelectClick} selectable='true'  */}
 
 

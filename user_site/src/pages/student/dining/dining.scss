@@ -7,194 +7,155 @@
         flex-direction: column;
 
         .top {
-            padding: 20px;
-            display: flex;
-            gap: 20px;
+          padding: 20px;
+          display: flex;
+          gap: 20px;
+    
+          .left{
+            flex: 1;
+            padding-left: 30px; 
+            padding-right: 30px;
+            padding-bottom: 20px;
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+            position: relative;
 
-            
-            
-      
-            .left{
-              flex: 1;
-              -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-              box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-              padding: 20px;
-              position: relative;
-                
-              .calendar-box{
-                width: 100%;
-                height: 500px;
-                .calendar{
-                    height: 300px;// !important; 
-                }
-            }
+            .Calander{
+              width: 100%;
               
-              .editButton {
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding: 5px;
-                font-size: 15px;
-                color: #7451f8;
-                background-color: #7551f818;
-                cursor: pointer;
-                border-radius: 0px 0px 0px 5px;
 
-                // .popup {
-                //   background-color: red;
-                //   .insidePop {
-                //     background-color: red;
-                //   }
-                // }
-
-                .icon {
-                  font-size: 15px;
-                }
-              }
-      
-              .item {
+              .CalanderTitle{
                 display: flex;
-                gap: 20px;
-      
-                .itemImg {
-                  width: 100px;
-                  height: 100px;
-                  border-radius: 50%;
-                  object-fit: cover;
-                }
-      
-                .details {
-                  .itemTitle {
-                    margin-bottom: 10px;
-                    color: #555;
-                  }
-      
-                  .detailItem {
-                    margin-bottom: 10px;
-                    font-size: 14px;
-      
-                    .itemKey {
-                      font-weight: bold;
-                      color: gray;
-                      margin-right: 5px;
-                    }
-      
-                    .itemValue {
-                      font-weight: 300;
-                    }
-                  }
+                justify-content: space-between;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e0e0e0;
+                .CalanderBody{
+                  display: flex;
+                  flex-direction: column;
                 }
               }
             }
-            .right{
-              flex: 2;
-              padding: 20px; 
-            }
+    
+            .submitBtns{
+              margin-top: 30px;
+              display: flex;
+              justify-content: space-around;
 
+              .btnApproved,.btnRejected {
+                // width: 100%;
+                height: 50px;
+                padding: 10px;
+                border: none;
+                background-color: green;
+                color: white;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 18px;
+                cursor: pointer;
+                margin-top: 15px;
+                margin-bottom: 30px;
+              }
+              .btnRejected {
+                background-color: red;
+              }
+            }
+    
+            
           }
-      
-          .bottom {
+          .right{
+            flex: 1;
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
             padding: 20px;
-            margin: 10px 20px;
-            display: flex;
-            // flex-direction: row;
-            // gap: 20px;
+            position: relative;
 
-            // .progressbar {
-            //   max-height: 100px;
-            //   width: 30%;
-            //   // max-width: 30%;
 
-              .title {
-                font-size: 16px;
-                color: rebeccapurple;
-                margin-bottom: 20px;
+            .item {
+              display: flex;
+              gap: 20px;
+    
+              .itemImg {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
               }
-            // }
-          }
-      
-          .title {
-            font-size: 16px;
-            color: lightgray;
-            margin-bottom: 20px;
-          }
-    }
-}
-
-
-.insidePop{
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-  padding: 20px;
-  position: relative;
-  .top,
-  .bottom {
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-    padding: 10px;
-    margin: 20px;
-    display: flex;
-
-    h1 {
-      color: lightgray;
-      font-size: 20px;
-    }
-
-    .left {
-      flex: 1;
-      text-align: center;
-
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-
-    .right {
-      flex: 2;
-
-      form {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: space-between;
-
-        .formInput {
-          width: 40%;
-
-          label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .icon {
-              cursor: pointer;
+    
+              .details {
+                .itemTitle {
+                  margin-bottom: 10px;
+                  color: #555;
+                }
+    
+                .detailItem {
+                  margin-bottom: 10px;
+                  font-size: 14px;
+    
+                  .itemKey {
+                    font-weight: bold;
+                    color: gray;
+                    margin-right: 5px;
+                  }
+    
+                  .itemValue {
+                    font-weight: 300;
+                    .buttons{
+                      .editButton {
+                          position: absolute;
+                          padding: 5px;
+                          font-size: 15px;
+                          font-weight: bold;
+                          background-color: #D5CAFC;
+                          border: solid;
+                          border-color: #B9A8FB;
+                          cursor: pointer;
+                          border-radius: 0px 0px 0px 5px;
+         
+                          .icon {
+                          font-size: 15px;
+                          }
+                      }
+                      
+                    }
+                  }
+                }
+              }
             }
+
+
+            
+
+           
           }
 
-          input {
-            width: 100%;
-            padding: 5px;
-            border: none;
-            border-bottom: 1px solid gray;
-          }
         }
+    
+        .bottom {
+          -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          padding: 20px;
+          margin: 10px 20px;
+          display: flex;
+          // flex-direction: row;
+          // gap: 20px;
 
-        button {
-          width: 150px;
-          padding: 10px;
-          border: none;
-          background-color: teal;
-          color: white;
-          font-weight: bold;
-          cursor: pointer;
-          margin-top: 10px;
+          // .progressbar {
+          //   max-height: 100px;
+          //   width: 30%;
+          //   // max-width: 30%;
+
+            .title {
+              font-size: 16px;
+              color: rebeccapurple;
+              margin-bottom: 20px;
+            }
+          // }
         }
-      }
-    }
+    
+        .title {
+          font-size: 16px;
+          color: lightgray;
+          margin-bottom: 20px;
+        }
   }
 }

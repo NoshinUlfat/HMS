@@ -9,7 +9,7 @@ const mealItemSchema = mongoose.Schema({
     },    
 
     mealItemName : { type: String, required: true},
-    mealItemAmmount : { type: Number, required: true},
+    mealItemAmmount : { type: String, required: true},
     mealItemPrice : { type: Number, required: true},
 
 });

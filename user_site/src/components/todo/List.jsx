@@ -1,4 +1,5 @@
 import React from 'react'
+import "./list.scss"
 
 const List = ({items,setItems}) => {
 
@@ -6,7 +7,7 @@ const List = ({items,setItems}) => {
     const newItems = items.filter(item => item.id !== id)
     setItems(newItems)
 
-    setItems(newItems)
+    // setItems(newItems)
   }
   return (
     <div className='list'>
@@ -15,7 +16,9 @@ const List = ({items,setItems}) => {
             {items.map((item,index) => {
                 return (
                     <li className="listItem" key={index}>
-                        {item.value}
+                        <span>Item Name:  {item.value.mealItemName}</span>
+                        <span>Item Amount:{item.value.mealItemAmmount}</span>
+                        <span>Item Price: {item.value.mealItemPrice}</span>
                         <button className="delete" onClick={() => deleteItem(item.id)}>
                             x
                         </button>

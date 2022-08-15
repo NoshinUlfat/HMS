@@ -25,6 +25,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { mealDataList } from "./diningDataSource.js"
 import Dialog from '../../../components/dialog/Dialog'
+import useFetch from "../../../hooks/useFetch";
 
 const adapter = new AdapterDateFns();
 
@@ -48,18 +49,23 @@ const Dining =  () => {
     const { user } = useContext(AuthContext);
     const [value, setValue] = useState(adapter.date());
 
-    const [meal, setMeal] = useState(mealDataList.filter((item) => 
-      new Date(item.date).setUTCHours(0, 0, 0, 0) === adapter.date().setUTCHours(0, 0, 0, 0)
+    const isManager = useFetch("/dining/checkManager/get/"+user._id);
+    const diningData = useFetch("/dining/getAllMeals");
+
+    console.log(diningData.data)
+
+    const [meal, setMeal] = useState(diningData.data.filter((item) => 
+      item.mealId && new Date(item.mealId.date).setUTCHours(0, 0, 0, 0) === adapter.date().setUTCHours(0, 0, 0, 0)
     ))
 
     console.log("user: " +user.studentId)
-    console.log(meal)
+    console.log("meal: " + meal.map(item => item.mealId.mealHour).filter((v, i, a) => a.indexOf(v) === i))
 
 
     const handleCalanderClick = async (dateValue) => {
       try {
-          setMeal(mealDataList.filter((item) => 
-            new Date(item.date).setUTCHours(0, 0, 0, 0) === dateValue.setUTCHours(0, 0, 0, 0)
+          setMeal(diningData.data.filter((item) => 
+          item.mealId && new Date(item.mealId.date).setUTCHours(0, 0, 0, 0) === dateValue.setUTCHours(0, 0, 0, 0)
         ));
       } catch (err) {}
     };
@@ -95,10 +101,39 @@ const Dining =  () => {
                 </div>
 
                 <div className="right">
-                  {meal.map((item, index) => (
+                  {
+                    meal.map(item => item.mealId.mealHour).filter((v, i, a) => a.indexOf(v) === i).map((item, index) => {
+                      return (
+                        <div className="meal" key={index}>
+                          <h1 className="mealTitle">{item}</h1>
+                          <div className="item">
+                            <div className="detailItem" >
+                              <span className="itemKey">Food Items : </span>
+                              <span className="itemValue">
+                                <ol>
+                                {
+                                  meal.map((item2,index) => {
+                                    if(item2.mealId.mealHour === item) {
+                                      return (
+                                        <li key = {index}>{item2.mealItemName}</li>
+                                      )
+                                    }
+                                  })
+                                }
+                                </ol>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })
+                  }
+                  {/* {meal.map((item, index) => (
                     // {item.mealStarus ?
                     <div className="meal" key = {index}>
                       <h1 className="mealTitle">{item.mealHour}</h1>
+                      {item.mealStarus ?
+                      <>
                       <div className="item">
                         <div className="detailItem" >
                           <span className="itemKey">Food Items : </span>
@@ -111,18 +146,22 @@ const Dining =  () => {
                           </span>
                         </div>
                       </div>
+                      </>
+                      :<p>This meal time has ended</p>}
                     </div>
-                    // :<p></p>}
-                  ))}
+                  ))} */}
                 </div>
 
                </div>
-                  
-                <div className="bottom">
+                {isManager.data.isManager ?
+                (
+                  <div className="bottom">
                   <div className="modal">
                     <Dialog/>
                   </div>
                 </div>
+                )
+                :<></>}  
             </div>
         </div>
     )

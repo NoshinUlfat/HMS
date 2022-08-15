@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import hallsRoute from "./routes/halls.js";
 import roomsRoute from "./routes/rooms.js";
+import dinginRoute from "./routes/dining.js";
 
 import studentsRoute from "./routes/students.js";
 import roomAllotmentsRoute from "./routes/roomAllotments.js";
@@ -43,6 +44,7 @@ app.use("/api/students", studentsRoute);
 app.use("/api/notices", noticesRoute);
 app.use("/api/roomAllotments", roomAllotmentsRoute);
 app.use("/api/provosts", provostRoute);
+app.use("/api/dining", dinginRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

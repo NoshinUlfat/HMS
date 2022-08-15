@@ -4,7 +4,7 @@ export const mealDataList = [
         "mealHour" : "Lunch",
         "mealPrice" : 90,
         "date": "2022-08-14",
-        "mealStarus" : true,
+        "mealStarus" : false,
 
         "items": [
             {

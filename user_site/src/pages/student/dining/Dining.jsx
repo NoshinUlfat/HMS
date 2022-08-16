@@ -53,6 +53,7 @@ const Dining =  () => {
     const diningData = useFetch("/dining/getAllMeals");
 
     console.log(diningData.data)
+    const diningDataLoading = diningData.loading
 
     const [meal, setMeal] = useState(diningData.data.filter((item) => 
       item.mealId && new Date(item.mealId.date).setUTCHours(0, 0, 0, 0) === adapter.date().setUTCHours(0, 0, 0, 0)
@@ -72,11 +73,11 @@ const Dining =  () => {
 
     return (
         <div className='dining'>
+            {diningData.loading?"Loading":<>
             <Sidebar info={SideBarDataStd}/>
 
             <div className="diningContainer">
                 <Navbar/>
-
                 <div className="top">
                 <div className="left">
                     <div className="Calander">
@@ -115,7 +116,7 @@ const Dining =  () => {
                                   meal.map((item2,index) => {
                                     if(item2.mealId.mealHour === item) {
                                       return (
-                                        <li key = {index}>{item2.mealItemName}</li>
+                                        <li key = {index}>{item2.mealItemName} ({item2.mealItemAmmount})</li>
                                       )
                                     }
                                   })
@@ -163,6 +164,7 @@ const Dining =  () => {
                 )
                 :<></>}  
             </div>
+            </>}
         </div>
     )
 

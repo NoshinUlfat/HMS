@@ -9,11 +9,14 @@ import axios from "axios";
 
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import { Alert } from '@mui/material'
 
 
 const RoomRequest = () => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [success, setSuccess] = useState(false);
+  const [fail, setFail] = useState(false);
   
   const { user } = useContext(AuthContext);
   var urlConnection = "/roomAllotments/"+user.studentId;
@@ -56,10 +59,16 @@ const RoomRequest = () => {
       const res = await axios.post(urlConnection, newRequest);
     
       console.log(uploadRes.data)
+      setInfo({preferredRoomNo:"",message:"",sports:false,debate:false,other:false})
+      setFile("")
+      setSuccess(true);
       
     }
     catch {
+      setInfo({preferredRoomNo:"",message:"",sports:false,debate:false,other:false})
       console.log("Error Asche")
+      setFile("")
+      setFail(true);
     }
   };
   return (
@@ -70,23 +79,23 @@ const RoomRequest = () => {
           <form action="#" method="post">
             <br></br>
             <label htmlFor="preferredRoomNo">Preferred Room No(Optional): </label>
-            <input type="text" id='preferredRoomNo' placeholder="Available Rooms" onChange={handleChangeText}/>
+            <input type="text" id='preferredRoomNo' value={info.preferredRoomNo} placeholder="Available Rooms" onChange={handleChangeText}/>
             
             <label htmlFor="message">Why do you need this room?</label>
-            <textarea name="" id="message" cols="500" rows="15" placeholder='Application' onChange={handleChangeText}></textarea>
+            <textarea name="" id="message" value={info.message} cols="500" rows="15" placeholder='Application' onChange={handleChangeText}></textarea>
 
             <div className="skills">
               <p>Skills</p>
               <div className="left">
                 <div className="skill">
                   <label htmlFor="sports">Sports
-                  <input type="checkbox" name="" id="sports" onChange={handleChangeCheckBox}/>
+                  <input type="checkbox" name="" id="sports" checked={info.sports} onChange={handleChangeCheckBox}/>
                   </label>
                 </div>
 
                 <div className="skill">
                   <label htmlFor="debate">Debate
-                  <input type="checkbox" name="" id="debate" onChange={handleChangeCheckBox}/>
+                  <input type="checkbox" name="" id="debate" checked={info.debate} onChange={handleChangeCheckBox}/>
                   </label>
                 </div>
 
@@ -98,7 +107,7 @@ const RoomRequest = () => {
 
                 <div className="skill">
                   <label htmlFor="other">Others
-                  <input type="checkbox" name="" id="other" onChange={handleChangeCheckBox}/>
+                  <input type="checkbox" name="" id="other" checked={info.other} onChange={handleChangeCheckBox}/>
                   </label>
                 </div>
               </div>
@@ -111,11 +120,17 @@ const RoomRequest = () => {
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
                   // style={{ display: "none" }}
+                  // value={file}
                 />
               </div>
             </div>
 
             <button type="submit" onClick={handleClick}>Submit Application</button>
+
+            {success?<Alert severity="success">Submit Successful</Alert>:<></>}
+            {fail?<Alert variant="filled" severity="error">
+              Submit failed
+            </Alert>:<></>}
           </form>
         </div>
     </div>

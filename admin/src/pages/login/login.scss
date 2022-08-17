@@ -1,0 +1,59 @@
+// .body {
+//   background-image:url("https://wallpaperaccess.com/login-hd");
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   }
+
+// .bg{
+//   background-image: 
+//   url(
+// "https://media.geeksforgeeks.org/wp-content/uploads/rk.png");
+//   background-size: "cover";
+//   height: 100vh;
+//   margin-top: -70px;
+//   font-size:50px;
+//   background-repeat:no-repeat; 
+// }
+
+.bg {
+  background-image:url("https://png.pngtree.com/thumb_back/fh260/background/20200621/pngtree-abstract-modern-neon-frame-background-image_339537.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  //background-color: aquamarine;
+}
+
+
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+}
+
+.lContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lInput{
+  height: 30px;
+  padding: 10px;
+}
+
+.lButton {
+  border: none;
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.lButton:disabled{
+  background-color: #0071c28c;
+  cursor: not-allowed;
+}

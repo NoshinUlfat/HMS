@@ -10,7 +10,7 @@ import ToDoList from './../todo/ToDoList'
 import "./dialog.scss"
 import axios from 'axios';
 
-export default function FormDialog() {
+export default function FormDialog({refetchDiningData}) {
   const [open, setOpen] = React.useState(false);
   const [items,setListItems] = React.useState([]);
   const [info,setInfo] = React.useState({});
@@ -49,9 +49,10 @@ export default function FormDialog() {
 
     try {
       const response = await axios.post('/dining/setMeal',newRequest)
+      refetchDiningData()
       console.log(response)
     } catch (error) {
-      console.log("error in seeting meal",error)
+      console.log("error in setting meal",error)
     }
     setInfo({})
     setOpen(false);

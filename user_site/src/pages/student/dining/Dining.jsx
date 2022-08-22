@@ -1,6 +1,6 @@
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined"
 import EditIcon from '@mui/icons-material/Edit'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Popup from '../../../components/popup/Popup'
 import Sidebar from '../../../components/sidebar/Sidebar'
@@ -28,6 +28,7 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { mealDataList } from "./diningDataSource.js"
 import Dialog from '../../../components/dialog/Dialog'
 import useFetch from "../../../hooks/useFetch";
+import axios from "axios"
 
 const adapter = new AdapterDateFns();
 
@@ -50,19 +51,24 @@ const Dining =  () => {
 
     const { user } = useContext(AuthContext);
     const [value, setValue] = useState(adapter.date());
+    const [loadingSt, setLoadingSt] = useState(false);
 
     const isManager = useFetch("/dining/checkManager/get/"+user._id);
     const diningData = useFetch("/dining/getAllMeals");
 
     console.log(diningData.data)
-    const diningDataLoading = diningData.loading
 
     const [meal, setMeal] = useState(diningData.data.filter((item) => 
       item.mealId && new Date(item.mealId.date).setUTCHours(0, 0, 0, 0) === adapter.date().setUTCHours(0, 0, 0, 0)
     ))
+    // const [meal,setMeal] = useState(diningData.data[0])
 
     console.log("user: " +user.studentId)
+    console.log("Date: " + value)
     console.log("meal: " + meal.map(item => item.mealId.mealHour).filter((v, i, a) => a.indexOf(v) === i))
+    console.log(diningData.data.filter((item) => 
+    item.mealId && new Date(item.mealId.date).setUTCHours(0, 0, 0, 0) === adapter.date().setUTCHours(0, 0, 0, 0)
+    ))
 
 
     const handleCalanderClick = async (dateValue) => {
@@ -73,9 +79,35 @@ const Dining =  () => {
       } catch (err) {}
     };
 
+    useEffect(() => {
+      const fetchData = async () => {
+        setLoadingSt(true);
+        try {
+            const res = await axios.get("/dining/getAllMeals");
+            setMeal(res.data.filter((item) => 
+            item.mealId && new Date(item.mealId.date).setUTCHours(0, 0, 0, 0) === value.setUTCHours(0, 0, 0, 0)
+          ));
+        } catch (err) {
+          console.log(err);
+        }
+        setLoadingSt(false);
+      };
+      fetchData();
+    }, []);
+
+    const refetchDiningData = async () => {
+      try {
+        const { data, loading, error, reFetch } = diningData
+        reFetch()
+      } catch (err) {
+        console.log("refech fail")
+        console.log(err)
+      }
+    }
+
     return (
         <div className='dining'>
-            {diningData.loading?"Loading":<>
+            {diningData.loading && loadingSt?"Loading":<>
             <Sidebar info={SideBarDataStd}/>
 
             <div className="diningContainer">
@@ -184,7 +216,7 @@ const Dining =  () => {
                 (
                   <div className="bottom">
                   <div className="modal">
-                    <Dialog/>
+                    <Dialog refetchDiningData={refetchDiningData}/>
                   </div>
                 </div>
                 )

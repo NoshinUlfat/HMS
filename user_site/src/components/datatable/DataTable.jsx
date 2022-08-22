@@ -49,7 +49,7 @@ const Datatable = ({showInfo, rowData}) => {
         columns={userColumns.concat(actionColumn)}
         pageSize={6}
         rowsPerPageOptions={[6]}
-        checkboxSelection
+        checkboxSelection disableSelectionOnClick
       />
     </div>
   );

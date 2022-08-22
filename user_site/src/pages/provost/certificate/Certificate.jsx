@@ -219,7 +219,7 @@ const RoomApplicationList = () => {
                         getRowId={(row) => row._id}
                         pageSize={6}
                         rowsPerPageOptions={[6]}
-                        checkboxSelection
+                        checkboxSelection disableSelectionOnClick
                       />
                     </div>
                     

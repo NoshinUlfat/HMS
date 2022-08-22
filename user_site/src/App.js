@@ -26,6 +26,7 @@ import FundRequest from "./pages/provost/fundRequest/FundRequest";
 import DefaulterList from "./pages/provost/defaulterList/DefaulterList";
 import NoticedProvost from "./pages/provost/noticeProvost/Notice";
 import OnlineStd from "./pages/student/online/Online";
+import StudentInfoProvost from "./pages/provost/studentInfo/StudentInfo";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -141,6 +142,7 @@ function App() {
                  <Route path="defaulterLists" element={<DefaulterList/>} />
                  <Route path="assignNotice" element={<AssignNotice/>} />
                  <Route path="noticeProvost" element={<NoticedProvost/>} />
+                 <Route path="studentInfoProvost" element={<StudentInfoProvost/>} />
               </Route>
               <Route path="student">
                 <Route path="Dashboard" element={<DashboardStd/>} />

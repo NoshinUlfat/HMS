@@ -6,6 +6,8 @@
         display: flex;
         flex-direction: column;
 
+        
+
         form {
             display: flex;
             flex-direction: column;
@@ -14,6 +16,13 @@
                 font-size: 15px;
                 color: rebeccapurple;
             }
+            .alert-box {
+                height: 200px;
+                width: 300px;
+                top: 00px;
+                border: solid 1px #ccc;
+            }
+            
 
             input {
                 margin-bottom: 20px;

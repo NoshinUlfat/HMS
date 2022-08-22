@@ -18,6 +18,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
 import CalendarPicker, { CalendarPickerProps } from "@mui/lab/CalendarPicker";
+import Typography from '@mui/material/Typography';
+import ListItemText from '@mui/material/ListItemText'
 
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -109,14 +111,38 @@ const Dining =  () => {
                           <h1 className="mealTitle">{item}</h1>
                           <div className="item">
                             <div className="detailItem" >
-                              <span className="itemKey">Food Items : </span>
+                              <span className="itemKey">
+                                <Typography type="body2" style={{ color: 'black', fontWeight: 'bold', fontSize: '17px' }}>
+                                  Food Items :
+                                </Typography>
+                              </span>
                               <span className="itemValue">
                                 <ol>
                                 {
                                   meal.map((item2,index) => {
                                     if(item2.mealId.mealHour === item) {
                                       return (
-                                        <li key = {index}>{item2.mealItemName} ({item2.mealItemAmmount})</li>
+                                        <li key = {index} style = {{color: 'black', fontWeight: 'bold', fontSize: '15px'}}>{item2.mealItemName} 
+                                          
+                                        {isManager.data.isManager ?
+                                          (
+                                              <span className="list">
+                                                <ListItemText secondary={<Typography type="body2" style={{ color: 'black', fontWeight: 'bold', fontSize: '12px' }}>
+                                                  Amount-
+                                                </Typography>}></ListItemText>
+                                                <ListItemText secondary={<Typography type="body2" style={{ color: 'grey', fontWeight: 'bold', fontSize: '12px' }}>
+                                                {item2.mealItemAmmount}
+                                                </Typography>}></ListItemText>
+                                                <ListItemText secondary={<Typography type="body2" style={{ color: 'black', fontWeight: 'bold', fontSize: '12px', paddingLeft:'8px' }}>
+                                                  Price-
+                                                </Typography>}></ListItemText>
+                                                <ListItemText secondary={<Typography type="body2" style={{ color: 'grey', fontWeight: 'bold', fontSize: '12px' }}>
+                                                  {item2.mealItemPrice}
+                                                </Typography>}></ListItemText>
+                                              </span>
+                                          )
+                                          :<></>} 
+                                        </li>
                                       )
                                     }
                                   })

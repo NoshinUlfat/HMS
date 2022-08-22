@@ -1,7 +1,10 @@
 import express from "express";
 import {
-    updateRoomAllotment,
+    createRoomAllotment,
     getRoomRequests,
+    getRequestDetails,
+    deleteRoomRequests,
+    updateApprovalStatus,
 } from "../controllers/roomAllotment.js";
 
 
@@ -19,17 +22,23 @@ const router = express.Router();
 //   res.send("hello admin, you are logged in and you can delete all accounts")
 // })
 
-//UPDATE
-router.post("/:studentId", updateRoomAllotment);
+//UPDATE APPROVAL STATUS
+router.put("/updateStatus/:id", updateApprovalStatus);
+
+//CREATE NEW ROOM REQUEST
+router.post("/:studentId", createRoomAllotment)
 //router.put("/:id", updateRoomAllotment);
 
 //DELETE
-// router.delete("/:id", verifyStudent, deleteStudent);
+router.delete("/deleteRoomRequest/:id", deleteRoomRequests);
+//router.delete("/delete/:roomRequestId", deleteRoomRequests);
 
 // //GET
 // router.get("/:id", verifyStudent, getStudent);
 
 // //GET ALL
 router.get("/", getRoomRequests);
-
+//GET ONE
+router.get("/requestDetails/:id", getRequestDetails);
+//router.post("/requestDetails", getRequestDetails)
 export default router;

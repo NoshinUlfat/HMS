@@ -10,6 +10,19 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { Alert } from '@mui/material'
+import Grid from "@material-ui/core/Grid";
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import Popper from '@mui/material/Popper';
+
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 
 const RoomRequest = () => {
@@ -17,6 +30,17 @@ const RoomRequest = () => {
   const [info, setInfo] = useState({});
   const [success, setSuccess] = useState(false);
   const [fail, setFail] = useState(false);
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   
   const { user } = useContext(AuthContext);
   var urlConnection = "/roomAllotments/"+user.studentId;
@@ -50,6 +74,7 @@ const RoomRequest = () => {
         ...info,
         img: url,
         studentId: user.studentId,
+        studentsId: user._id,
         approvalStatus: "pending",
       };
 
@@ -126,11 +151,46 @@ const RoomRequest = () => {
             </div>
 
             <button type="submit" onClick={handleClick}>Submit Application</button>
+                
+            {/* <Grid container direction="row" alignItems="center" top="160px"> */}
+                {/* <div className="alert-box"><h1>meuuuuuuuuuuuuuuu</h1></div> */}
+                {success?
+                <Alert severity="success">Submit Successful</Alert>:<></>
+                }
+                {fail?
+                <Alert variant="filled" severity="error">
+                  Submit failed
+                </Alert>
+                //handleClickOpen()
+                :<></>
+                
+                }
+            {/* </Grid> */}
 
-            {success?<Alert severity="success">Submit Successful</Alert>:<></>}
-            {fail?<Alert variant="filled" severity="error">
-              Submit failed
-            </Alert>:<></>}
+{/* <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Use Google's location service?"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Let Google help apps determine location. This means sending anonymous
+                    location data to Google, even when no apps are running.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Disagree</Button>
+                  <Button onClick={handleClose} autoFocus>
+                    Agree
+                  </Button>
+                </DialogActions>
+              </Dialog> */}
+              
+            
           </form>
         </div>
     </div>

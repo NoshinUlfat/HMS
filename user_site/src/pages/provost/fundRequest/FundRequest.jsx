@@ -216,8 +216,8 @@ const RoomApplicationList = () => {
                         rows={data}
                         columns={userColumns.concat(actionColumn)}
                         getRowId={(row) => row._id}
-                        pageSize={6}
-                        rowsPerPageOptions={[6]}
+                        pageSize={3}
+                        rowsPerPageOptions={[3]}
                         checkboxSelection disableSelectionOnClick
                       />
                     </div>

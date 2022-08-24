@@ -41,6 +41,7 @@ const RoomApplicationList = () => {
     const [singleRejectionStudentsId, setSingleRejectionStudentsId] = React.useState(null);
     const [SelectedRow, setSelectedRow] = React.useState(null);
     const [selectedRowCount, setSelectedRowCount] = React.useState(0);
+    const [pdfFile, setPdfFile] = React.useState(null);
 
     const [studentState, setStudentState] = useState([]);
 
@@ -88,6 +89,7 @@ const RoomApplicationList = () => {
                 present_address: item.studentsId.present_address,
                 permanent_address: item.studentsId.permanent_address,
                 img: item.studentsId.img,
+                file: item.file,
                 checked: false,
               };
             //}
@@ -302,7 +304,7 @@ const RoomApplicationList = () => {
 
     const handleClickOpenSingleRejection = (id,sid) => {
       console.log("EBAR TO HO  ",id," ",sid._id)
-      if(selectedRowCount==1)
+      if(selectedRowCount<=1)
       {
         setDialogTitle("Are you sure you want to reject this particular request?")
         setSingleRejectionId(id)
@@ -310,7 +312,7 @@ const RoomApplicationList = () => {
         setSingleRejectionStatus(true)
       }
       else if(selectedRowCount>1) setDialogTitle("Please select only one request to reject")
-      else setDialogTitle("Please select atleast one request to reject")
+     // else setDialogTitle("Please select atleast one request to reject")
 
       console.log("SELECTED R2 ",selectedRowData.length)
       setOpen(true);
@@ -345,7 +347,34 @@ const RoomApplicationList = () => {
     ];
     
    
+    const pdfClickHandler = async (fileName) => {
+      // const html = ReactDOMServer.renderToStaticMarkup(renderRows(names))
+      // try {
+      //   const response = await axios.post(
+      //     '/api/services/pdf',
+      //     { html },
+      //     {
+      //       responseType: 'arraybuffer',
+      //       headers: {
+      //         Accept: 'application/pdf',
+      //       },
+      //     }
+      //   )
 
+      console.log("FILEEEEEEEEEE ",fileName)
+  
+        const file = new Blob([fileName], { type: 'application/pdf' })
+  
+        const fileURL = URL.createObjectURL(file)
+  
+        const pdfWindow = window.open()
+  
+        pdfWindow.location.href = fileURL
+  
+      // } catch (err) {
+      //   console.log(err.messaes)
+      // }
+    }
     
 
   
@@ -378,7 +407,7 @@ const RoomApplicationList = () => {
                         getRowId={(row) => row._id}
                         pageSize={7}
                         rowsPerPageOptions={[7]}
-                        checkboxSelection disableSelectionOnClick
+                         checkboxSelection disableSelectionOnClick
                         onSelectionModelChange={
                           (ids) => {
                           const selectedIDs = new Set(ids);
@@ -518,12 +547,14 @@ const RoomApplicationList = () => {
                       :<p></p>}
                       {item()[0].other?(<span className="itemValue"> Others </span>)
                       :<p></p>}
+
+                     
                   </div>
                   <div className="detailItem" >
                     <span className="itemValue">
                       <div className="buttons">
                           <div className="editButton" >
-                            <span onClick={() => setShow(true)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
+                            <span onClick={() => pdfClickHandler(item()[0].file)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
                           </div>
                       </div>
                     </span>

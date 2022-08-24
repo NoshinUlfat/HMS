@@ -12,6 +12,9 @@ import roomAllotmentsRoute from "./routes/roomAllotments.js";
 import noticesRoute from "./routes/notices.js";
 import provostRoute from "./routes/provosts.js";
 import notificationRoute from "./routes/notifications.js";
+import dueRoute from "./routes/dues.js";
+import defaulterRoute from "./routes/defaulters.js";
+
 
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -47,7 +50,8 @@ app.use("/api/roomAllotments", roomAllotmentsRoute);
 app.use("/api/provosts", provostRoute);
 app.use("/api/dining", dinginRoute);
 app.use("/api/notifications", notificationRoute);
-
+app.use("/api/dues", dueRoute);
+app.use("/api/defaulters", defaulterRoute);
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";

@@ -1,0 +1,134 @@
+.dining {
+    display: flex;
+
+    .diningContainer {
+        flex: 6;
+        display: flex;
+        flex-direction: column;
+
+        .top {
+          padding: 20px;
+          display: flex;
+          gap: 20px;
+    
+          .topleft {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+            #title {
+              font-size: 16px;
+              color: black;
+              font-weight: 100;
+            }
+    
+            #desc {
+              font-size: 14px;
+              color: gray;
+            }
+            
+          }
+
+          .topmiddle {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+            #cost {
+                font-size: 14px;
+                color: gray;
+            }
+            
+          }
+
+          .topright {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+            .file {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                #file {
+                    font-size: 14px;
+                    color: gray;
+                    display: none;
+                }
+            }
+            
+          }
+
+          .right{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+            padding: 20px;
+            flex-direction: column;
+            position: relative;
+
+            .meal{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              padding: 20px;
+              border-bottom: 1px solid #e0e0e0;
+              margin-bottom: 5px;
+              -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+              box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+
+              .mealTitle{
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 20px;
+                color: rgba(152, 111, 194, 0.944);
+                // border-bottom: 1px solid #e0e0e0;
+              }
+              .item{
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 20px;
+                color: grey;
+              }
+            }
+           
+          }
+
+        }
+    
+        .bottom {
+          -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          padding: 20px;
+          margin: 10px 20px;
+          display: flex;
+          justify-content: center;
+          // flex-direction: row;
+          // gap: 20px;
+
+          // .progressbar {
+          //   max-height: 100px;
+          //   width: 30%;
+          //   // max-width: 30%;
+
+            .title {
+              font-size: 16px;
+              color: rebeccapurple;
+              margin-bottom: 20px;
+            }
+          // }
+        }
+    
+        .title {
+          font-size: 16px;
+          color: lightgray;
+          margin-bottom: 20px;
+        }
+  }
+}

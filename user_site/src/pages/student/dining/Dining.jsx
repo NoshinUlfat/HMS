@@ -1,23 +1,13 @@
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined"
-import EditIcon from '@mui/icons-material/Edit'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
-import Popup from '../../../components/popup/Popup'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./dining.scss"
 
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 
-
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import { Box } from "@mui/material";
 import styled from "@emotion/styled";
-import CalendarPicker, { CalendarPickerProps } from "@mui/lab/CalendarPicker";
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText'
 
@@ -25,11 +15,9 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import { mealDataList } from "./diningDataSource.js"
 import Dialog from '../../../components/dialog/Dialog'
 import useFetch from "../../../hooks/useFetch";
 import axios from "axios"
-import { set } from "date-fns"
 
 const adapter = new AdapterDateFns();
 
@@ -109,7 +97,7 @@ const Dining =  () => {
     return (
         <div className='dining'>
             {diningData.loading && loadingSt?"Loading":<>
-            <Sidebar info={SideBarDataStd}/>
+            {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
 
             <div className="diningContainer">
                 <Navbar/>

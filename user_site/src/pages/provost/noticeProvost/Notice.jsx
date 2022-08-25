@@ -110,7 +110,15 @@ const NoticeStd = () => {
                             </div>
                           </div> */}
                           {/*show && <Modal/>*/}
-                          <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}/>
+                          <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
+                          styeAll={{ position: "absolute",
+                          top: "0",
+                          right: "0",
+                          padding: "5px",
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                          borderRadius: "0px 0px 0px 5px" }}/>
                           <ListItemText
                             secondary={
                               <Typography

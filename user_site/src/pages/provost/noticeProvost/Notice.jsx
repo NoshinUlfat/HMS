@@ -118,8 +118,12 @@ const NoticeStd = () => {
                           padding: "5px",
                           fontSize: "12px",
                           fontWeight: "bold",
+                          backgroundColor: "rgb(137,80,166)",
                           cursor: "pointer",
-                          borderRadius: "0px 0px 0px 5px" }}/>
+                          borderRadius: "0px 0px 0px 5px"
+                          
+
+                          }}/>
                           <ListItemText
                             secondary={
                               <Typography

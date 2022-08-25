@@ -102,27 +102,26 @@
 
         }
     
-        .bottom {
+        .middle {
           -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
           box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
           padding: 20px;
           margin: 10px 20px;
           display: flex;
+          flex-direction: column;
           justify-content: center;
-          // flex-direction: row;
-          // gap: 20px;
 
-          // .progressbar {
-          //   max-height: 100px;
-          //   width: 30%;
-          //   // max-width: 30%;
-
-            .title {
-              font-size: 16px;
-              color: rebeccapurple;
-              margin-bottom: 20px;
+          
+            .accordion{
+              align-items: center;
             }
-          // }
+
+            .button{
+              align-items: center;
+              margin-top: 20px;
+              display: flex;
+              justify-content: center;
+            }
         }
     
         .title {

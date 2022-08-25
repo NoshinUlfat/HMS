@@ -6,6 +6,7 @@ import usersRoute from "./routes/users.js";
 import hallsRoute from "./routes/halls.js";
 import roomsRoute from "./routes/rooms.js";
 import dinginRoute from "./routes/dining.js";
+import fundRoute from "./routes/fundRequest.js";
 
 import studentsRoute from "./routes/students.js";
 import roomAllotmentsRoute from "./routes/roomAllotments.js";
@@ -52,6 +53,7 @@ app.use("/api/dining", dinginRoute);
 app.use("/api/notifications", notificationRoute);
 app.use("/api/dues", dueRoute);
 app.use("/api/defaulters", defaulterRoute);
+app.use("/api/fundRequest", fundRoute);
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";

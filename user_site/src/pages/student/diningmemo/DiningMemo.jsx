@@ -18,6 +18,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import Accordion from "../../../components/accordion/Accordion"
+import { Button, Chip, Divider } from '@mui/material'
 
 
 export const StyleWrapper = styled.div`
@@ -97,15 +99,26 @@ const DiningMemo =  () => {
                         </div>
                     </div>                    
                 </div>
-                <div className="bottom">
-                    <Box
-                        sx={{
-                            width: '100%',
-                            maxWidth: '100%',
-                        }}
+                <div className="middle">
+                    <div
+                        className="accordion"
                         >
-                        <TextField multiline rows={5} fullWidth label="fullWidth" id="fullWidth" />
-                    </Box>
+                        <Accordion/>
+                    </div>
+                    <div className='button'>
+                        <Button variant="contained">Submit</Button> 
+                    </div>
+                </div>
+                <br /><br /><br />
+                <Divider>
+                    <Chip label="Submitted Memos" />
+                </Divider>
+                <div className="bottom">
+                    <div
+                        className="accordion"
+                        >
+                        <Accordion/>
+                    </div>
                 </div>
             </div>
         </div>

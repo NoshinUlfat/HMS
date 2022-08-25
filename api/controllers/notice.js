@@ -20,7 +20,7 @@ export const assignNotice = async (req, res, next) => {
 
 export const getNotices = async (req,res,next)=>{
   try {
-    const notice = await Notice.find();
+    const notice = await Notice.find().sort({date:-1});
 
     console.log("I AM IN Notice");
 

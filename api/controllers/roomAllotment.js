@@ -29,7 +29,7 @@ export const updateApprovalStatus = async (req,res,next)=>{
       req.params.id,
       { $set: req.body },
       { new: true }
-    );
+    ).sort({date:-1});
     res.status(200).json(updatedStatus);
   } catch (err) {
     next(err);

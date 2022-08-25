@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "../../../components/modal/Modal";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
+import formatDistance from 'date-fns/formatDistance'
 import { SideBarDataProvost } from "../../../components/sidebar/SideBarData";
 import "./notice.scss";
 
@@ -129,7 +130,16 @@ const NoticeStd = () => {
                                   fontSize: "10px",
                                 }}
                               >
-                                {notice.date}
+                                {
+  
+                                new Date(notice.date)<new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                                ?new Date(notice.date).toLocaleDateString()
+                                :formatDistance(
+                                  new Date(notice.date),
+                                  new Date() 
+                              )
+                                
+                                }
                               </Typography>
                             }
                           ></ListItemText>

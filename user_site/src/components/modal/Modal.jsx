@@ -6,7 +6,7 @@ import "./modal.scss";
 const Modal = ({pdffile,buttonName,randId,styeAll}) => {
   return (
     <div className="modalPdf" >
-      <div className="container p-5" >
+      <div className="container" style={{padding : "5px"}}>
         <button
           type="button"
           className="btn btn-primary"

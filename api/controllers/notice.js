@@ -3,7 +3,7 @@ import Notice from "../models/Notice.js";
 export const assignNotice = async (req, res, next) => {
     try {
   
-      console.log("I AM IN assign REQUEST");
+      //console.log("I AM IN assign REQUEST");
       console.log(req.body)
       const newRequest = new Notice({
         ...req.body,

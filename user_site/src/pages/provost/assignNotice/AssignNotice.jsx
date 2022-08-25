@@ -1,15 +1,15 @@
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined"
+import axios from "axios"
 import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
 import { SideBarDataProvost } from "../../../components/sidebar/SideBarData"
 import "./assignNotice.scss"
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import axios from "axios";
 
 
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
-import { Alert } from '@mui/material';
+import { Alert } from '@mui/material'
+import { useContext } from "react"
+import { AuthContext } from "../../../context/AuthContext"
 
 const AssignNotice =  () => {
     const [file, setFile] = useState("");
@@ -47,7 +47,7 @@ const AssignNotice =  () => {
         const { url } = uploadRes.data;
         const newRequest = {
            ...info,
-        //   file: url,
+           file: url,
         //   studentId: user.studentId,
         //   approvalStatus: "pending",
         };

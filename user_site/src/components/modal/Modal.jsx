@@ -3,7 +3,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import React from "react";
 import "./modal.scss";
 
-const Modal = ({pdffile,buttonName}) => {
+const Modal = ({pdffile,buttonName,randId}) => {
   return (
     <div className="modalPdf">
       <div className="container p-5">
@@ -11,14 +11,14 @@ const Modal = ({pdffile,buttonName}) => {
           type="button"
           className="btn btn-primary"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target={"#exampleModal"+randId}
         >
           {buttonName}
         </button>
 
         <div
           className="modal fade"
-          id="exampleModal"
+          id={"exampleModal"+randId}
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"

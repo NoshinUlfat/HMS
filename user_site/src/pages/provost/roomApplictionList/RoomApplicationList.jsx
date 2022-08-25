@@ -557,7 +557,7 @@ const RoomApplicationList = () => {
                           {/* <div className="editButton" >
                             <span onClick={() => pdfClickHandler(item()[0].file)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
                           </div> */}
-                          <Modal pdffile ={item()[0].file} buttonName={"See Attachment"}/>
+                          <Modal pdffile ={item()[0].file} buttonName={"See Attachment"} randId={item()[0].studentId} />
                       </div>
                     </span>
                   </div>

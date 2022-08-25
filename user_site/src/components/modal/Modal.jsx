@@ -3,7 +3,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import React from "react";
 import "./modal.scss";
 
-const Modal = ({pdffile}) => {
+const Modal = ({pdffile,buttonName}) => {
   return (
     <div className="modalPdf">
       <div className="container p-5">
@@ -13,7 +13,7 @@ const Modal = ({pdffile}) => {
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          Open PDF
+          {buttonName}
         </button>
 
         <div

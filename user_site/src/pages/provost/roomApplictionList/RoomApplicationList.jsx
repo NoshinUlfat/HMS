@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Modal from "../../../components/modal/Modal";
 import Datatable from "../../../components/datatable/DataTable"
 import Navbar from '../../../components/navbar/Navbar'
 import Progressbar from '../../../components/progressbar/Progressbar'
@@ -553,9 +554,10 @@ const RoomApplicationList = () => {
                   <div className="detailItem" >
                     <span className="itemValue">
                       <div className="buttons">
-                          <div className="editButton" >
+                          {/* <div className="editButton" >
                             <span onClick={() => pdfClickHandler(item()[0].file)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
-                          </div>
+                          </div> */}
+                          <Modal pdffile ={item()[0].file} buttonName={"See Attachment"}/>
                       </div>
                     </span>
                   </div>

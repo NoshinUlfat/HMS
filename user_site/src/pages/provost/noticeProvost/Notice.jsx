@@ -110,7 +110,7 @@ const NoticeStd = () => {
                             </div>
                           </div> */}
                           {/*show && <Modal/>*/}
-                          <Modal pdffile ={notice.file} />
+                          <Modal pdffile ={notice.file} buttonName={"Show Pdf"}/>
                           <ListItemText
                             secondary={
                               <Typography

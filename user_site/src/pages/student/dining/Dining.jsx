@@ -29,6 +29,7 @@ import { mealDataList } from "./diningDataSource.js"
 import Dialog from '../../../components/dialog/Dialog'
 import useFetch from "../../../hooks/useFetch";
 import axios from "axios"
+import { set } from "date-fns"
 
 const adapter = new AdapterDateFns();
 
@@ -95,7 +96,7 @@ const Dining =  () => {
       fetchData();
     }, []);
 
-    const refetchDiningData = async () => {
+    const refetchDiningData =  () => {
       try {
         const { data, loading, error, reFetch } = diningData
         reFetch()
@@ -169,7 +170,7 @@ const Dining =  () => {
                                                   Price-
                                                 </Typography>}></ListItemText>
                                                 <ListItemText secondary={<Typography type="body2" style={{ color: 'grey', fontWeight: 'bold', fontSize: '12px' }}>
-                                                  {item2.mealItemPrice}
+                                                  {item2.mealItemPrice} $
                                                 </Typography>}></ListItemText>
                                               </span>
                                           )

@@ -3,7 +3,7 @@ import Notice from "../models/Notice.js";
 export const assignNotice = async (req, res, next) => {
     try {
   
-      console.log("I AM IN assign REQUEST");
+      //console.log("I AM IN assign REQUEST");
       console.log(req.body)
       const newRequest = new Notice({
         ...req.body,
@@ -20,7 +20,7 @@ export const assignNotice = async (req, res, next) => {
 
 export const getNotices = async (req,res,next)=>{
   try {
-    const notice = await Notice.find();
+    const notice = await Notice.find().sort({date:-1});
 
     console.log("I AM IN Notice");
 

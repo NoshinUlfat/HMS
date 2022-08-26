@@ -7,9 +7,13 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import { hallName } from "./NavBarData";
 
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useContext } from "react";
+
 const Navbar = () => 
 {
     //const { dispatch } = useContext(DarkModeContext);
+    const { dispatch } = useContext(DarkModeContext);
     return (
         <div className="navbar">
             <div className="wrapper">
@@ -39,6 +43,7 @@ const Navbar = () =>
                     <DarkModeOutlinedIcon
                     className="icon"
                     //onClick={() => dispatch({ type: "TOGGLE" })}
+                    onClick={() => dispatch({ type: "TOGGLE" })}
                     />
                 </div>
                 <div className="item">

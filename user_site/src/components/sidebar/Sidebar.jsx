@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CloseIcon from '@mui/icons-material/Close';
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useContext } from "react";
 
 const Sidebar = ({ info }) => 
 {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     const SideBarDataStd = info;
+    const { dispatch } = useContext(DarkModeContext);
 
     return (
         <div className={sidebar ? 'sidebar active' : 'sidebar'}>
@@ -47,8 +50,14 @@ const Sidebar = ({ info }) =>
                 }
             </div>
             <div className={sidebar ? 'bottom active' : 'bottom'}>
-                <div className="colorOption"></div>
-                <div className="colorOption"></div>
+                <div
+            className="colorOption"
+            onClick={() => dispatch({ type: "LIGHT" })}
+            ></div>
+            <div
+            className="colorOption"
+            onClick={() => dispatch({ type: "DARK" })}
+            ></div>
             </div>
         </div>
     )

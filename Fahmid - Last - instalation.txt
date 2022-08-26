@@ -1,0 +1,13 @@
+yarn add sass
+yarn add react-router-dom
+yarn add @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material
+yarn add react-circular-progressbar
+yarn add @mui/x-data-grid
+yarn add date-fns
+yarn add @mui/x-date-pickers
+
+npm install bootstrap --save --legacy-peer-deps
+
+
+npm start

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const FundRequest = mongoose.Schema({
+const Memo = mongoose.Schema({
 
     studentsId: {
         type : mongoose.Schema.Types.ObjectId,
@@ -16,4 +16,4 @@ const FundRequest = mongoose.Schema({
 { timestamps: true }
 );
 
-export default mongoose.model("FundRequest", FundRequest)
+export default mongoose.model("Memo", Memo)

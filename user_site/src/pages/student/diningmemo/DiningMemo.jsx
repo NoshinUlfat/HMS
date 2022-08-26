@@ -10,7 +10,6 @@ import { AuthContext } from "../../../context/AuthContext";
 import styled from "@emotion/styled";
 import useFetch from "../../../hooks/useFetch";
 
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
@@ -32,17 +31,28 @@ export const StyleWrapper = styled.div`
 
 const adapter = new AdapterDateFns();
 const DiningMemo =  () => {
+    const [info,setInfo] = useState({});
+    const [items,setListItems] = useState([]);
     const { user } = useContext(AuthContext);
     const isManager = useFetch("/dining/checkManager/get/"+user._id);
 
     const [value, setValue] = useState(adapter.date());
     const [file,setFile] = useState("");
 
-    console.log(file)
-
-    const handleChange = (event) => {
-      setValue(event.target.value);
+    const handleChange = (e) => {
+        setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value}));
     };
+
+    const addCurrentInfo = () => {
+        setInfo((prev) => ({ ...prev, date: value}));
+        setListItems((prev) => [...prev, {value:info,file:file,key:Date.now()}]);
+
+        setInfo({title:"",description:"",amount:"",date:adapter.date()});
+        setFile("");
+        setValue(adapter.date());
+    }
+
+    console.log(items)
 
     return (
         <div className='dining'>
@@ -55,23 +65,30 @@ const DiningMemo =  () => {
                         <TextField
                         id="title" label="Title"
                         variant="outlined" 
-                        placeholder='Title'/>
+                        placeholder='Title'
+                        value={info.title}
+                        onChange={handleChange}
+                        />
 
                         <TextField
-                            id="desc"
+                            id="description"
                             label="Short Description"
                             multiline
                             rows={4}
                             placeholder='Short Description'
+                            value={info.description}
+                            onChange={handleChange}
                             />
                     </div>
 
                     <div className="topmiddle">
                         <TextField
-                            id="cost"
+                            id="amount"
                             label="Total Cost"
                             placeholder='Total Cost'
-                            variant="outlined" 
+                            variant="outlined"
+                            value={info.amount}
+                            onChange={handleChange} 
                         />
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DesktopDatePicker
@@ -93,7 +110,7 @@ const DiningMemo =  () => {
                             <span>{file.name}</span>
                         </div>
                         <div className="add">
-                        <Fab color="primary" aria-label="add">
+                        <Fab color="primary" aria-label="add" onClick={addCurrentInfo}>
                             <AddIcon />
                         </Fab>
                         </div>
@@ -103,7 +120,7 @@ const DiningMemo =  () => {
                     <div
                         className="accordion"
                         >
-                        <Accordion/>
+                        <Accordion showButton={true} items={items} setListItems={setListItems}/>
                     </div>
                     <div className='button'>
                         <Button variant="contained">Submit</Button> 
@@ -117,7 +134,7 @@ const DiningMemo =  () => {
                     <div
                         className="accordion"
                         >
-                        <Accordion/>
+                        <Accordion showButton={false} items={items} setListItems={setListItems}/>
                     </div>
                 </div>
             </div>

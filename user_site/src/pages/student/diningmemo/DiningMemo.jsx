@@ -76,7 +76,12 @@ const DiningMemo =  () => {
                 studentsId: user._id,
                 };
 
-                const res = axios.post("/dining/createMemo", newRequest);
+                const res = await axios.post("/dining/createMemo", newRequest);
+
+                const { reFetch } = memoList;
+                await reFetch()
+
+                setListItems([]);
             } catch(err) {
             console.log(err);
             }
@@ -88,8 +93,8 @@ const DiningMemo =  () => {
 
     return (
         <div className='dining'>
-            {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
             {memoList.loading?"Loading":<>
+            {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
             <div className="diningContainer">
                 <Navbar/>
                 <div className="top">
@@ -165,6 +170,7 @@ const DiningMemo =  () => {
                     <Chip label="Submitted Memos" />
                 </Divider>
                 <div className="bottom">
+                    {memoList.loading?"Loading":
                     <div
                         className="accordion"
                         >
@@ -176,6 +182,7 @@ const DiningMemo =  () => {
 
                         )} setListItems={setListItems}/>
                     </div>
+            }
                 </div>
             </div>
             </>}

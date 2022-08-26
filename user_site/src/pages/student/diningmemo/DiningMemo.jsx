@@ -36,11 +36,13 @@ const DiningMemo =  () => {
     const [items,setListItems] = useState([]);
     const { user } = useContext(AuthContext);
 
-    const memoList = useFetch("/dining/getAllMemo");
+    const memoList = useFetch("/dining/getAllMemos");
     const isManager = useFetch("/dining/checkManager/get/"+user._id);
 
     const [value, setValue] = useState(adapter.date());
     const [file,setFile] = useState("");
+
+    console.log("memolist",memoList.data)
 
     const handleChange = (e) => {
         setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value}));
@@ -152,9 +154,11 @@ const DiningMemo =  () => {
                         >
                         <Accordion showButton={true} items={items} setListItems={setListItems}/>
                     </div>
+                    {items.length===0?<></>:
                     <div className='button'>
                         <Button variant="contained" onClick={onSubmit}>Submit</Button> 
                     </div>
+                    }
                 </div>
                 <br /><br /><br />
                 <Divider>
@@ -164,7 +168,13 @@ const DiningMemo =  () => {
                     <div
                         className="accordion"
                         >
-                        <Accordion showButton={false} items={items} setListItems={setListItems}/>
+                        <Accordion showButton={false} items={memoList.data.map(
+                            (item) => {
+                                const {file,...rest} = item;
+                                return {value:{...rest},file:file,key:item._id}
+                            }
+
+                        )} setListItems={setListItems}/>
                     </div>
                 </div>
             </div>

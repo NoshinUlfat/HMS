@@ -34,7 +34,7 @@ const studentSchema = new mongoose.Schema(
     email : {type: String, maxLength: 200,unique: true},
     department : {type: String, required: true, maxLength: 200, default: "CSE"},  
     roomNo: {
-      type: Number,
+      type: String,
     },
     img: {
         type: String

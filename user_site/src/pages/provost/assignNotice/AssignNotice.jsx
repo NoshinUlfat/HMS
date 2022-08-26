@@ -47,7 +47,7 @@ const AssignNotice =  () => {
         const { url } = uploadRes.data;
         const newRequest = {
            ...info,
-        //   file: url,
+          file: url,
         //   studentId: user.studentId,
         //   approvalStatus: "pending",
         };

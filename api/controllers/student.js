@@ -14,6 +14,7 @@ export const updateStudent = async (req,res,next)=>{
     next(err);
   }
 }
+
 export const deleteStudent = async (req,res,next)=>{
   try {
     await Student.findByIdAndDelete(req.params.id);

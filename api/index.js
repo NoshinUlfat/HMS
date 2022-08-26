@@ -14,6 +14,7 @@ import provostRoute from "./routes/provosts.js";
 import notificationRoute from "./routes/notifications.js";
 import dueRoute from "./routes/dues.js";
 import defaulterRoute from "./routes/defaulters.js";
+import certificateRoute from "./routes/certificateRequests.js";
 
 
 import cookieParser from "cookie-parser";
@@ -52,6 +53,10 @@ app.use("/api/dining", dinginRoute);
 app.use("/api/notifications", notificationRoute);
 app.use("/api/dues", dueRoute);
 app.use("/api/defaulters", defaulterRoute);
+app.use("/api/certificate", certificateRoute);
+
+
+
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";

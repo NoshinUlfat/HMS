@@ -88,6 +88,8 @@ const RoomApplicationList = () => {
                 term: item.studentsId.term,
                 present_address: item.studentsId.present_address,
                 permanent_address: item.studentsId.permanent_address,
+                roomNo: item.studentsId.roomNo,
+                preferredRoomNo: item.preferredRoomNo,
                 img: item.studentsId.img,
                 file: item.file,
                 checked: false,
@@ -257,6 +259,16 @@ const RoomApplicationList = () => {
           };
           axios.post(notificationURL, newRequest);
           console.log("MEAU RESPONSE ",req_details.data.studentsId);
+
+          
+          var main_url = "/students/"+SelectedRow[ keys[ i ] ].studentsId._id;
+          console.log("WHAT ",main_url)
+          const newUpdate = {
+            roomNo: SelectedRow[ keys[ i ] ].preferredRoomNo,
+          };
+          axios.put(main_url, newUpdate);
+          
+
           axios.delete("/roomAllotments/deleteRoomRequest/"+SelectedRow[ keys[ i ] ]._id);
           
         }
@@ -538,6 +550,14 @@ const RoomApplicationList = () => {
                   <div className="detailItem" >
                       <span className="itemKey">Permanent Address : </span>
                       <span className="itemValue">{item()[0].permanent_address}</span>
+                  </div>
+                  <div className="detailItem" >
+                      <span className="itemKey">Current Room No : </span>
+                      <span className="itemValue">{item()[0].roomNo}</span>
+                  </div>
+                  <div className="detailItem" >
+                      <span className="itemKey">Preferred Room No : </span>
+                      <span className="itemValue">{item()[0].preferredRoomNo}</span>
                   </div>
                   <div className="detailItem" >
                       <span className="itemKey">Cocurriculam Activities : </span>

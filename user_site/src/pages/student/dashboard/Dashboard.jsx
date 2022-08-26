@@ -1,6 +1,6 @@
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined"
 import EditIcon from '@mui/icons-material/Edit'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Popup from '../../../components/popup/Popup'
 import Sidebar from '../../../components/sidebar/Sidebar'
@@ -22,8 +22,10 @@ const DashboardStd =  () => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [data, setData] = useState([null]);
+  const [loading, setLoading] = useState(false);
   
-  
+ 
   
   const { user } = useContext(AuthContext);
   console.log("sdfs ",user.username);//data.username);
@@ -42,6 +44,35 @@ const DashboardStd =  () => {
     console.log(err);
   }
   
+  useEffect(() => {
+    const fetchData = async () => {
+    setLoading(true);
+
+    try {
+
+     // const { data: response } = 
+     let main_url = "/students/"+user._id
+      await axios.get(main_url)
+      .then( data => {
+        let st = data.data;
+
+        console.log("STUDENT DATA ",st);
+        setData(st);
+      })
+      
+      console.log("DATAAAAAAAAa ",data)
+
+    } catch (err) {
+      console.log(err)
+    }
+    setLoading(false);
+  };
+
+  fetchData();
+}, []);
+
+console.log("DATAAAAAAAAa 22 ",data)
+
   const [credentials2, setCredentials2] = useState({
     id: user._id,
     username: user.username,
@@ -83,9 +114,7 @@ const DashboardStd =  () => {
 
       const res = await axios.put(main_url, newRequest);
     
-      console.log("VCVCccccccccccccc ",res.data)
-
-      console.log("logindwcwfff ",res.data.details);///////////
+      window.location.reload(false);
 
        
  
@@ -96,6 +125,8 @@ const DashboardStd =  () => {
    
   return (
     <div className='dashboard'>
+      {loading?"Loading":(
+            <>
         <Sidebar info={SideBarDataStd}/>
         <div className="dashboardContainer">
           <Navbar/>
@@ -107,12 +138,12 @@ const DashboardStd =  () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src= {user.img}
+                src= {data.img}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{user.username}</h1>
+                <h1 className="itemTitle">{data.username}</h1>
                 {/* {
                   profileData.profileData.map(
                     (item,index) => {
@@ -128,27 +159,27 @@ const DashboardStd =  () => {
                
                <div className="detailItem" key = "1">
                   <span className="itemKey">Student ID : </span>
-                  <span className="itemValue">{user.studentId}</span>
+                  <span className="itemValue">{data.studentId}</span>
                 </div>
                 <div className="detailItem" key = "2">
                   <span className="itemKey">Email : </span>
-                  <span className="itemValue">{user.email}</span>
+                  <span className="itemValue">{data.email}</span>
                 </div>
                 <div className="detailItem" key = "3">
                   <span className="itemKey">Phone : </span>
-                  <span className="itemValue">{user.phone}</span>
+                  <span className="itemValue">{data.phone}</span>
                 </div>
                 <div className="detailItem" key = "4">
                   <span className="itemKey">Address : </span>
-                  <span className="itemValue">{user.present_address}</span>
+                  <span className="itemValue">{data.present_address}</span>
                 </div>
                 <div className="detailItem" key = "5">
                   <span className="itemKey">Level-Term : </span>
-                  <span className="itemValue">{user.level}-{user.term}</span>
+                  <span className="itemValue">{data.level}-{data.term}</span>
                 </div>
                 <div className="detailItem" key = "6">
                   <span className="itemKey">Room No : </span>
-                  <span className="itemValue">{user.roomNo}</span>
+                  <span className="itemValue">{data.roomNo}</span>
                 </div>
 
               </div>
@@ -167,7 +198,7 @@ const DashboardStd =  () => {
                   src={
                     file
                       ? URL.createObjectURL(file)
-                      : user.img
+                      : data.img
                       // "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                   }
                   alt=""
@@ -199,19 +230,19 @@ const DashboardStd =  () => {
                   } */}
                   <div className="detailItem" key = "1">
                     <label>Email : </label>
-                    <input type='Email' placeholder={user.email} id="email" onChange={handleChange}/>
+                    <input type='Email' placeholder={data.email} id="email" onChange={handleChange}/>
                   </div>
                   <div className="detailItem" key = "2">
                     <label>Phone : </label>
-                    <input type='text' placeholder={user.phone} id="phone" onChange={handleChange} />
+                    <input type='text' placeholder={data.phone} id="phone" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "3">
                     <label>Present Address : </label>
-                    <input type='text' placeholder={user.present_address} id="present_address" onChange={handleChange} />
+                    <input type='text' placeholder={data.present_address} id="present_address" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "4">
                     <label>Permanent Address : </label>
-                    <input type='text' placeholder={user.permanent_address} id="permanent_address" onChange={handleChange} />
+                    <input type='text' placeholder={data.permanent_address} id="permanent_address" onChange={handleChange} />
                   </div>
 
                   <button onClick={handleClick}>Save</button>
@@ -225,6 +256,8 @@ const DashboardStd =  () => {
           </div>
         </div>
         </div>
+        </>
+      )}
     </div>
   )
 }

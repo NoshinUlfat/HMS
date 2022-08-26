@@ -27,6 +27,7 @@ import DefaulterList from "./pages/provost/defaulterList/DefaulterList";
 import NoticedProvost from "./pages/provost/noticeProvost/Notice";
 import OnlineStd from "./pages/student/online/Online";
 import StudentInfoProvost from "./pages/provost/studentInfo/StudentInfo";
+import DiningMemo from "./pages/student/diningmemo/DiningMemo";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -148,6 +149,7 @@ function App() {
                 <Route path="Dashboard" element={<DashboardStd/>} />
                 <Route path="roomRequest" element={<RoomRequest/>} />
                 <Route path="dining" element={<Dining/>} />
+                <Route path="diningmemo" element={<DiningMemo/>} />
                 <Route path="certificate" element={<CertificateStd/>} />
                 <Route path="service" element={<Service/>} />
                 <Route path="noticeStudent" element={<NoticedStd/>} />

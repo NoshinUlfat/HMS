@@ -1,0 +1,22 @@
+.list-boxInner {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

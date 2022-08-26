@@ -1,8 +1,29 @@
 import DiningManager from "../models/DiningManager.js";
 import Meal from "../models/Meal.js";
 import MealItem from "../models/MealItem.js";
+import Memo from "../models/Memo.js";
 import Student from "../models/Student.js";
 
+export const createMemo = async (req, res, next) => {
+  try {
+    const newMemo = new Memo({
+      ...req.body,
+    });
+    const savedMemo = await newMemo.save();
+    res.status(200).json(savedMemo);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getAllMemo = async (req, res, next) => {
+  try {
+    const memos = await Memo.find().populate("studentsId");
+    res.status(200).json(memos);
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const createDiningManager = async (req, res, next) => {
     const studentId = req.body.studentId;

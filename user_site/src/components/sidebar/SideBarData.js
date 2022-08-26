@@ -7,6 +7,7 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import ReportIcon from '@mui/icons-material/Report';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 export const SideBarDataStd = [
     {
@@ -30,6 +31,81 @@ export const SideBarDataStd = [
                 name: 'Menus',
                 path: '/student/dining',
                 icon: <DiningIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 3,
+        title: 'Application',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Room Change',
+                path: '/student/roomrequest',
+                icon: <BedroomChildIcon className='icon'/>,
+            },
+            {
+                id : 2,
+                name: 'Certificate',
+                path: '/student/certificate',
+                icon: <CardMembershipIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 4,
+        title: 'Services',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Request Service',
+                path: '/student/service',
+                icon: <BedroomChildIcon className='icon'/>,
+            },
+        ],
+    },
+    {
+        id : 5,
+        title: 'Notice',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'General',
+                path: '/student/noticeStudent',
+                icon: <ContentPasteIcon className='icon'/>,
+            }
+        ],
+    },
+]
+
+export const SideBarDataDiningManager = [
+    {
+        id : 1,
+        title: 'Dashboard',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Profile',
+                path: '/student/dashboard',
+                icon: <DashboardCustomizeTwoToneIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 2,
+        title: 'Dining Info',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Menus',
+                path: '/student/dining',
+                icon: <DiningIcon className='icon'/>,
+            },
+            {
+                id : 2,
+                name: 'Add Debit Memo',
+                path: '/student/diningmemo',
+                icon: <ShoppingCartCheckoutIcon className='icon'/>,
             }
         ],
     },

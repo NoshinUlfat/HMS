@@ -4,6 +4,7 @@ import "./pdfViewer.scss";
 import React from "react";
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const customStyles = {
     content: {
@@ -40,7 +41,10 @@ const PdfViewer = ({pdffile,buttonName,randId,styeAll}) => {
   return (
     <div className="modalPdf" >
         <div>
-      <button onClick={openModal} style= {styeAll}>{buttonName}</button>
+      <button onClick={openModal} style= {styeAll}>
+      {/* <PictureAsPdfIcon className='icon'/> */}
+      {buttonName}
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

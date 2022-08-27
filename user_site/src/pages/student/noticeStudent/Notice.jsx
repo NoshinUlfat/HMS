@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../../../components/modal/Modal";
+import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData";
+import formatDistance from 'date-fns/formatDistance'
+import { SideBarDataProvost } from "../../../components/sidebar/SideBarData";
 import "./notice.scss";
 
 import axios from "axios";
@@ -54,7 +56,7 @@ const NoticeStd = () => {
 
   return (
     <div className="notice">
-      <Sidebar info={SideBarDataStd} />
+      <Sidebar info={SideBarDataProvost} />
       <div className="noticeContainer">
         <Navbar />
         <div className="top">
@@ -99,18 +101,30 @@ const NoticeStd = () => {
                         <ListItemButton
                           sx={{ display: "block", backgroundColor: "#caccfc" }}
                         >
-                          <div className="buttons">
+                          {/* <div className="buttons">
                             <div className="buttonDetails" key="1">
                               <div className="editButton">
                                 <span onClick={() => setShow(true)}>
                                   {" "}
-                                  <PictureAsPdfIcon className="icon" /> Showw
-                                  pdf{" "}
+                                  <PictureAsPdfIcon className="icon" /> Show pdf{" "}
                                 </span>
                               </div>
                             </div>
-                          </div>
-                    
+                          </div> */}
+                          {/*show && <Modal/>*/}
+                          {/* <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType} */}
+                          <PdfViewer pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
+                          styeAll={{ position: "absolute",
+                          top: "0",
+                          right: "0",
+                          padding: "5px",
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                          backgroundColor: "rgb(137,80,166)",
+                          cursor: "pointer",
+                          borderRadius: "0px 0px 0px 5px"
+                      
+                          }}/>
                           <ListItemText
                             secondary={
                               <Typography
@@ -121,7 +135,16 @@ const NoticeStd = () => {
                                   fontSize: "10px",
                                 }}
                               >
-                                {notice.date}
+                                {
+  
+                                new Date(notice.date)<new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                                ?new Date(notice.date).toLocaleDateString()
+                                :formatDistance(
+                                  new Date(notice.date),
+                                  new Date() 
+                              )
+                                
+                                }
                               </Typography>
                             }
                           ></ListItemText>

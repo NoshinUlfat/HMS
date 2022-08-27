@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../../../components/modal/Modal";
+import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import formatDistance from 'date-fns/formatDistance'
@@ -111,7 +112,8 @@ const NoticeStd = () => {
                             </div>
                           </div> */}
                           {/*show && <Modal/>*/}
-                          <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
+                          {/* <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType} */}
+                          <PdfViewer pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
                           styeAll={{ position: "absolute",
                           top: "0",
                           right: "0",
@@ -121,8 +123,7 @@ const NoticeStd = () => {
                           backgroundColor: "rgb(137,80,166)",
                           cursor: "pointer",
                           borderRadius: "0px 0px 0px 5px"
-                          
-
+                      
                           }}/>
                           <ListItemText
                             secondary={

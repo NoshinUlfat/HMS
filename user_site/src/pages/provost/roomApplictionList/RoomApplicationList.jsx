@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Modal from "../../../components/modal/Modal";
+import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Datatable from "../../../components/datatable/DataTable"
 import Navbar from '../../../components/navbar/Navbar'
 import Progressbar from '../../../components/progressbar/Progressbar'
@@ -577,7 +578,22 @@ const RoomApplicationList = () => {
                           {/* <div className="editButton" >
                             <span onClick={() => pdfClickHandler(item()[0].file)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
                           </div> */}
-                          <Modal pdffile ={item()[0].file} buttonName={"See Attachment"} randId={item()[0].studentId} />
+                          <PdfViewer pdffile ={item()[0].file} buttonName={"See Attachment"} randId={item()[0].studentId}
+                          styeAll={{ position: "absolute",
+                            position: "absolute",
+                            padding: "5px",
+                            fontsize : "15px",
+                            fontWeight : "bold",
+                            backgroundcolor : "#D5CAFC",
+                            border: "solid",
+                            bordercolor: "#B9A8FB",
+                            cursor: "pointer",
+                            borderradius: "0px 0px 0px 5px"
+          
+                      
+                          }}/>
+                          
+                           />
                       </div>
                     </span>
                   </div>

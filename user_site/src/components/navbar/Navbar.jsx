@@ -2,6 +2,7 @@ import "./navbar.scss"
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
@@ -81,6 +82,9 @@ const Navbar = () =>
                     alt=""
                     className="avatar"
                     />
+                </div>
+                <div className="item">
+                <LogoutIcon className="icon" />
                 </div>
                 </div>
             </div>

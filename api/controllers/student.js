@@ -39,3 +39,11 @@ export const getStudents = async (req,res,next)=>{
     next(err);
   }
 }
+export const getStudent_byStudentID = async (req,res,next)=>{
+  try {
+    const student = await Student.findOne({ studentId: req.body.studentId });
+    res.status(200).json(student);
+  } catch (err) {
+    next(err);
+  }
+}

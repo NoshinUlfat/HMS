@@ -4,7 +4,7 @@ import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import formatDistance from 'date-fns/formatDistance'
-import { SideBarDataProvost } from "../../../components/sidebar/SideBarData";
+import { SideBarDataStd } from "../../../components/sidebar/SideBarData";
 import "./notice.scss";
 
 import axios from "axios";
@@ -56,7 +56,7 @@ const NoticeStd = () => {
 
   return (
     <div className="notice">
-      <Sidebar info={SideBarDataProvost} />
+      <Sidebar info={SideBarDataStd} />
       <div className="noticeContainer">
         <Navbar />
         <div className="top">

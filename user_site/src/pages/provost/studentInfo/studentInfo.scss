@@ -17,6 +17,7 @@
               box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
               padding: 20px;
               position: relative;
+              
       
               .editButton {
                 position: absolute;
@@ -116,37 +117,60 @@
 .insidePop{
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  width:100%;
   padding: 20px;
-  position: relative;
   
   .top{
-    display: flex;
+    display: center;
+    text-align: center;
 
-    .id_box {
-      flex: 1;
-      flex-direction: column;
-      justifyContent: center;
-      alignItems: center;
+    .form-box {
+      display: center;
       text-align: center;
-      margin: auto;
+      width: 100%;
     }
-    sInput{
-      height: 30px;
-      padding: 10px;
-     // opacity: 0.5;
-    }
-    
 
-    button {
-        width: 150px;
-        padding: 10px;
-        border: none;
-        background-color: rebeccapurple;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        margin-top: 10px;
+    form {
+      display: inline-block;
+      flex-direction: column;
+      text-align: center;
+      width: 300px;
+      
+
+      label {
+          font-size: 15px;
+          color: rebeccapurple;
+          position: center;
       }
+      
+
+      input {
+          margin-bottom: 20px;
+          width: 90%;
+          border: none;
+          outline: none;
+          background: transparent;
+          // border: 0.5px solid lightgray;
+          box-shadow: 0px 4px 3px 0px rgba(121,117,212,0.75);
+          -webkit-box-shadow: 0px 4px 3px 0px rgba(121,117,212,0.75);
+
+      }
+
+      .button {
+          top: 0px;
+          position: center;
+          width: 100%;
+          height: 30px;
+          border: none;
+          background-color: rebeccapurple;
+          color: white;
+          border-radius: 5px;
+          font-weight: bold;
+          font-size: 15px;
+          cursor: pointer;
+      }
+  }
+
     
   }
   .bottom {

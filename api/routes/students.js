@@ -4,6 +4,7 @@ import {
   deleteStudent,
   getStudent,
   getStudents,
+  getStudent_byStudentID
 } from "../controllers/student.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
@@ -35,6 +36,6 @@ router.get("/:id", getStudent);
 //GET ALL
 //router.get("/", verifyAdmin, getStudents);
 router.get("/", getStudents);
-
+router.post("/findOne", getStudent_byStudentID)
 
 export default router;

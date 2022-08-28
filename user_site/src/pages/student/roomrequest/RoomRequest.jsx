@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./roomrequest.scss"
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
@@ -22,6 +22,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import useFetch from '../../../hooks/useFetch'
 
 
 
@@ -96,9 +97,11 @@ const RoomRequest = () => {
       setFail(true);
     }
   };
+
+  const isManager = useFetch("/dining/checkManager/get/"+user._id);
   return (
     <div className='roomRequest'>
-        <Sidebar info={SideBarDataStd}/>
+        {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
         <div className="roomRequestContainer">
           <Navbar/>
           <form action="#" method="post">

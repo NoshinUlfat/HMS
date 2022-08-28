@@ -78,6 +78,9 @@ export default function CustomizedAccordions({showButton,items,setListItems}) {
                   <div className="items">
                     <div className="left">
                       <ListItemText secondary={<Typography type="body2" style={{ color: 'red', fontWeight: 'bold', fontSize: '10px' }}>{moment(item.value.date).format('DD-MM-YYYY')}</Typography>}></ListItemText>
+                      {!showButton?
+                      <ListItemText secondary={<Typography type="body2" style={{ color: 'blue', fontWeight: 'bold', fontSize: '12px' }}>Submitted By : {item.value.studentsId.studentId} ({item.value.studentsId.username})</Typography>}></ListItemText>
+                      :<></>}
                       <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>Amount : {item.value.amount} taka</Typography>}></ListItemText>
                       <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '15px' }}>{item.value.title}</Typography>}></ListItemText>
                       <ListItemText secondary={<Typography type="body2" style={{ fontSize: '12px' }}>{item.value.description}</Typography>}></ListItemText>

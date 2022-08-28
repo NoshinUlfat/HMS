@@ -10,18 +10,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { Alert } from '@mui/material'
-import Grid from "@material-ui/core/Grid";
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Popper from '@mui/material/Popper';
-
-
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import useFetch from '../../../hooks/useFetch'
 
 
@@ -101,6 +90,8 @@ const RoomRequest = () => {
   const isManager = useFetch("/dining/checkManager/get/"+user._id);
   return (
     <div className='roomRequest'>
+      {isManager.loading?"Loading":(
+            <>
         {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
         <div className="roomRequestContainer">
           <Navbar/>
@@ -141,15 +132,16 @@ const RoomRequest = () => {
               </div>
               <div className="right">
                 <label htmlFor="file">
-                        Attach Your Achivements(PDFs): <DriveFolderUploadOutlinedIcon className="icon" />
+                        Attach Your Achivements(PDFs): <AttachFileOutlinedIcon className="icon" />
                 </label>
                 <input
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
-                  // style={{ display: "none" }}
+                  style={{ display: "none" }}
                   // value={file}
                 />
+                {file?<span>{file.name}</span>:<span>No file chosen</span>}
               </div>
             </div>
 
@@ -196,7 +188,9 @@ const RoomRequest = () => {
             
           </form>
         </div>
-    </div>
+        </>
+          )}
+      </div>
   )
 }
 

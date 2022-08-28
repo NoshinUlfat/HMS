@@ -163,7 +163,7 @@ const Certificate =  () => {
 
     return (
         <div className='certificate'>
-          {loading?"Loading":(
+          {loading || isManager.loading?"Loading":(
             <>
            {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
             <div className="certificateContainer">

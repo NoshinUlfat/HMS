@@ -93,7 +93,7 @@ const DiningMemo =  () => {
 
     return (
         <div className='dining'>
-            {memoList.loading?"Loading":<>
+            {memoList.loading || isManager.loading?"Loading":<>
             {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
             <div className="diningContainer">
                 <Navbar/>
@@ -141,10 +141,10 @@ const DiningMemo =  () => {
                     </div>
                     <div className="topright">
                         <div className="file">
-                            <label htmlFor="file"><AttachFileIcon/> Choose File</label>
+                            <label htmlFor="file"><AttachFileIcon/></label>
                             <input type="file" name="file" id="file"
                             onChange={(e) => setFile(e.target.files[0])} />
-                            <span>{file.name}</span>
+                            {file?<span>{file.name}</span>:<span>No file chosen</span>}
                         </div>
                         <div className="add">
                         <Fab color="primary" aria-label="add" onClick={addCurrentInfo}>

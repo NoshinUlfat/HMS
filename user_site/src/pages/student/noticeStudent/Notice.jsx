@@ -61,6 +61,8 @@ const NoticeStd = () => {
 
   return (
     <div className="notice">
+      {isManager.loading?"Loading":(
+      <>
       {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
       <div className="noticeContainer">
         <Navbar />
@@ -198,7 +200,9 @@ const NoticeStd = () => {
                 </div> */}
         </div>
       </div>
-    </div>
+      </>
+          )}
+      </div>
   );
 };
 

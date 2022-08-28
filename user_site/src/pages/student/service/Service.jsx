@@ -55,6 +55,8 @@ const Service =  () => {
   const isManager = useFetch("/dining/checkManager/get/"+user._id);
     return (
         <div className='service'>
+            {isManager.loading?"Loading":(
+            <>
            {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
 
             <div className="serviceContainer">
@@ -116,7 +118,9 @@ const Service =  () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </>
+          )}
+      </div>
     )
 
 }

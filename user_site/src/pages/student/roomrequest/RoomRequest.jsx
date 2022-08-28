@@ -88,9 +88,10 @@ const RoomRequest = () => {
   };
 
   const isManager = useFetch("/dining/checkManager/get/"+user._id);
+  const availableRooms = useFetch("/rooms/get/available");
   return (
     <div className='roomRequest'>
-      {isManager.loading?"Loading":(
+      {isManager.loading || availableRooms.loading?"Loading":(
             <>
         {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
         <div className="roomRequestContainer">
@@ -99,6 +100,17 @@ const RoomRequest = () => {
             <br></br>
             <label htmlFor="preferredRoomNo">Preferred Room No(Optional): </label>
             <input type="text" id='preferredRoomNo' value={info.preferredRoomNo} placeholder="Available Rooms" onChange={handleChangeText}/>
+
+            {/* <select id='preferredRoomNo' value={info.preferredRoomNo} placeholder="Available Rooms" onChange={handleChangeCheckBox}>
+            {availableRooms.data.map((room,index)=>{
+              return(
+                <>
+                <option value={room.roomNumbers} key={index}>{room.roomNumbers}</option>
+                </>
+              )
+            }
+            )}
+            </select> */}
             
             <label htmlFor="message">Why do you need this room?</label>
             <textarea name="" id="message" value={info.message} cols="500" rows="15" placeholder='Application' onChange={handleChangeText}></textarea>

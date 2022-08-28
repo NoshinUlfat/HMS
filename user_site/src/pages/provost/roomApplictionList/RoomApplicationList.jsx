@@ -592,8 +592,6 @@ const RoomApplicationList = () => {
           
                       
                           }}/>
-                          
-                           />
                       </div>
                     </span>
                   </div>

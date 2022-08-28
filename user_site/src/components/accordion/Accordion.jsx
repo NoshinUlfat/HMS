@@ -103,7 +103,7 @@ export default function CustomizedAccordions({showButton,items,setListItems}) {
                                 padding: "5px",
                                 fontSize: "12px",
                                 fontWeight: "bold",
-                                backgroundColor: "rgb(150,150,150)",
+                                backgroundColor: "rgb(200,200,200)",
                                 cursor: "pointer",
                                 borderRadius: "0px 0px 0px 5px"
                             

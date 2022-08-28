@@ -18,7 +18,7 @@ export const createMemo = async (req, res, next) => {
 
 export const getAllMemo = async (req, res, next) => {
   try {
-    const memos = await Memo.find().populate("studentsId");
+    const memos = await Memo.find().populate("studentsId").sort({ date: -1 });
     res.status(200).json(memos);
   } catch (err) {
     next(err);

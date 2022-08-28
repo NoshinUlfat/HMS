@@ -411,7 +411,7 @@ const RoomApplicationList = () => {
                     <> */}
                     <div className="datatable">
                       <div className="datatableTitle">
-                        Applications
+                        Room Change Applications
                       </div>
                       {/* getRowId={(row) => row._id} */}
                       <DataGrid

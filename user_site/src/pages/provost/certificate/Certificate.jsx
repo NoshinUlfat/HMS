@@ -231,7 +231,7 @@ const RoomApplicationList = () => {
         
       
       
-      ////////////////////////  window.location.reload(false);
+      window.location.reload(false);
         
        }
        catch(err){
@@ -310,8 +310,7 @@ const RoomApplicationList = () => {
       setSingleApproval(false)
       setSingleRejection(false)
 
-      setDialogTitle("Operation Successful");
-      setIsOperationCompleted(true);
+      window.location.reload(false);
     }
 
     const handleClickSingleApproval = (id,sid) => {

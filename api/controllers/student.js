@@ -3,7 +3,7 @@ import Student from "../models/Student.js";
 export const updateStudent = async (req,res,next)=>{
   try {
 
-    console.log("BBBBBBBBBB ",req.params.id);
+    //console.log("BBBBBBBBBB ",req.params.id);
     const updatedStudent = await Student.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },

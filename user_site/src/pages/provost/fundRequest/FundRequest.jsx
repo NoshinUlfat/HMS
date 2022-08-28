@@ -289,9 +289,11 @@ const RoomApplicationList = () => {
                 <div className="top">
                   <div className="left">
                   
-                    <div className="datatable">
+                    <div className="datatable" style={{height : '250px', borderStyle: 'solid', borderColor: '#D5CAFC'}}>
                       <div className="datatableTitle">
-                        Pending Fund Request List
+                        <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '25px', color: 'black' }}>
+                          Pending Fund Request List
+                        </Typography>
                       </div>
                       <DataGrid
                         className="datagrid"
@@ -315,6 +317,51 @@ const RoomApplicationList = () => {
                         style={{height : '210px'}}
                       />
                     </div>
+
+                    <div className="list-boxOutter">
+
+                            <div className="listBox">
+                              <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '25px', color: 'black' }}>
+                                All Fund Requests
+                              </Typography>
+
+                                <List style={{maxHeight: '100%', overflow: 'auto', height: '300px'}} >
+                                  {data.map((application) => (
+                                    <div class="list-boxInner"> 
+                                      {(application.approvalStatus !== "pending")?
+                                        <ListItem>
+                                            <ListItemButton sx={{ display: 'block', backgroundColor: '#caccfc' }}>
+                                                <div className="buttons">
+                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '15px' }}>
+                                                     Title : {application.title}
+                                                  </Typography>}></ListItemText>
+                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
+                                                      Amount : {application.amount} tk
+                                                  </Typography>}></ListItemText>   
+                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
+                                                      Description : {application.description} 
+                                                  </Typography>}></ListItemText> 
+                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
+                                                      Approval Status : 
+                                                  </Typography>}></ListItemText>  
+                                                  {(application.approvalStatus === "approved")?
+                                                      <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px', color: 'green' }}>
+                                                            Approved
+                                                      </Typography>}></ListItemText>  
+                                                  :<>
+                                                       <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px', color: 'red' }}>
+                                                            Rejected
+                                                      </Typography>}></ListItemText>  
+                                                  </>}
+                                                </div>
+                                              </ListItemButton>
+                                        </ListItem>
+                                      :<></>}
+                                    </div>
+                                  ))}
+                                </List>
+                            </div>
+                            </div>
 
                   <Dialog
                           open={open}
@@ -379,48 +426,7 @@ const RoomApplicationList = () => {
                         </Dialog>
 
                         
-                        <div className="list-boxOutter">
-
-                            <div className="listBox">
-                                <h2>Already Approved</h2>
-
-                                <List style={{maxHeight: '100%', overflow: 'auto', height: '110px'}} >
-                                  {data.map((application) => (
-                                    <div class="list-boxInner"> 
-                                      {(application.approvalStatus !== "pending")?
-                                        <ListItem>
-                                            <ListItemButton sx={{ display: 'block', backgroundColor: '#caccfc' }}>
-                                                <div className="buttons">
-                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '15px' }}>
-                                                     Title : {application.title}
-                                                  </Typography>}></ListItemText>
-                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
-                                                      Amount : {application.amount} tk
-                                                  </Typography>}></ListItemText>   
-                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
-                                                      Description : {application.description} 
-                                                  </Typography>}></ListItemText> 
-                                                  <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
-                                                      Approval Status : 
-                                                  </Typography>}></ListItemText>  
-                                                  {(application.approvalStatus !== "approved")?
-                                                      <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px', color: 'green' }}>
-                                                            {application.approvalStatus}
-                                                      </Typography>}></ListItemText>  
-                                                  :<>
-                                                       <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px', color: 'red' }}>
-                                                            {application.approvalStatus}
-                                                      </Typography>}></ListItemText>  
-                                                  </>}
-                                                </div>
-                                              </ListItemButton>
-                                        </ListItem>
-                                      :<></>}
-                                    </div>
-                                  ))}
-                                </List>
-                            </div>
-                            </div>
+                        
 
                 </div>
 

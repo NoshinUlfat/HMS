@@ -13,6 +13,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import "./accordion.scss"
 
 import moment from 'moment';
+import PdfViewer from '../pdfViewer/PdfViewer';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -94,7 +95,19 @@ export default function CustomizedAccordions({showButton,items,setListItems}) {
                       <div className="buttons">
                           <div className="buttonDetails">
                               <div className="editButton" >
-                                  <span> <PictureAsPdfIcon className='icon'/> Show pdf </span>
+                                  {/* <span> <PictureAsPdfIcon className='icon'/> Show pdf </span> */}
+                                  <PdfViewer pdffile ={item.file} buttonName={"Show Pdf"} randId={item.key}
+                                styeAll={{ position: "absolute",
+                                top: "0",
+                                right: "0",
+                                padding: "5px",
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                backgroundColor: "rgb(150,150,150)",
+                                cursor: "pointer",
+                                borderRadius: "0px 0px 0px 5px"
+                            
+                                }}/>
                               </div>
                           </div>
                       </div>

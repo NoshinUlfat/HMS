@@ -212,12 +212,6 @@ export const SideBarDataProvost = [
                 path: '/provost/studentInfoProvost',
                 icon: <BedroomChildIcon className='icon'/>,
             },
-            {
-                id : 2,
-                name: 'See Room Info',
-                path: '/provost/',
-                icon: <CardMembershipIcon className='icon'/>,
-            }
         ],
     },
     {

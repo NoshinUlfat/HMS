@@ -101,18 +101,6 @@ const NoticeStd = () => {
                         <ListItemButton
                           sx={{ display: "block", backgroundColor: "#caccfc" }}
                         >
-                          {/* <div className="buttons">
-                            <div className="buttonDetails" key="1">
-                              <div className="editButton">
-                                <span onClick={() => setShow(true)}>
-                                  {" "}
-                                  <PictureAsPdfIcon className="icon" /> Show pdf{" "}
-                                </span>
-                              </div>
-                            </div>
-                          </div> */}
-                          {/*show && <Modal/>*/}
-                          {/* <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType} */}
                           <PdfViewer pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
                           styeAll={{ position: "absolute",
                           top: "0",

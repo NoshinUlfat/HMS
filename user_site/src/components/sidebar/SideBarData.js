@@ -221,7 +221,7 @@ export const SideBarDataProvost = [
         ],
     },
     {
-        id : 4,
+        id : 5,
         title: 'Notice',
         sideBarInfo: [
             {
@@ -235,6 +235,18 @@ export const SideBarDataProvost = [
                 name: 'See Notice',
                 path: '/provost/noticeProvost',
                 icon: <ContentPasteIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 6,
+        title: 'Dining Info',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Debit Memo',
+                path: '/provost/debitMemo',
+                icon: <NoteAltIcon className='icon'/>,
             }
         ],
     },

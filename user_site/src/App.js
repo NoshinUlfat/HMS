@@ -27,6 +27,7 @@ import DefaulterList from "./pages/provost/defaulterList/DefaulterList";
 import NoticedProvost from "./pages/provost/noticeProvost/Notice";
 import OnlineStd from "./pages/student/online/Online";
 import StudentInfoProvost from "./pages/provost/studentInfo/StudentInfo";
+import DiningMemoProv from "./pages/provost/diningmemo/DiningMemoProv";
 import DiningMemo from "./pages/student/diningmemo/DiningMemo";
 
 function App() {
@@ -144,6 +145,7 @@ function App() {
                  <Route path="assignNotice" element={<AssignNotice/>} />
                  <Route path="noticeProvost" element={<NoticedProvost/>} />
                  <Route path="studentInfoProvost" element={<StudentInfoProvost/>} />
+                 <Route path="debitMemo" element={<DiningMemoProv/>} />
               </Route>
               <Route path="student">
                 <Route path="Dashboard" element={<DashboardStd/>} />

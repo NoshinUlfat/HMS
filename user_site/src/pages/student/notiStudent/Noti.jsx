@@ -83,7 +83,7 @@ const NotiStd = () => {
 
             <div className="list-boxOutter">
               <div className="listBox">
-                <h2>Noti Board</h2>
+                <h2>Notifications</h2>
 
                 <List
                   style={{

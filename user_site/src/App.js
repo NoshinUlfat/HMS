@@ -21,6 +21,7 @@ import Dining from "./pages/student/dining/Dining"
 import Service from "./pages/student/service/Service"
 import CertificateStd from "./pages/student/certificate/Certificate"
 import NoticedStd from "./pages/student/noticeStudent/Notice";
+import NotiStd from "./pages/student/notiStudent/Noti";
 import CertificateProvost from "./pages/provost/certificate/Certificate";
 import FundRequest from "./pages/provost/fundRequest/FundRequest";
 import DefaulterList from "./pages/provost/defaulterList/DefaulterList";
@@ -153,6 +154,7 @@ function App() {
                 <Route path="certificate" element={<CertificateStd/>} />
                 <Route path="service" element={<Service/>} />
                 <Route path="noticeStudent" element={<NoticedStd/>} />
+                <Route path="notiStudent" element={<NotiStd/>} />
 
                 <Route path="online" element={<OnlineStd/>} />
               </Route>

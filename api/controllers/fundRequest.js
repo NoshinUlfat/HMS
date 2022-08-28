@@ -22,3 +22,18 @@ export const createFundRequest = async (req, res, next) => {
       next(err);
     }
   };
+
+  export const updateFundRequestApprovalStatus = async (req,res,next)=>{
+    try {
+  
+      console.log("STATUS req id ",req.params.id);
+      const updatedStatus = await FundRequest.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.status(200).json(updatedStatus);
+    } catch (err) {
+      next(err);
+    }
+  }

@@ -52,20 +52,20 @@ export const SideBarDataStd = [
             }
         ],
     },
+    // {
+    //     id : 4,
+    //     title: 'Services',
+    //     sideBarInfo: [
+    //         {
+    //             id : 1,
+    //             name: 'Request Service',
+    //             path: '/student/service',
+    //             icon: <BedroomChildIcon className='icon'/>,
+    //         },
+    //     ],
+    // },
     {
         id : 4,
-        title: 'Services',
-        sideBarInfo: [
-            {
-                id : 1,
-                name: 'Request Service',
-                path: '/student/service',
-                icon: <BedroomChildIcon className='icon'/>,
-            },
-        ],
-    },
-    {
-        id : 5,
         title: 'Notice',
         sideBarInfo: [
             {
@@ -127,20 +127,20 @@ export const SideBarDataDiningManager = [
             }
         ],
     },
+    // {
+    //     id : 4,
+    //     title: 'Services',
+    //     sideBarInfo: [
+    //         {
+    //             id : 1,
+    //             name: 'Request Service',
+    //             path: '/student/service',
+    //             icon: <BedroomChildIcon className='icon'/>,
+    //         },
+    //     ],
+    // },
     {
         id : 4,
-        title: 'Services',
-        sideBarInfo: [
-            {
-                id : 1,
-                name: 'Request Service',
-                path: '/student/service',
-                icon: <BedroomChildIcon className='icon'/>,
-            },
-        ],
-    },
-    {
-        id : 5,
         title: 'Notice',
         sideBarInfo: [
             {

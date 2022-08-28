@@ -197,7 +197,7 @@ const RoomApplicationList = () => {
         studentsId: singleSelectionStudentsId,
         title: "Fund Request Notification",
         description: application_response,
-        seen: true,
+        seen: false,
       };
 
       let notificationURL = "/notifications/createNotification/"+singleSelectionStudentsId;

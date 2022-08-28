@@ -207,7 +207,7 @@ const RoomApplicationList = () => {
             studentsId: SelectedRow[ keys[ i ] ].studentsId._id,
             title: "Certificate Response Notification",
             description: application_response,
-            seen: true,
+            seen: false,
           };
     
           let notificationURL = "/notifications/createNotification/"+SelectedRow[ keys[ i ] ].studentsId._id;
@@ -293,7 +293,7 @@ const RoomApplicationList = () => {
         studentsId: singleSelectionStudentsId,
         title: "Due Payment Notification",
         description: application_response,
-        seen: true,
+        seen: false,
       };
 
       let notificationURL = "/notifications/createNotification/"+singleSelectionStudentsId;

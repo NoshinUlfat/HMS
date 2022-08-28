@@ -1,11 +1,10 @@
+import formatDistance from "date-fns/formatDistance";
 import React, { useEffect, useState } from "react";
-import Modal from "../../../components/modal/Modal";
-import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Navbar from "../../../components/navbar/Navbar";
+import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import formatDistance from 'date-fns/formatDistance'
 import { SideBarDataStd } from "../../../components/sidebar/SideBarData";
-import "./notice.scss";
+import "./noti.scss";
 
 import axios from "axios";
 
@@ -15,9 +14,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-
-const NoticeStd = () => {
+const NotiStd = () => {
   const [id, setID] = useState(null);
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
@@ -55,19 +52,19 @@ const NoticeStd = () => {
   console.log("LOAD ", loading);
 
   return (
-    <div className="notice">
+    <div className="noti">
       <Sidebar info={SideBarDataStd} />
-      <div className="noticeContainer">
+      <div className="notiContainer">
         <Navbar />
         <div className="top">
           <div className="left">
             {/* <h1 className="title">Information </h1>
                     {loading?"Loading":(
                         <>
-                            <div>Notices</div>
+                            <div>Notis</div>
                             <div className="Ff">
                                 {data.map((student) => (
-                                <div className="studentId">{student.title} {student.noticeType} {student.description} {student.date} </div>
+                                <div className="studentId">{student.title} {student.notiType} {student.description} {student.date} </div>
                             
                                 ))}
                             </div> 
@@ -86,7 +83,7 @@ const NoticeStd = () => {
 
             <div className="list-boxOutter">
               <div className="listBox">
-                <h2>Notice Board</h2>
+                <h2>Noti Board</h2>
 
                 <List
                   style={{
@@ -95,7 +92,7 @@ const NoticeStd = () => {
                     height: "500px",
                   }}
                 >
-                  {data.map((notice) => (
+                  {data.map((noti) => (
                     <div class="list-boxInner">
                       <ListItem>
                         <ListItemButton
@@ -112,19 +109,23 @@ const NoticeStd = () => {
                             </div>
                           </div> */}
                           {/*show && <Modal/>*/}
-                          {/* <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType} */}
-                          <PdfViewer pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
-                          styeAll={{ position: "absolute",
-                          top: "0",
-                          right: "0",
-                          padding: "5px",
-                          fontSize: "12px",
-                          fontWeight: "bold",
-                          backgroundColor: "rgb(137,80,166)",
-                          cursor: "pointer",
-                          borderRadius: "0px 0px 0px 5px"
-                      
-                          }}/>
+                          {/* <Modal pdffile ={noti.file} buttonName={"Show Pdf"} randId={noti.notiType} */}
+                          <PdfViewer
+                            pdffile={noti.file}
+                            buttonName={"Show Pdf"}
+                            randId={noti.notiType}
+                            styeAll={{
+                              position: "absolute",
+                              top: "0",
+                              right: "0",
+                              padding: "5px",
+                              fontSize: "12px",
+                              fontWeight: "bold",
+                              backgroundColor: "rgb(137,80,166)",
+                              cursor: "pointer",
+                              borderRadius: "0px 0px 0px 5px",
+                            }}
+                          />
                           <ListItemText
                             secondary={
                               <Typography
@@ -135,16 +136,13 @@ const NoticeStd = () => {
                                   fontSize: "10px",
                                 }}
                               >
-                                {
-  
-                                new Date(notice.date)<new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-                                ?new Date(notice.date).toLocaleDateString()
-                                :formatDistance(
-                                  new Date(notice.date),
-                                  new Date() 
-                              )
-                                
-                                }
+                                {new Date(noti.date) <
+                                new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                                  ? new Date(noti.date).toLocaleDateString()
+                                  : formatDistance(
+                                      new Date(noti.date),
+                                      new Date()
+                                    )}
                               </Typography>
                             }
                           ></ListItemText>
@@ -154,7 +152,7 @@ const NoticeStd = () => {
                                 type="body2"
                                 style={{ fontWeight: "bold", fontSize: "12px" }}
                               >
-                                {notice.noticeType}
+                                {noti.notiType}
                               </Typography>
                             }
                           ></ListItemText>
@@ -164,7 +162,7 @@ const NoticeStd = () => {
                                 type="body2"
                                 style={{ fontWeight: "bold", fontSize: "15px" }}
                               >
-                                {notice.title}
+                                {noti.title}
                               </Typography>
                             }
                           ></ListItemText>
@@ -174,7 +172,7 @@ const NoticeStd = () => {
                                 type="body2"
                                 style={{ fontSize: "12px" }}
                               >
-                                {notice.description}
+                                {noti.description}
                               </Typography>
                             }
                           ></ListItemText>
@@ -197,4 +195,4 @@ const NoticeStd = () => {
   );
 };
 
-export default NoticeStd;
+export default NotiStd;

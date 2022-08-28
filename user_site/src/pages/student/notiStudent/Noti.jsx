@@ -95,9 +95,25 @@ const NotiStd = () => {
                   {data.map((noti) => (
                     <div class="list-boxInner">
                       <ListItem>
+
                         <ListItemButton
                           sx={{ display: "block", backgroundColor: "#caccfc" }}
                         >
+                          {noti.seen? "seen" : <button
+                          style={{
+
+                              position: "absolute",
+                              top: "5px",
+                              right: "5px",
+                              padding: "5px",
+                              fontSize: "12px",
+                              fontWeight: "bold",
+                              backgroundColor: "rgb(137,80,166)",
+                              cursor: "pointer",
+                              borderRadius: "10px",
+
+                          }}
+                          ></button>}
                           {/* <div className="buttons">
                             <div className="buttonDetails" key="1">
                               <div className="editButton">

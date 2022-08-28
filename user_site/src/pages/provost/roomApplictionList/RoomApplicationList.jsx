@@ -43,17 +43,9 @@ const RoomApplicationList = () => {
     const [singleRejectionStudentsId, setSingleRejectionStudentsId] = React.useState(null);
     const [SelectedRow, setSelectedRow] = React.useState(null);
     const [selectedRowCount, setSelectedRowCount] = React.useState(0);
-    const [pdfFile, setPdfFile] = React.useState(null);
-
-    const [studentState, setStudentState] = useState([]);
 
     let studentNameData = []
     let selectedRowData = []
-    let selectedStudentsId = []
-    let requestState = []
-    let Id=""
-    let studentId=""
-    let dialogueboxMessage="jln"
 
     const showInfo = num => {
         setID(num)
@@ -115,8 +107,6 @@ const RoomApplicationList = () => {
         // }
         console.log("student name data ",studentNameData)
         setcolName(studentNameData)
-
-        console.log("STATEEEE  ",studentState);
   
       } catch (err) {
         console.log(err)

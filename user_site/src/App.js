@@ -29,6 +29,7 @@ import OnlineStd from "./pages/student/online/Online";
 import StudentInfoProvost from "./pages/provost/studentInfo/StudentInfo";
 import DiningMemoProv from "./pages/provost/diningmemo/DiningMemoProv";
 import DiningMemo from "./pages/student/diningmemo/DiningMemo";
+import MessManagerProv from "./pages/provost/messmanager/MessManager";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -146,6 +147,7 @@ function App() {
                  <Route path="noticeProvost" element={<NoticedProvost/>} />
                  <Route path="studentInfoProvost" element={<StudentInfoProvost/>} />
                  <Route path="debitMemo" element={<DiningMemoProv/>} />
+                 <Route path="selectMessManager" element={<MessManagerProv/>} />
               </Route>
               <Route path="student">
                 <Route path="Dashboard" element={<DashboardStd/>} />

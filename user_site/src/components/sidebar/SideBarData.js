@@ -247,6 +247,12 @@ export const SideBarDataProvost = [
                 name: 'Debit Memo',
                 path: '/provost/debitMemo',
                 icon: <NoteAltIcon className='icon'/>,
+            },
+            {
+                id : 2,
+                name: 'Select Mess Manager',
+                path: '/provost/selectMessManager',
+                icon: <NoteAltIcon className='icon'/>,
             }
         ],
     },

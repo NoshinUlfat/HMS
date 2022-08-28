@@ -124,6 +124,12 @@ export const SideBarDataDiningManager = [
                 name: 'Certificate',
                 path: '/student/certificate',
                 icon: <CardMembershipIcon className='icon'/>,
+            },
+            {
+                id : 3,
+                name: 'Fund Request',
+                path: '/student/fundrequest',
+                icon: <CardMembershipIcon className='icon'/>,
             }
         ],
     },

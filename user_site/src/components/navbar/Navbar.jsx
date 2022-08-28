@@ -7,16 +7,49 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import "./navbar.scss";
 import { hallName } from "./NavBarData";
+import React, { useEffect, useState } from "react";
 
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 const Navbar = () => {
+
+  const [data, setData] = useState([]);
+
   let user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   //const history = useHistory();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      //setLoading(true);
+      try {
+        // const res = axios.get("/roomAllotments");
+
+        // console.log("VCVCccccccccccccc ",res.data)
+
+        // console.log("logindwcwfff ",res.data.details);///////////
+        
+        var urlConnection = "/notifications/count/"+user._id;
+        const { data: response } = await axios.get(urlConnection);
+        setData(response);
+        console.log("no way ", response);
+        console.log("DATA uuu ", data);
+        
+
+        //console.log("VCVCccccccccccccc ", response);
+      } catch (err) {
+        console.log(err);
+      }
+      //setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   function logOut() {
     localStorage.clear();
@@ -58,7 +91,7 @@ const Navbar = () => {
           </div>
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter">1</div>
+            {data===0?null:<div className="counter">{data}</div>}
             <div className="notifications">
               <div className="wrapper">Notifications</div>
               <div className="wrapper">

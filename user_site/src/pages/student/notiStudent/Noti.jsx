@@ -15,6 +15,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 const NotiStd = () => {
+  let user = JSON.parse(localStorage.getItem("user"));
+  
   const [id, setID] = useState(null);
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
@@ -35,7 +37,8 @@ const NotiStd = () => {
         // console.log("VCVCccccccccccccc ",res.data)
 
         // console.log("logindwcwfff ",res.data.details);///////////
-        const { data: response } = await axios.get("/notifications");
+        var urlConnection = "/notifications/"+user._id;
+        const { data: response } = await axios.get(urlConnection);
         setData(response);
 
         //console.log("VCVCccccccccccccc ", response);

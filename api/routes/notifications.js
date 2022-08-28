@@ -1,11 +1,12 @@
 import express from "express";
 import {
-    createNotification , getNotifications
+    createNotification, getNotifications, getStdNotifications
 } from "../controllers/notification.js";
 
 const router = express.Router();
 
-router.post("/createNotification/:studentId", createNotification)
+router.post("/createNotification/:studentsId", createNotification)
 router.get("/", getNotifications );
+router.get("/:id", getStdNotifications);
 
 export default router;

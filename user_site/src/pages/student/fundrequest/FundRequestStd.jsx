@@ -32,17 +32,18 @@ const FundRequestStd = () => {
     try {
       const newRequest = {
         ...info,
-        studentNo: user.studentId,
+        studentsId: user._id
       };
 
       console.log(newRequest)
 
-      const res = await axios.post("/students/fundrequest/create", newRequest);
+      const res = await axios.post("/fundRequest/create", newRequest);
     
       setInfo({title:"",description:"",amount:""})
       setSuccess(true);
     }
-    catch {
+    catch(error) {
+      console.log(error)
       setInfo({title:"",description:"",amount:""})
       setFail(true);
     }

@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import axios from 'axios';
+import { Alert } from '@mui/material';
 
 
 export const StyleWrapper = styled.div`
@@ -27,13 +28,23 @@ const MessManagerProv =  () => {
     const students = useFetch("/students/");
     const [sid,setSID] = useState("");
     const [value, setValue] = useState(adapter.date());
+    const [success, setSuccess] = useState(false);
+    const [fail, setFail] = useState(false);
 
     const studentsInfo = students.data.map((student) => {
         return {label:student.studentId,key:student._id}
     });
 
-    const createManagerOnclick = async() => {
-        await axios.post("/dining/createManager",{studentId:parseInt(sid),date:value});
+    const createManagerOnclick = async(e) => {
+        e.preventDefault();
+        try{
+            await axios.post("/dining/createManager",{studentId:sid,date:value});
+
+            setSuccess(true);
+        }catch(err){
+            console.log(err);
+            setFail(true);
+        }
     }
 
     const handleSelect = (e) => {
@@ -75,6 +86,17 @@ const MessManagerProv =  () => {
                     <div className="item">
                         <Button variant="contained" onClick={createManagerOnclick}>Select Manager</Button>
                     </div>
+
+                    <div className="item">
+                        {success?
+                        <Alert severity="success">Submit Successful</Alert>:<></>
+                        }
+                        {fail?
+                        <Alert variant="filled" severity="error">Submit failed</Alert>:<></>
+                        }
+                    </div>
+
+                    
                 </div>
             </div>
             </>}

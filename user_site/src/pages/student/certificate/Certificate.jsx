@@ -279,7 +279,16 @@ const Certificate =  () => {
                                                   </Typography>}></ListItemText>
                                                   <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
                                                     <span 
-                                                      style={boxStyle}
+                                                      style={{position: "absolute",
+                                                      top: "0",
+                                                      right: "0",
+                                                      padding: "5px",
+                                                      fontSize: "12px",
+                                                      fontWeight: "bold",
+                                                      backgroundColor: "rgb(181,152,210)",
+                                                      cursor: "pointer",
+                                                      border: "solid",
+                                                      borderRadius: "0px 0px 0px 5px"}}
                                                       onMouseEnter={handleMouseEnter}
                                                       onMouseLeave={handleMouseLeave}
                                                       onClick={() => showApplication(application.type,application.message)}>  
@@ -309,7 +318,16 @@ const Certificate =  () => {
                                               </Typography>}></ListItemText>
                                               <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
                                                 <span 
-                                                  style={boxStyle}
+                                                  style={{position: "absolute",
+                                                  top: "0",
+                                                  right: "0",
+                                                  padding: "5px",
+                                                  fontSize: "12px",
+                                                  fontWeight: "bold",
+                                                  backgroundColor: "rgb(181,152,210)",
+                                                  cursor: "pointer",
+                                                  border: "solid",
+                                                  borderRadius: "0px 0px 0px 5px"}}
                                                   onMouseEnter={handleMouseEnter}
                                                   onMouseLeave={handleMouseLeave}
                                                   onClick={() => showApplication(application.type,application.message)}>  
@@ -339,7 +357,16 @@ const Certificate =  () => {
                                             </Typography>}></ListItemText>
                                             <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>
                                               <span 
-                                                style={boxStyle}
+                                                style={{position: "absolute",
+                                                top: "0",
+                                                right: "0",
+                                                padding: "5px",
+                                                fontSize: "12px",
+                                                fontWeight: "bold",
+                                                backgroundColor: "rgb(181,152,210)",
+                                                cursor: "pointer",
+                                                border: "solid",
+                                                borderRadius: "0px 0px 0px 5px"}}
                                                 onMouseEnter={handleMouseEnter}
                                                 onMouseLeave={handleMouseLeave}
                                                 onClick={() => showApplication(application.type,application.message)}>  

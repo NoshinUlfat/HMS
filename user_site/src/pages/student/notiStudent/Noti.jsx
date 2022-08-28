@@ -35,10 +35,10 @@ const NotiStd = () => {
         // console.log("VCVCccccccccccccc ",res.data)
 
         // console.log("logindwcwfff ",res.data.details);///////////
-        const { data: response } = await axios.get("/notices");
+        const { data: response } = await axios.get("/notifications");
         setData(response);
 
-        console.log("VCVCccccccccccccc ", response);
+        //console.log("VCVCccccccccccccc ", response);
       } catch (err) {
         console.log(err);
       }

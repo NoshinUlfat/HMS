@@ -16,3 +16,16 @@ export const createNotification = async (req, res, next) => {
       next(err);
     }
   };
+
+  export const getNotifications = async (req,res,next)=>{
+    try {
+      const notification = await Notification.find().sort({date:-1});
+  
+      //console.log("I AM IN Notice");
+  
+      res.status(200).json(notification);
+     // res.status(200).send("Request has been created.");
+    } catch (err) {
+      next(err);
+    }
+  }

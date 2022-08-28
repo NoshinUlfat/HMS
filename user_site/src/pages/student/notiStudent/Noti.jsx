@@ -110,7 +110,7 @@ const NotiStd = () => {
                           </div> */}
                           {/*show && <Modal/>*/}
                           {/* <Modal pdffile ={noti.file} buttonName={"Show Pdf"} randId={noti.notiType} */}
-                          <PdfViewer
+                          {/* <PdfViewer
                             pdffile={noti.file}
                             buttonName={"Show Pdf"}
                             randId={noti.notiType}
@@ -125,7 +125,7 @@ const NotiStd = () => {
                               cursor: "pointer",
                               borderRadius: "0px 0px 0px 5px",
                             }}
-                          />
+                          /> */}
                           <ListItemText
                             secondary={
                               <Typography

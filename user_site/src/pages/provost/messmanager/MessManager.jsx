@@ -40,6 +40,15 @@ const MessManagerProv =  () => {
         try{
             await axios.post("/dining/createManager",{studentId:sid,date:value});
 
+            const newNotification = {
+                studentsId: studentsInfo.find((student) => student.label === sid).key,
+                title: "You are now a Mess Manager",
+                description: "Congratulations! You are now a Mess Manager. You can now manage the mess menu and other things.",
+                seen: false,
+            };
+
+            await axios.post( "/notifications/createNotification/"+sid, newNotification);
+
             setSuccess(true);
         }catch(err){
             console.log(err);

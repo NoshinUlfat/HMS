@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./roomrequest.scss"
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import axios from "axios";
@@ -10,18 +10,8 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { Alert } from '@mui/material'
-import Grid from "@material-ui/core/Grid";
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Popper from '@mui/material/Popper';
-
-
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
+import useFetch from '../../../hooks/useFetch'
 
 
 
@@ -96,15 +86,31 @@ const RoomRequest = () => {
       setFail(true);
     }
   };
+
+  const isManager = useFetch("/dining/checkManager/get/"+user._id);
+  const availableRooms = useFetch("/rooms/get/available");
   return (
     <div className='roomRequest'>
-        <Sidebar info={SideBarDataStd}/>
+      {isManager.loading || availableRooms.loading?"Loading":(
+            <>
+        {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
         <div className="roomRequestContainer">
           <Navbar/>
           <form action="#" method="post">
             <br></br>
             <label htmlFor="preferredRoomNo">Preferred Room No(Optional): </label>
             <input type="text" id='preferredRoomNo' value={info.preferredRoomNo} placeholder="Available Rooms" onChange={handleChangeText}/>
+
+            {/* <select id='preferredRoomNo' value={info.preferredRoomNo} placeholder="Available Rooms" onChange={handleChangeCheckBox}>
+            {availableRooms.data.map((room,index)=>{
+              return(
+                <>
+                <option value={room.roomNumbers} key={index}>{room.roomNumbers}</option>
+                </>
+              )
+            }
+            )}
+            </select> */}
             
             <label htmlFor="message">Why do you need this room?</label>
             <textarea name="" id="message" value={info.message} cols="500" rows="15" placeholder='Application' onChange={handleChangeText}></textarea>
@@ -138,15 +144,16 @@ const RoomRequest = () => {
               </div>
               <div className="right">
                 <label htmlFor="file">
-                        Attach Your Achivements(PDFs): <DriveFolderUploadOutlinedIcon className="icon" />
+                        Attach Your Achivements(PDFs): <AttachFileOutlinedIcon className="icon" />
                 </label>
                 <input
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
-                  // style={{ display: "none" }}
+                  style={{ display: "none" }}
                   // value={file}
                 />
+                {file?<span>{file.name}</span>:<span>No file chosen</span>}
               </div>
             </div>
 
@@ -193,7 +200,9 @@ const RoomRequest = () => {
             
           </form>
         </div>
-    </div>
+        </>
+          )}
+      </div>
   )
 }
 

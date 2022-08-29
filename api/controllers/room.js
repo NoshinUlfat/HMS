@@ -80,3 +80,13 @@ export const getRooms = async (req, res, next) => {
     next(err);
   }
 };
+
+
+export const getAvailabeRooms = async (req, res, next) => {
+  try {
+    const rooms = await Room.find({ $expr: { $gt: [  "$maxPeople" , "$currentPeople" ] } });
+    res.status(200).json(rooms);
+  } catch (err) {
+    next(err);
+  }
+};

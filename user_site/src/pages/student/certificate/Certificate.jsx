@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./certificate.scss"
 
 import List from '@mui/material/List'
@@ -13,17 +13,11 @@ import { useContext } from "react"
 import { AuthContext } from "../../../context/AuthContext"
 import CreateIcon from '@mui/icons-material/Create';
 
-import Popup from '../../../components/popup/Popup'
-
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 
 import Typography from '@mui/material/Typography';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import useFetch from "../../../hooks/useFetch";
 
 
@@ -165,14 +159,13 @@ const Certificate =  () => {
     setDialogContent(message);
   };
 
- 
+  const isManager = useFetch("/dining/checkManager/get/"+user._id);
 
     return (
         <div className='certificate'>
-          {loading?"Loading":(
+          {loading || isManager.loading?"Loading":(
             <>
-           <Sidebar info={SideBarDataStd}/>
-
+           {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
             <div className="certificateContainer">
                 <Navbar/>
                 

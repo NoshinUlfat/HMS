@@ -2,6 +2,7 @@ import express from "express";
 import {
   createRoom,
   deleteRoom,
+  getAvailabeRooms,
   getRoom,
   getRooms,
   updateRoom,
@@ -24,5 +25,6 @@ router.get("/:id", getRoom);
 //GET ALL
 
 router.get("/", getRooms);
+router.get("/get/available", getAvailabeRooms);
 
 export default router;

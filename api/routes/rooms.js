@@ -25,6 +25,6 @@ router.get("/:id", getRoom);
 //GET ALL
 
 router.get("/", getRooms);
-router.get("/get/available", getAvailabeRooms);
+router.get("/get/available/room", getAvailabeRooms);
 
 export default router;

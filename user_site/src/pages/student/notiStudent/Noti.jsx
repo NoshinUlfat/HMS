@@ -138,7 +138,8 @@ const NotiStd = () => {
                       {noti.seen && show ? null : (
                         <ListItem>
                           <ListItemButton
-                             onClick= {()=> updateNoti(!noti.seen,noti._id)}
+                             //onClick= {()=> updateNoti(!noti.seen,noti._id)}
+                             onClick= {()=> updateNoti(true,noti._id)}
                             sx={{
                               display: "block",
                               backgroundColor: "#caccfc",

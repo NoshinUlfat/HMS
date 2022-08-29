@@ -237,7 +237,7 @@ const RoomApplicationList = () => {
     }
 
     const handleClickApplicationInfo = (type,amount,msg) => {
-      let title = "Certificate Type: "+type
+      let title = "Application Title: "+type
 
       setDialogTitle(title);
       setDialogContent(msg);
@@ -402,11 +402,12 @@ const RoomApplicationList = () => {
                               <div className="insidePop">
                                 <div className="top">
                                   <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', fontColor: 'black' }}>
-                                    <span> {dialogtitle} </span>
+                                    <span> {dialogtitle} </span><br></br>
                                     <span> Amount : {amount} tk</span>
                                   </Typography>
+                                  <br></br>
                                   <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', fontColor: 'black' }}>
-                                    <span> Amount : {amount} tk</span>
+                                    
                                   </Typography>
                                 </div>
                                 <div className="bottom">

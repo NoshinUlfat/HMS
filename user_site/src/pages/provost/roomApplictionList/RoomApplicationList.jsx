@@ -258,6 +258,7 @@ const RoomApplicationList = () => {
       else setDialogTitle("Please select atleast one request to approve")
 
       console.log("SELECTED A2 ",selectedRowData.length)
+      
       setOpen(true);
       console.log("SELECTED A3 ",selectedRowData.length)
     };
@@ -272,6 +273,7 @@ const RoomApplicationList = () => {
       else setDialogTitle("Please select atleast one request to reject")
 
       console.log("SELECTED R2 ",selectedRowData.length)
+      setSingleRejectionStatus(false)
       setOpen(true);
     };
   

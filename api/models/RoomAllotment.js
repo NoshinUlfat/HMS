@@ -16,7 +16,7 @@ const roomalotementSchema = mongoose.Schema({
     sports: { type: Boolean, default: false},
     debate: { type: Boolean, default: false},
     other: { type: Boolean, default: false},
-    approvalStatus: {type: String, enum: ["pending", "accepted", "declined"], required: true, default: "pending"},
+    approvalStatus: {type: String, enum: ["pending", "approved", "rejected"], required: true, default: "pending"},
     file: { type: String},
 },
     { timestamps: true }

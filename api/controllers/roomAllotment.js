@@ -76,3 +76,15 @@ export const deleteRoomRequests = async (req, res, next) => {
     next(err);
   }
 };
+
+
+export const roomRequestProgress = async (req, res, next) => {
+  try {
+    const totalRequests = await RoomAllotment.find().count();
+    const pendingRequests = await RoomAllotment.find({approvalStatus:{$eq:"pending"}}).count();
+    const nDone = totalRequests-pendingRequests
+    res.status(200).json({nApplication:totalRequests,nDone:nDone});
+  } catch (err) {
+    next(err);
+  }
+};

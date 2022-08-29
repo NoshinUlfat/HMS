@@ -18,24 +18,20 @@ import FundRequest from "./pages/provost/fundRequest/FundRequest";
 import NoticedProvost from "./pages/provost/noticeProvost/Notice";
 import RoomApplicationList from "./pages/provost/roomApplictionList/RoomApplicationList";
 import StudentInfoProvost from "./pages/provost/studentInfo/StudentInfo";
-<<<<<<< HEAD
 import DiningMemoProv from "./pages/provost/diningmemo/DiningMemoProv";
 import DiningMemo from "./pages/student/diningmemo/DiningMemo";
 import MessManagerProv from "./pages/provost/messmanager/MessManager";
 import FundRequestStd from "./pages/student/fundrequest/FundRequestStd";
-=======
 import Single from "./pages/single/Single";
 import CertificateStd from "./pages/student/certificate/Certificate";
 import DashboardStd from "./pages/student/dashboard/Dashboard";
 import Dining from "./pages/student/dining/Dining";
-import DiningMemo from "./pages/student/diningmemo/DiningMemo";
 import NoticedStd from "./pages/student/noticeStudent/Notice";
 import NotiStd from "./pages/student/notiStudent/Noti";
 import OnlineStd from "./pages/student/online/Online";
 import RoomRequest from "./pages/student/roomrequest/RoomRequest";
 import Service from "./pages/student/service/Service";
 import "./style/dark.scss";
->>>>>>> log_out_notification
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -163,11 +159,8 @@ function App() {
                 <Route path="certificate" element={<CertificateStd/>} />
                 <Route path="service" element={<Service/>} />
                 <Route path="noticeStudent" element={<NoticedStd/>} />
-<<<<<<< HEAD
                 <Route path="fundrequest" element={<FundRequestStd/>} />
-=======
                 <Route path="notiStudent" element={<NotiStd/>} />
->>>>>>> log_out_notification
 
                 <Route path="online" element={<OnlineStd/>} />
               </Route>

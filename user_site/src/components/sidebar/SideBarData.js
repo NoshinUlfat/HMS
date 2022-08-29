@@ -124,6 +124,12 @@ export const SideBarDataDiningManager = [
                 name: 'Certificate',
                 path: '/student/certificate',
                 icon: <CardMembershipIcon className='icon'/>,
+            },
+            {
+                id : 3,
+                name: 'Fund Request',
+                path: '/student/fundrequest',
+                icon: <CardMembershipIcon className='icon'/>,
             }
         ],
     },
@@ -229,6 +235,24 @@ export const SideBarDataProvost = [
                 name: 'See Notice',
                 path: '/provost/noticeProvost',
                 icon: <ContentPasteIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 6,
+        title: 'Dining Info',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Debit Memo',
+                path: '/provost/debitMemo',
+                icon: <NoteAltIcon className='icon'/>,
+            },
+            {
+                id : 2,
+                name: 'Select Mess Manager',
+                path: '/provost/selectMessManager',
+                icon: <NoteAltIcon className='icon'/>,
             }
         ],
     },

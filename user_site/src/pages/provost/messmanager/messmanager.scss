@@ -1,0 +1,22 @@
+.messManager {
+    display: flex;
+
+    .messManagerContainer {
+        flex: 6;
+        display: flex;
+        flex-direction: column;
+
+        .top {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+
+            .item {
+                margin-bottom: 20px;
+            }
+        }
+
+    }
+}

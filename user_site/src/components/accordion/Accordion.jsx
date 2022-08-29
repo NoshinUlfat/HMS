@@ -13,6 +13,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import "./accordion.scss"
 
 import moment from 'moment';
+import PdfViewer from '../pdfViewer/PdfViewer';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -78,6 +79,9 @@ export default function CustomizedAccordions({showButton,items,setListItems}) {
                   <div className="items">
                     <div className="left">
                       <ListItemText secondary={<Typography type="body2" style={{ color: 'red', fontWeight: 'bold', fontSize: '10px' }}>{moment(item.value.date).format('DD-MM-YYYY')}</Typography>}></ListItemText>
+                      {!showButton?
+                      <ListItemText secondary={<Typography type="body2" style={{ color: 'blue', fontWeight: 'bold', fontSize: '12px' }}>Submitted By : {item.value.studentsId.studentId} ({item.value.studentsId.username})</Typography>}></ListItemText>
+                      :<></>}
                       <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '12px' }}>Amount : {item.value.amount} taka</Typography>}></ListItemText>
                       <ListItemText secondary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '15px' }}>{item.value.title}</Typography>}></ListItemText>
                       <ListItemText secondary={<Typography type="body2" style={{ fontSize: '12px' }}>{item.value.description}</Typography>}></ListItemText>
@@ -91,7 +95,19 @@ export default function CustomizedAccordions({showButton,items,setListItems}) {
                       <div className="buttons">
                           <div className="buttonDetails">
                               <div className="editButton" >
-                                  <span> <PictureAsPdfIcon className='icon'/> Show pdf </span>
+                                  {/* <span> <PictureAsPdfIcon className='icon'/> Show pdf </span> */}
+                                  <PdfViewer pdffile ={item.file} buttonName={"Show Pdf"} randId={item.key}
+                                styeAll={{ position: "absolute",
+                                top: "0",
+                                right: "0",
+                                padding: "5px",
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                backgroundColor: "rgb(200,200,200)",
+                                cursor: "pointer",
+                                borderRadius: "0px 0px 0px 5px"
+                            
+                                }}/>
                               </div>
                           </div>
                       </div>

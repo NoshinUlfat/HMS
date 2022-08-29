@@ -1,28 +1,43 @@
-.fundRequestList {
+.noti {
   display: flex;
 
-  .fundRequestListContainer {
+  .notiContainer {
       flex: 6;
       display: flex;
       flex-direction: column;
 
       .top {
-          flex:1;
           padding: 20px;
           display: flex;
           gap: 20px;
     
           .left{
-            flex: 2;
-            padding-left: 30px; 
-            padding-right: 30px;
-            padding-bottom: 20px;
+            flex: 1;
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+            padding: 20px;
             position: relative;
 
+            .buttons{
+              .editButton {
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  padding: 5px;
+                  font-size: 12px;
+                  font-weight: bold;
+                  cursor: pointer;
+                  border-radius: 0px 0px 0px 5px;
+ 
+                  .icon {
+                  font-size: 12px;
+                  }
+              }
+              
+            }
+
             .list-boxOutter{
-              padding-top: 10px;
+              padding-top: 20px;
 
               .listBox {
                 border-style: solid;
@@ -46,18 +61,10 @@
                 }
              }
             }
-    
-           
+            
+            
     
             
-          }
-          .right{
-            flex: 1;
-            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-            padding: 20px;
-            position: relative;
-
 
             .item {
               display: flex;
@@ -88,45 +95,24 @@
     
                   .itemValue {
                     font-weight: 300;
-                    .buttons{
-                      .editButton {
-                          position: absolute;
-                          padding: 5px;
-                          font-size: 15px;
-                          font-weight: bold;
-                          background-color: #D5CAFC;
-                          border: solid;
-                          border-color: #B9A8FB;
-                          cursor: pointer;
-                          border-radius: 0px 0px 0px 5px;
-         
-                          .icon {
-                          font-size: 15px;
-                          }
-                      }
-                      
-                    }
                   }
                 }
               }
             }
-
-
-            
-
-           
+          }
+          .right{
+            flex: 2;
+            padding: 20px; 
           }
 
         }
     
         .bottom {
-          flex: 4;
           -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
           box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
           padding: 20px;
           margin: 10px 20px;
           display: flex;
-          
           // flex-direction: row;
           // gap: 20px;
 
@@ -149,4 +135,80 @@
           margin-bottom: 20px;
         }
   }
+}
+
+
+.insidePop{
+-webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+padding: 20px;
+position: relative;
+.top,
+.bottom {
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+
+  h1 {
+    color: lightgray;
+    font-size: 20px;
+  }
+
+  .left {
+    flex: 1;
+    text-align: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .right {
+    flex: 2;
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+
+      .formInput {
+        width: 40%;
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .icon {
+            cursor: pointer;
+          }
+        }
+
+        input {
+          width: 100%;
+          padding: 5px;
+          border: none;
+          border-bottom: 1px solid gray;
+        }
+      }
+
+      button {
+        width: 150px;
+        padding: 10px;
+        border: none;
+        background-color: teal;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    }
+  }
+}
 }

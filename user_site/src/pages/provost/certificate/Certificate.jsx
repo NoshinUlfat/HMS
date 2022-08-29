@@ -207,7 +207,7 @@ const RoomApplicationList = () => {
             studentsId: SelectedRow[ keys[ i ] ].studentsId._id,
             title: "Certificate Response Notification",
             description: application_response,
-            seen: true,
+            seen: false,
           };
     
           let notificationURL = "/notifications/createNotification/"+SelectedRow[ keys[ i ] ].studentsId._id;
@@ -231,7 +231,7 @@ const RoomApplicationList = () => {
         
       
       
-      ////////////////////////  window.location.reload(false);
+      window.location.reload(false);
         
        }
        catch(err){
@@ -293,7 +293,7 @@ const RoomApplicationList = () => {
         studentsId: singleSelectionStudentsId,
         title: "Due Payment Notification",
         description: application_response,
-        seen: true,
+        seen: false,
       };
 
       let notificationURL = "/notifications/createNotification/"+singleSelectionStudentsId;
@@ -310,8 +310,7 @@ const RoomApplicationList = () => {
       setSingleApproval(false)
       setSingleRejection(false)
 
-      setDialogTitle("Operation Successful");
-      setIsOperationCompleted(true);
+      window.location.reload(false);
     }
 
     const handleClickSingleApproval = (id,sid) => {
@@ -331,9 +330,7 @@ const RoomApplicationList = () => {
     }
 
     const handleClickApplicationInfo = (type,msg) => {
-      let title = "Certificate Type: "+type
-
-      setDialogTitle(title);
+      setDialogTitle(type);
       setDialogContent(msg);
       setIsApplicationShow(true);
       setOpen(true);
@@ -486,17 +483,17 @@ const RoomApplicationList = () => {
                             <DialogContent >
                               <div className="insidePop">
                                 <div className="top">
-                                  <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', fontColor: 'black' }}>
-                                    <span> {dialogtitle} </span>
+                                  <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px' }}>
+                                    <span  style={{color: 'black'}}> Application Title: <span style={{color: 'gray'}}>{dialogtitle}</span></span>
                                   </Typography>
                                 </div>
                                 <div className="bottom">
                                   <div className="formInput">
-                                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px' }}>
-                                      <span>  Application </span>
+                                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                                      <span>  Application: </span>
                                     </Typography>
-                                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '15px', fontColor: 'gray' }}>
-                                      <span>  {dialogContent} </span>
+                                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '15px', color: 'gray' }}>
+                                      <span style={{color: 'gray'}}>  {dialogContent} </span>
                                     </Typography>
                                   </div>
                                </div>

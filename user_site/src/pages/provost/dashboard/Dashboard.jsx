@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Sidebar from '../../../components/sidebar/Sidebar'
 import "./dashboard.scss"
@@ -19,6 +19,8 @@ const DashboardProvost = () => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [data, setData] = useState([null]);
+  const [loading, setLoading] = useState(false);
   
   
   
@@ -35,6 +37,33 @@ const DashboardProvost = () => {
     department: undefined,
     designation: undefined,
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+    setLoading(true);
+
+    try {
+
+     // const { data: response } = 
+     let main_url = "/provosts/"+user._id
+      await axios.get(main_url)
+      .then( data => {
+        let st = data.data;
+
+        console.log("PROVOST DATA ",st);
+        setData(st);
+      })
+      
+      console.log("DATAAAAAAAAa ",data)
+
+    } catch (err) {
+      console.log(err)
+    }
+    setLoading(false);
+  };
+
+  fetchData();
+}, []);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -65,9 +94,7 @@ const DashboardProvost = () => {
       
       const res = await axios.put(main_url, newRequest);
     
-      console.log("VCVCccccccccccccc ",res.data)
-
-      console.log("logindwcwfff ",res.data.details);///////////
+      window.location.reload(false);
  
     } catch (err) {
       console.log(err)
@@ -77,6 +104,8 @@ const DashboardProvost = () => {
 
   return (
     <div className='dashboard'>
+      {loading?"Loading":(
+            <>
         <Sidebar info={SideBarDataProvost}/>
         <div className="dashboardContainer">
           <Navbar/>
@@ -88,12 +117,12 @@ const DashboardProvost = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src= {user.img}
+                src= {data.img}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{user.username}</h1>
+                <h1 className="itemTitle">{data.username}</h1>
                 {/* {
                   profileData.profileData.map(
                     (item,index) => {
@@ -110,27 +139,27 @@ const DashboardProvost = () => {
                 
                 <div className="detailItem" key = "1">
                   <span className="itemKey">Email : </span>
-                  <span className="itemValue">{user.email}</span>
+                  <span className="itemValue">{data.email}</span>
                 </div>
                 <div className="detailItem" key = "2">
                   <span className="itemKey">Phone : </span>
-                  <span className="itemValue">{user.phone}</span>
+                  <span className="itemValue">{data.phone}</span>
                 </div>
                 <div className="detailItem" key = "3">
                   <span className="itemKey">Address : </span>
-                  <span className="itemValue">{user.present_address}</span>
+                  <span className="itemValue">{data.present_address}</span>
                 </div>
                 <div className="detailItem" key = "4">
                   <span className="itemKey">Post : </span>
-                  <span className="itemValue">{user.post}</span>
+                  <span className="itemValue">{data.post}</span>
                 </div>
                 <div className="detailItem" key = "5">
                   <span className="itemKey">Dept : </span>
-                  <span className="itemValue">{user.department}</span>
+                  <span className="itemValue">{data.department}</span>
                 </div>
                 <div className="detailItem" key = "6">
                   <span className="itemKey">Designation : </span>
-                  <span className="itemValue">{user.designation}</span>
+                  <span className="itemValue">{data.designation}</span>
                 </div>
 
 
@@ -150,7 +179,7 @@ const DashboardProvost = () => {
                   src={
                     file
                       ? URL.createObjectURL(file)
-                      : user.img
+                      : data.img
                       //"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                   }
                   alt=""
@@ -183,27 +212,27 @@ const DashboardProvost = () => {
 
                   <div className="detailItem" key = "1">
                     <label>Email : </label>
-                    <input type='Email' placeholder={user.email} id="email" onChange={handleChange}/>
+                    <input type='Email' placeholder={data.email} id="email" onChange={handleChange}/>
                   </div>
                   <div className="detailItem" key = "2">
                     <label>Phone : </label>
-                    <input type='text' placeholder={user.phone} id="phone" onChange={handleChange} />
+                    <input type='text' placeholder={data.phone} id="phone" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "3">
                     <label>Present Address : </label>
-                    <input type='text' placeholder={user.present_address} id="present_address" onChange={handleChange} />
+                    <input type='text' placeholder={data.present_address} id="present_address" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "4">
                     <label>Post : </label>
-                    <input type='text' placeholder={user.post} id="post" onChange={handleChange} />
+                    <input type='text' placeholder={data.post} id="post" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "5">
                     <label>Department : </label>
-                    <input type='text' placeholder={user.department} id="department" onChange={handleChange} />
+                    <input type='text' placeholder={data.department} id="department" onChange={handleChange} />
                   </div>
                   <div className="detailItem" key = "6">
                     <label>Designation : </label>
-                    <input type='text' placeholder={user.designation} id="designation" onChange={handleChange} />
+                    <input type='text' placeholder={data.designation} id="designation" onChange={handleChange} />
                   </div>
 
                   <button onClick={handleClick}>Save</button>
@@ -226,6 +255,8 @@ const DashboardProvost = () => {
           </div>
         </div>
         </div>
+        </>
+      )}
     </div>
   )
 }

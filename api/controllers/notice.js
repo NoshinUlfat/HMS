@@ -22,7 +22,7 @@ export const getNotices = async (req,res,next)=>{
   try {
     const notice = await Notice.find().sort({date:-1});
 
-    console.log("I AM IN Notice");
+    //console.log("I AM IN Notice");
 
     res.status(200).json(notice);
    // res.status(200).send("Request has been created.");

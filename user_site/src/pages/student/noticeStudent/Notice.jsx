@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "../../../components/modal/Modal";
 import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import formatDistance from 'date-fns/formatDistance'
-import { SideBarDataProvost } from "../../../components/sidebar/SideBarData";
+
+import { SideBarDataDiningManager, SideBarDataProvost, SideBarDataStd } from "../../../components/sidebar/SideBarData";
+
 import "./notice.scss";
 
 import axios from "axios";
@@ -16,6 +18,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import useFetch from "../../../hooks/useFetch";
+import { AuthContext } from "../../../context/AuthContext";
 
 const NoticeStd = () => {
   const [id, setID] = useState(null);
@@ -54,9 +58,15 @@ const NoticeStd = () => {
   console.log("DATA ", data);
   console.log("LOAD ", loading);
 
+  const { user } = useContext(AuthContext);
+  const isManager = useFetch("/dining/checkManager/get/"+user._id);
+
   return (
     <div className="notice">
-      <Sidebar info={SideBarDataProvost} />
+      {isManager.loading?"Loading":(
+      <>
+      {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
+
       <div className="noticeContainer">
         <Navbar />
         <div className="top">
@@ -101,18 +111,6 @@ const NoticeStd = () => {
                         <ListItemButton
                           sx={{ display: "block", backgroundColor: "#caccfc" }}
                         >
-                          {/* <div className="buttons">
-                            <div className="buttonDetails" key="1">
-                              <div className="editButton">
-                                <span onClick={() => setShow(true)}>
-                                  {" "}
-                                  <PictureAsPdfIcon className="icon" /> Show pdf{" "}
-                                </span>
-                              </div>
-                            </div>
-                          </div> */}
-                          {/*show && <Modal/>*/}
-                          {/* <Modal pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType} */}
                           <PdfViewer pdffile ={notice.file} buttonName={"Show Pdf"} randId={notice.noticeType}
                           styeAll={{ position: "absolute",
                           top: "0",
@@ -120,7 +118,7 @@ const NoticeStd = () => {
                           padding: "5px",
                           fontSize: "12px",
                           fontWeight: "bold",
-                          backgroundColor: "rgb(137,80,166)",
+                          backgroundColor: "rgb(181,152,210)",
                           cursor: "pointer",
                           borderRadius: "0px 0px 0px 5px"
                       
@@ -193,7 +191,9 @@ const NoticeStd = () => {
                 </div> */}
         </div>
       </div>
-    </div>
+      </>
+          )}
+      </div>
   );
 };
 

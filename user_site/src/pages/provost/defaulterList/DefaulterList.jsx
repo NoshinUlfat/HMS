@@ -245,7 +245,7 @@ const RoomApplicationList = () => {
             studentsId: SelectedRow[ keys[ i ] ].studentsId,
             title: "Due Payment Notification",
             description: due_response,
-            seen: true,
+            seen: false,
           };
 
           let notificationURL = "/notifications/createNotification/"+SelectedRow[ keys[ i ] ].studentsId;
@@ -369,7 +369,7 @@ const RoomApplicationList = () => {
         studentsId: singleSelectionStudentsId,
         title: "Due Payment Notification",
         description: due_response,
-        seen: true,
+        seen: false,
       };
 
       let notificationURL = "/notifications/createNotification/"+singleSelectionStudentsId;

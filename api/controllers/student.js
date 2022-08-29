@@ -3,7 +3,7 @@ import Student from "../models/Student.js";
 export const updateStudent = async (req,res,next)=>{
   try {
 
-    console.log("BBBBBBBBBB ",req.params.id);
+    //console.log("BBBBBBBBBB ",req.params.id);
     const updatedStudent = await Student.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
@@ -34,6 +34,23 @@ export const getStudent = async (req,res,next)=>{
 export const getStudents = async (req,res,next)=>{
   try {
     const students = await Student.find();
+    res.status(200).json(students);
+  } catch (err) {
+    next(err);
+  }
+}
+export const getStudent_byStudentID = async (req,res,next)=>{
+  try {
+    const student = await Student.findOne({ studentId: req.body.studentId });
+    res.status(200).json(student);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export const getStudentsCount = async (req,res,next)=>{
+  try {
+    const students = await Student.find().count();
     res.status(200).json(students);
   } catch (err) {
     next(err);

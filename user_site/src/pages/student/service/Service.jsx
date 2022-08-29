@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Popup from '../../../components/popup/Popup'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./service.scss";
 
 import { useContext } from "react"
@@ -14,6 +14,7 @@ import ElectricMeterIcon from '@mui/icons-material/ElectricMeter';
 import WifiIcon from '@mui/icons-material/Wifi';
 import CarpenterIcon from '@mui/icons-material/Carpenter';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import useFetch from "../../../hooks/useFetch"
 
 const Service =  () => {
 
@@ -51,9 +52,12 @@ const Service =  () => {
     }
   };
 
+  const isManager = useFetch("/dining/checkManager/get/"+user._id);
     return (
         <div className='service'>
-           <Sidebar info={SideBarDataStd}/>
+            {isManager.loading?"Loading":(
+            <>
+           {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
 
             <div className="serviceContainer">
                 <Navbar/>
@@ -114,7 +118,9 @@ const Service =  () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </>
+          )}
+      </div>
     )
 
 }

@@ -1,6 +1,5 @@
-import Room from "../models/Room.js";
 import Hotel from "../models/Hotel.js";
-import { createError } from "../utils/error.js";
+import Room from "../models/Room.js";
 
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
@@ -75,6 +74,16 @@ export const getRoom = async (req, res, next) => {
 export const getRooms = async (req, res, next) => {
   try {
     const rooms = await Room.find();
+    res.status(200).json(rooms);
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+export const getAvailabeRooms = async (req, res, next) => {
+  try {
+    const rooms = await Room.find({ $expr: { $gt: [  "$maxPeople" , "$currentPeople" ] } });
     res.status(200).json(rooms);
   } catch (err) {
     next(err);

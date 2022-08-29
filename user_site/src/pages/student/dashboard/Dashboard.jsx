@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../../components/navbar/Navbar'
 import Popup from '../../../components/popup/Popup'
 import Sidebar from '../../../components/sidebar/Sidebar'
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData"
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData"
 import "./dashboard.scss"
 
 import { profileData } from "./../dashboard/dashboardData"
@@ -15,6 +15,7 @@ import axios from "axios";
 
 
 import Alert from '@mui/material/Alert';
+import useFetch from "../../../hooks/useFetch"
 
 
 const DashboardStd =  () => {
@@ -122,12 +123,14 @@ console.log("DATAAAAAAAAa 22 ",data)
       console.log(err)
     }
   };
+
+  const isManager = useFetch("/dining/checkManager/get/"+user._id);
    
   return (
     <div className='dashboard'>
       {loading?"Loading":(
             <>
-        <Sidebar info={SideBarDataStd}/>
+        {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
         <div className="dashboardContainer">
           <Navbar/>
           <div className="top">

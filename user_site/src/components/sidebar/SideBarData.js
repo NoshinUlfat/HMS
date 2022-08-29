@@ -8,6 +8,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import ReportIcon from '@mui/icons-material/Report';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import NotificationsIcon from '@mui/icons-material/Notifications'
 
 export const SideBarDataStd = [
     {
@@ -52,27 +53,39 @@ export const SideBarDataStd = [
             }
         ],
     },
+    // {
+    //     id : 4,
+    //     title: 'Services',
+    //     sideBarInfo: [
+    //         {
+    //             id : 1,
+    //             name: 'Request Service',
+    //             path: '/student/service',
+    //             icon: <BedroomChildIcon className='icon'/>,
+    //         },
+    //     ],
+    // },
     {
         id : 4,
-        title: 'Services',
+        title: 'Notices',
         sideBarInfo: [
             {
                 id : 1,
-                name: 'Request Service',
-                path: '/student/service',
-                icon: <BedroomChildIcon className='icon'/>,
-            },
+                name: 'See Notices',
+                path: '/student/noticeStudent',
+                icon: <ContentPasteIcon className='icon'/>,
+            }
         ],
     },
     {
-        id : 5,
-        title: 'Notice',
+        id : 6,
+        title: 'Notifications',
         sideBarInfo: [
             {
                 id : 1,
-                name: 'General',
-                path: '/student/noticeStudent',
-                icon: <ContentPasteIcon className='icon'/>,
+                name: 'See Notifications',
+                path: '/student/notiStudent',
+                icon: <NotificationsIcon className='icon'/>,
             }
         ],
     },
@@ -124,30 +137,48 @@ export const SideBarDataDiningManager = [
                 name: 'Certificate',
                 path: '/student/certificate',
                 icon: <CardMembershipIcon className='icon'/>,
+            },
+            {
+                id : 3,
+                name: 'Fund Request',
+                path: '/student/fundrequest',
+                icon: <CardMembershipIcon className='icon'/>,
+            }
+        ],
+    },
+    // {
+    //     id : 4,
+    //     title: 'Services',
+    //     sideBarInfo: [
+    //         {
+    //             id : 1,
+    //             name: 'Request Service',
+    //             path: '/student/service',
+    //             icon: <BedroomChildIcon className='icon'/>,
+    //         },
+    //     ],
+    // },
+    {
+        id : 4,
+        title: 'Notices',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'See Notices',
+                path: '/student/noticeStudent',
+                icon: <ContentPasteIcon className='icon'/>,
             }
         ],
     },
     {
-        id : 4,
-        title: 'Services',
+        id : 6,
+        title: 'Notifications',
         sideBarInfo: [
             {
                 id : 1,
-                name: 'Request Service',
-                path: '/student/service',
-                icon: <BedroomChildIcon className='icon'/>,
-            },
-        ],
-    },
-    {
-        id : 5,
-        title: 'Notice',
-        sideBarInfo: [
-            {
-                id : 1,
-                name: 'General',
-                path: '/student/noticeStudent',
-                icon: <ContentPasteIcon className='icon'/>,
+                name: 'See Notifications',
+                path: '/student/notiStudent',
+                icon: <NotificationsIcon className='icon'/>,
             }
         ],
     },
@@ -193,12 +224,6 @@ export const SideBarDataProvost = [
                 name: 'Certificate',
                 path: '/provost/certificates',
                 icon: <CardMembershipIcon className='icon'/>,
-            },
-            {
-                id : 3,
-                name: 'Fund Requests',
-                path: '/provost/fundRequests',
-                icon: <AttachMoneyIcon className='icon'/>,
             }
         ],
     },
@@ -212,17 +237,11 @@ export const SideBarDataProvost = [
                 path: '/provost/studentInfoProvost',
                 icon: <BedroomChildIcon className='icon'/>,
             },
-            {
-                id : 2,
-                name: 'See Room Info',
-                path: '/provost/',
-                icon: <CardMembershipIcon className='icon'/>,
-            }
         ],
     },
     {
-        id : 4,
-        title: 'Notice',
+        id : 5,
+        title: 'Notices',
         sideBarInfo: [
             {
                 id : 1,
@@ -232,9 +251,33 @@ export const SideBarDataProvost = [
             },
             {
                 id : 2,
-                name: 'See Notice',
+                name: 'See Notices',
                 path: '/provost/noticeProvost',
                 icon: <ContentPasteIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 6,
+        title: 'Dining Info',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'Debit Memo',
+                path: '/provost/debitMemo',
+                icon: <NoteAltIcon className='icon'/>,
+            },
+            {
+                id : 2,
+                name: 'Select Mess Manager',
+                path: '/provost/selectMessManager',
+                icon: <NoteAltIcon className='icon'/>,
+            },
+            {
+                id : 3,
+                name: 'Fund Requests',
+                path: '/provost/fundRequests',
+                icon: <AttachMoneyIcon className='icon'/>,
             }
         ],
     },

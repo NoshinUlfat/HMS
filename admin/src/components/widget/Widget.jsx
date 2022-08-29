@@ -5,11 +5,12 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
-const Widget = ({ type }) => {
+const Widget = ({ type , amountAll}) => {
   let data;
 
   //temporary
-  const amount = 100;
+  const amount = 10;
+  //amount = {amountAll};
   const diff = 20;
 
   switch (type) {
@@ -31,9 +32,9 @@ const Widget = ({ type }) => {
       break;
     case "order":
       data = {
-        title: "ROOMS",
+        title: "PROVOSTS",
         isMoney: false,
-        link: "View all rooms",
+        link: "View all provosts",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -47,9 +48,9 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
-        link: "View net earnings",
+        title: "HALLS",
+        isMoney: false,
+        link: "View all halls",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -60,9 +61,9 @@ const Widget = ({ type }) => {
       break;
     case "balance":
       data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
+        title: "ROOMS",
+        isMoney: false,
+        link: "See all rooms",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"

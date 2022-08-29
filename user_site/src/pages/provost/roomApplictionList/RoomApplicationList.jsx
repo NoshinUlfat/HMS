@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Modal from "../../../components/modal/Modal";
 import PdfViewer from "../../../components/pdfViewer/PdfViewer";
-import Datatable from "../../../components/datatable/DataTable"
 import Navbar from '../../../components/navbar/Navbar'
 import Progressbar from '../../../components/progressbar/Progressbar'
 import { rommRequestProgress } from '../../../components/progressbar/progressbarData'
@@ -11,12 +9,7 @@ import "./roomApplicationList.scss"
 
 import axios from "axios"
 
-import { userRows } from "./../../../components/datatable/datatablesource"
 import { DataGrid } from "@mui/x-data-grid";
-import {datatable,datatableTitle,link,cellWithImg,cellImg,cellWithStatus,cellAction} from "../../../components/datatable/datatable.scss"
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import CreateIcon from '@mui/icons-material/Create';
-
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -43,17 +36,9 @@ const RoomApplicationList = () => {
     const [singleRejectionStudentsId, setSingleRejectionStudentsId] = React.useState(null);
     const [SelectedRow, setSelectedRow] = React.useState(null);
     const [selectedRowCount, setSelectedRowCount] = React.useState(0);
-    const [pdfFile, setPdfFile] = React.useState(null);
-
-    const [studentState, setStudentState] = useState([]);
 
     let studentNameData = []
     let selectedRowData = []
-    let selectedStudentsId = []
-    let requestState = []
-    let Id=""
-    let studentId=""
-    let dialogueboxMessage="jln"
 
     const showInfo = num => {
         setID(num)
@@ -71,14 +56,11 @@ const RoomApplicationList = () => {
       setSingleRejectionStatus(false);
       setSingleRejectionStudentsId(null);
       try {
-
-       // const { data: response } = 
         await axios.get("/roomAllotments")
         .then( data => {
           let st = data.data;
           setData(
             st.map(item => {
-              //if(item.approvalStatus !== "pending"){
               return {
                 _id: item._id,
                 studentId: item.studentId,
@@ -101,22 +83,8 @@ const RoomApplicationList = () => {
           );
         })
         
-      ///  console.log("VCVCccccccccccccc ",response[0].studentsId);
-        // var keys = Object.keys( response );
-        // for( var i = 0,length = keys.length; i < length; i++ ) {
-        //   studentNameData[i] = response[ keys[ i ] ].studentsId.username
-        //   console.log(studentNameData[i]);
-
-          
-        // }
-        // for( var i = 0,length = keys.length; i < length; i=i+2 ) {
-        //   studentState[i] = response[ keys[ i ] ]._id
-        //   studentState[i+1] = false;
-        // }
         console.log("student name data ",studentNameData)
         setcolName(studentNameData)
-
-        console.log("STATEEEE  ",studentState);
   
       } catch (err) {
         console.log(err)
@@ -142,7 +110,6 @@ const RoomApplicationList = () => {
     let userColumns = []
 
     if(!loading){
-    //  console.log("VCVCV   ",data.studentsId)
     userColumns = [
       {
         field: '',
@@ -162,12 +129,6 @@ const RoomApplicationList = () => {
         headerName: "Student ID",
         width: 230,
       },
-    
-      // {
-      //   field: 'sports',
-      //   headerName: "Level-Term",
-      //   width: 100,
-      // },
     ];
    } 
 
@@ -326,7 +287,6 @@ const RoomApplicationList = () => {
         setSingleRejectionStatus(true)
       }
       else if(selectedRowCount>1) setDialogTitle("Please select only one request to reject")
-     // else setDialogTitle("Please select atleast one request to reject")
 
       console.log("SELECTED R2 ",selectedRowData.length)
       setOpen(true);
@@ -384,10 +344,6 @@ const RoomApplicationList = () => {
         const pdfWindow = window.open()
   
         pdfWindow.location.href = fileURL
-  
-      // } catch (err) {
-      //   console.log(err.messaes)
-      // }
     }
     
 
@@ -402,18 +358,10 @@ const RoomApplicationList = () => {
                 <Navbar/>
                 <div className="top">
                   <div className="left">
-                  
-
-
-                  {/* <Datatable showInfo = {showInfo} /> */}
-
-                    {/* {loading?"Loading":(
-                    <> */}
                     <div className="datatable">
                       <div className="datatableTitle">
-                        Applications
+                        Room Change Applications
                       </div>
-                      {/* getRowId={(row) => row._id} */}
                       <DataGrid
                         className="datagrid"
                         rows={data}
@@ -428,10 +376,6 @@ const RoomApplicationList = () => {
                           selectedRowData = data.filter((row) =>
                             selectedIDs.has(row._id.toString()),
                           );
-                          // const selectedStudentsIDs = new Set(ids);
-                          // selectedStudentsId = data.filter((row) =>
-                          //   selectedStudentsIDs.has(row.studentId.toString()),
-                          // );
 
                           setSelectedRow(selectedRowData);
                           setSelectedRowCount(selectedRowData.length)
@@ -575,9 +519,6 @@ const RoomApplicationList = () => {
                   <div className="detailItem" >
                     <span className="itemValue">
                       <div className="buttons">
-                          {/* <div className="editButton" >
-                            <span onClick={() => pdfClickHandler(item()[0].file)}> <PictureAsPdfIcon className='icon'/> See Attachment </span>
-                          </div> */}
                           <PdfViewer pdffile ={item()[0].file} buttonName={"See Attachment"} randId={item()[0].studentId}
                           styeAll={{ position: "absolute",
                             position: "absolute",
@@ -592,26 +533,17 @@ const RoomApplicationList = () => {
           
                       
                           }}/>
-                          
-                           />
                       </div>
                     </span>
                   </div>
                 </div>  
               </div>
               : <p>  </p> }   
-              {/* </>
-              )}         */}
 
                 </div>
                </div>
                   
-                <div className="bottom">
-                  <div className='progressbar'>
-                    <h1 className="title">Room Applications</h1>
-                    <Progressbar info={rommRequestProgress}/>
-                  </div>
-                </div>
+                
       
               </div>
             </>

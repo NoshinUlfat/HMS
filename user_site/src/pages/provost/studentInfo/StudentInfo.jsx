@@ -20,59 +20,42 @@ const DashboardProvost = () => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [data, setData] = useState([]);
+  const [isShow, setIsShow] = useState(false);
   
   
   
   const { user } = useContext(AuthContext);
-  console.log("sdfs ",user.username);//data.username);
-  
-  const [credentials, setCredentials] = useState({
-    id: user._id,
-    username: user.username,
-    email: undefined,
-    phone: undefined,
-    present_address: undefined,
-    post: undefined,
-    department: undefined,
-    designation: undefined,
-  });
+  console.log("sdfs ",user.username);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
   };
 
+  const handleChangeText = (e) => {
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    console.log(info)
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(e);/////////////
+    console.log("PLEASE  ",info.studentId);/////////////
  
     const data = new FormData();
-    data.append("file", file);
     data.append("upload_preset", "upload");
 
-    var main_url = "/provosts/"+user._id;
-    console.log("URL ",main_url)
-    try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/lamadev/image/upload",
-        data
-      );
-
-      const { url } = uploadRes.data;
-      const newRequest = {
-        ...info,
-        img: url,
-      };
+    var main_url = "/students/findOne";
+    const newRequest = {
+      studentId: info.studentId,
+    };
       
-      const res = await axios.put(main_url, newRequest);
+    const res = await axios.post(main_url, newRequest);
     
-      console.log("VCVCccccccccccccc ",res.data)
-
-      console.log("logindwcwfff ",res.data.details);///////////
- 
-    } catch (err) {
-      console.log(err)
-    }
+    console.log("res ",res.data);
+    setData(res.data);
+    setIsShow(true);
+     
   };
   
 
@@ -84,89 +67,66 @@ const DashboardProvost = () => {
           <div className="top">
           
           <div className="right">
-          <div className="insidePop">
-            <div className="top">
-              <div className="id_box">
-                <Typography type="body2" style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>
-                  Enter Student ID
-                </Typography>
-                <input
-                  type="student_id"
-                  placeholder="Enter Student ID"
-                  id="student_id"
-                  onChange={handleChange}
-                  className="sInput"
-                />
-                <button onClick={handleClick}>Search</button></div>
-              </div>
-            <div className="bottom">
-              <div className="left">
-                <img
-                  src={
-                    file
-                      ? URL.createObjectURL(file)
-                      : user.img
-                      //"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                  }
-                  alt=""
-                />
-              </div>
-              <div className="right">
-                <form>
-                  <div className="formInput">
-                    <label htmlFor="file">
-                      Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                    </label>
-                    <input
-                      type="file"
-                      id="file"
-                      onChange={(e) => setFile(e.target.files[0])}
-                      style={{ display: "none" }}
-                    />
+            <div className="insidePop">
+              <div className="top">
+                <div className="form-box">
+                  <form action="#" method="post">
+                    <label htmlFor="studentId">Enter Student ID: </label>
+                    <input type="text" id='studentId' value={info.studentId} placeholder="Student ID" onChange={handleChangeText}/>
+                  
+                    <button type="submit" onClick={handleClick}>Enter</button>
 
-                  {/* {                  
-                  profileData.profileData.map(
-                    (item,index) => {
-                      return (
-                      <div className="detailItem" key = {index}>
-                        <label>{item.title} : </label>
-                        <input type={item.type} placeholder={item.content} />
-                      </div>
-                      );
-                    })
-                  } */}
+                  </form>  
+                </div>
+                
+              </div>   
 
-                  <div className="detailItem" key = "1">
-                    <label>Email : </label>
-                    <input type='Email' placeholder={user.email} id="email" onChange={handleChange}/>
+              {isShow?
+              <div className="bottom">
+                <div className="left">
+                  <img
+                    src={
+                      file
+                        ? URL.createObjectURL(file)
+                        : data.img
+                        //"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                    }
+                    alt=""
+                  />
+                </div>
+                <div className="right">
+                  <div className = "showData">
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Student ID : <span style={{color: 'gray', fontSize: '15px'}}>{data.studentId}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Level-Term : <span style={{color: 'gray', fontSize: '15px'}}>{data.level}-{data.term}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>CGPA : <span style={{color: 'gray', fontSize: '15px'}}>{data.cgpa}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Room Number : <span style={{color: 'gray', fontSize: '15px'}}>{data.roomNo}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Email : <span style={{color: 'gray', fontSize: '15px'}}>{data.email}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Phone Number : <span style={{color: 'gray', fontSize: '15px'}}>{data.phone}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Present Address : <span style={{color: 'gray', fontSize: '15px'}}>{data.present_address}</span></span>
+                    </Typography>
+                    <Typography type="body2" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
+                      <span>Permanent Address : <span style={{color: 'gray', fontSize: '15px'}}>{data.permanent_address}</span></span>
+                    </Typography>
                   </div>
-                  <div className="detailItem" key = "2">
-                    <label>Phone : </label>
-                    <input type='text' placeholder={user.phone} id="phone" onChange={handleChange} />
-                  </div>
-                  <div className="detailItem" key = "3">
-                    <label>Present Address : </label>
-                    <input type='text' placeholder={user.present_address} id="present_address" onChange={handleChange} />
-                  </div>
-                  <div className="detailItem" key = "4">
-                    <label>Post : </label>
-                    <input type='text' placeholder={user.post} id="post" onChange={handleChange} />
-                  </div>
-                  <div className="detailItem" key = "5">
-                    <label>Department : </label>
-                    <input type='text' placeholder={user.department} id="department" onChange={handleChange} />
-                  </div>
-                  <div className="detailItem" key = "6">
-                    <label>Designation : </label>
-                    <input type='text' placeholder={user.designation} id="designation" onChange={handleChange} />
-                  </div>
-
-                  <button onClick={handleClick}>Save</button>
-                  </div>
-                </form>
-              </div>
+        
+                </div>
             </div>
+            :<></>} 
             </div>
+            
           </div>
         </div>
        

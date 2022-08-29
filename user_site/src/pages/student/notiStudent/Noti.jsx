@@ -1,7 +1,6 @@
 import formatDistance from "date-fns/formatDistance";
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
-import PdfViewer from "../../../components/pdfViewer/PdfViewer";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import { SideBarDataStd } from "../../../components/sidebar/SideBarData";
 import "./noti.scss";
@@ -16,7 +15,7 @@ import Typography from "@mui/material/Typography";
 
 const NotiStd = () => {
   let user = JSON.parse(localStorage.getItem("user"));
-  
+
   const [id, setID] = useState(null);
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
@@ -28,6 +27,24 @@ const NotiStd = () => {
     setNumPages(numPages);
   };
 
+  function updateNotice(boolData, notiId) {
+    try {
+      console.log("notiId ok ", notiId);
+
+      const newRequest = {
+        seen: boolData,
+      };
+
+      var urlConnection = "/notifications/" + notiId;
+      const res = axios.put(urlConnection, newRequest);
+      console.log("res ", res);
+
+      //console.log("VCVCccccccccccccc ", response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -37,7 +54,7 @@ const NotiStd = () => {
         // console.log("VCVCccccccccccccc ",res.data)
 
         // console.log("logindwcwfff ",res.data.details);///////////
-        var urlConnection = "/notifications/"+user._id;
+        var urlConnection = "/notifications/" + user._id;
         const { data: response } = await axios.get(urlConnection);
         setData(response);
 
@@ -87,23 +104,24 @@ const NotiStd = () => {
             <div className="list-boxOutter">
               <div className="listBox">
                 <h2>Notifications</h2>
-                <button type="button" className="unread_button"
-                 onClick={() => setShow(!show)}
-                 style={{
+                <button
+                  type="button"
+                  className="unread_button"
+                  onClick={() => setShow(!show)}
+                  style={{
+                    position: "absolute",
+                    top: "8%",
+                    right: "5%",
 
-                  position: "absolute",
-                  top : "8%",
-                  right : "5%",
-
-                  padding: "5px",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                  backgroundColor: "rgb(137,80,166)",
-                  cursor: "pointer",
-                  borderRadius: "10px",
-
-              }}>
-                  {!show?"Show Unread":"Show All"}
+                    padding: "5px",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    backgroundColor: "rgb(137,80,166)",
+                    cursor: "pointer",
+                    borderRadius: "10px",
+                  }}
+                >
+                  {!show ? "Show Unread" : "Show All"}
                 </button>
 
                 <List
@@ -113,32 +131,34 @@ const NotiStd = () => {
                     height: "500px",
                   }}
                 >
-                  
                   {data.map((noti) => (
-                  
                     <div class="list-boxInner">
-                      {noti.seen&&show?null:
-                      <ListItem>
+                      {noti.seen && show ? null : (
+                        <ListItem>
+                          <ListItemButton
+                            // onClick= {updateNotice(!noti.seen,noti._id)}
+                            sx={{
+                              display: "block",
+                              backgroundColor: "#caccfc",
+                            }}
+                          >
+                            {noti.seen ? null : (
+                              <button
+                                style={{
+                                  position: "absolute",
+                                  top: "5px",
+                                  right: "5px",
+                                  padding: "5px",
+                                  fontSize: "12px",
+                                  fontWeight: "bold",
+                                  backgroundColor: "rgb(137,80,166)",
+                                  cursor: "pointer",
+                                  borderRadius: "10px",
+                                }}
+                              ></button>
+                            )}
 
-                        <ListItemButton
-                          sx={{ display: "block", backgroundColor: "#caccfc" }}
-                        >
-                          {noti.seen? "seen" : <button
-                          style={{
-
-                              position: "absolute",
-                              top: "5px",
-                              right: "5px",
-                              padding: "5px",
-                              fontSize: "12px",
-                              fontWeight: "bold",
-                              backgroundColor: "rgb(137,80,166)",
-                              cursor: "pointer",
-                              borderRadius: "10px",
-
-                          }}
-                          ></button>}
-                          {/* <div className="buttons">
+                            {/* <div className="buttons">
                             <div className="buttonDetails" key="1">
                               <div className="editButton">
                                 <span onClick={() => setShow(true)}>
@@ -148,9 +168,9 @@ const NotiStd = () => {
                               </div>
                             </div>
                           </div> */}
-                          {/*show && <Modal/>*/}
-                          {/* <Modal pdffile ={noti.file} buttonName={"Show Pdf"} randId={noti.notiType} */}
-                          {/* <PdfViewer
+                            {/*show && <Modal/>*/}
+                            {/* <Modal pdffile ={noti.file} buttonName={"Show Pdf"} randId={noti.notiType} */}
+                            {/* <PdfViewer
                             pdffile={noti.file}
                             buttonName={"Show Pdf"}
                             randId={noti.notiType}
@@ -166,58 +186,65 @@ const NotiStd = () => {
                               borderRadius: "0px 0px 0px 5px",
                             }}
                           /> */}
-                          <ListItemText
-                            secondary={
-                              <Typography
-                                type="body2"
-                                style={{
-                                  color: "red",
-                                  fontWeight: "bold",
-                                  fontSize: "10px",
-                                }}
-                              >
-                                {new Date(noti.date) <
-                                new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-                                  ? new Date(noti.date).toLocaleDateString()
-                                  : formatDistance(
-                                      new Date(noti.date),
-                                      new Date()
-                                    )}
-                              </Typography>
-                            }
-                          ></ListItemText>
-                          <ListItemText
-                            secondary={
-                              <Typography
-                                type="body2"
-                                style={{ fontWeight: "bold", fontSize: "12px" }}
-                              >
-                                {noti.notiType}
-                              </Typography>
-                            }
-                          ></ListItemText>
-                          <ListItemText
-                            secondary={
-                              <Typography
-                                type="body2"
-                                style={{ fontWeight: "bold", fontSize: "15px" }}
-                              >
-                                {noti.title}
-                              </Typography>
-                            }
-                          ></ListItemText>
-                          <ListItemText
-                            secondary={
-                              <Typography
-                                type="body2"
-                                style={{ fontSize: "12px" }}
-                              >
-                                {noti.description}
-                              </Typography>
-                            }
-                          ></ListItemText>
-                        </ListItemButton>
-                      </ListItem>}
+                            <ListItemText
+                              secondary={
+                                <Typography
+                                  type="body2"
+                                  style={{
+                                    color: "red",
+                                    fontWeight: "bold",
+                                    fontSize: "10px",
+                                  }}
+                                >
+                                  {new Date(noti.date) <
+                                  new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                                    ? new Date(noti.date).toLocaleDateString()
+                                    : formatDistance(
+                                        new Date(noti.date),
+                                        new Date()
+                                      )}
+                                </Typography>
+                              }
+                            ></ListItemText>
+                            <ListItemText
+                              secondary={
+                                <Typography
+                                  type="body2"
+                                  style={{
+                                    fontWeight: "bold",
+                                    fontSize: "12px",
+                                  }}
+                                >
+                                  {noti.notiType}
+                                </Typography>
+                              }
+                            ></ListItemText>
+                            <ListItemText
+                              secondary={
+                                <Typography
+                                  type="body2"
+                                  style={{
+                                    fontWeight: "bold",
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  {noti.title}
+                                </Typography>
+                              }
+                            ></ListItemText>
+                            <ListItemText
+                              secondary={
+                                <Typography
+                                  type="body2"
+                                  style={{ fontSize: "12px" }}
+                                >
+                                  {noti.description}
+                                </Typography>
+                              }
+                            ></ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      )}
                     </div>
                   ))}
                 </List>

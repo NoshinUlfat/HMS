@@ -51,6 +51,10 @@ const Navbar = () => {
     fetchData();
   }, []);
 
+  const routeChange = () =>{  
+    navigate("/student/notiStudent");
+  }
+
   function logOut() {
     localStorage.clear();
 
@@ -90,7 +94,7 @@ const Navbar = () => {
             />
           </div>
           <div className="item">
-            <NotificationsNoneOutlinedIcon className="icon" />
+            <NotificationsNoneOutlinedIcon className="icon" onClick={routeChange} />
             {data===0?null:<div className="counter">{data}</div>}
             <div className="notifications">
               <div className="wrapper">Notifications</div>

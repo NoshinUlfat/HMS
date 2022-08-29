@@ -39,3 +39,12 @@ export const getStudents = async (req,res,next)=>{
     next(err);
   }
 }
+
+export const getStudentsCount = async (req,res,next)=>{
+  try {
+    const students = await Student.find().count();
+    res.status(200).json(students);
+  } catch (err) {
+    next(err);
+  }
+}

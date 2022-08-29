@@ -55,3 +55,18 @@ export const createNotification = async (req, res, next) => {
       next(err);
     }
   }
+
+  export const updateNotification = async (req,res,next)=>{
+    try {
+  
+      //console.log("BBBBBBBBBB ",req.params.id);
+      const updatedNotification = await Notification.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.status(200).json(updatedNotification);
+    } catch (err) {
+      next(err);
+    }
+  }

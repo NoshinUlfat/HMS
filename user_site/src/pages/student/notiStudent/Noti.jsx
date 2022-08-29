@@ -87,6 +87,24 @@ const NotiStd = () => {
             <div className="list-boxOutter">
               <div className="listBox">
                 <h2>Notifications</h2>
+                <button type="button" className="unread_button"
+                 onClick={() => setShow(!show)}
+                 style={{
+
+                  position: "absolute",
+                  top : "8%",
+                  right : "5%",
+
+                  padding: "5px",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  backgroundColor: "rgb(137,80,166)",
+                  cursor: "pointer",
+                  borderRadius: "10px",
+
+              }}>
+                  {!show?"Show Unread":"Show All"}
+                </button>
 
                 <List
                   style={{
@@ -95,8 +113,11 @@ const NotiStd = () => {
                     height: "500px",
                   }}
                 >
+                  
                   {data.map((noti) => (
+                  
                     <div class="list-boxInner">
+                      {noti.seen&&show?null:
                       <ListItem>
 
                         <ListItemButton
@@ -196,7 +217,7 @@ const NotiStd = () => {
                             }
                           ></ListItemText>
                         </ListItemButton>
-                      </ListItem>
+                      </ListItem>}
                     </div>
                   ))}
                 </List>

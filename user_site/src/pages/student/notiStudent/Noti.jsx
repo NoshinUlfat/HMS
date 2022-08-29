@@ -2,7 +2,7 @@ import formatDistance from "date-fns/formatDistance";
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import { SideBarDataStd } from "../../../components/sidebar/SideBarData";
+import { SideBarDataDiningManager, SideBarDataStd } from "../../../components/sidebar/SideBarData";
 import "./noti.scss";
 
 import axios from "axios";
@@ -12,6 +12,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import useFetch from "../../../hooks/useFetch";
 
 const NotiStd = () => {
   let user = JSON.parse(localStorage.getItem("user"));
@@ -73,9 +74,19 @@ const NotiStd = () => {
   console.log("DATA ", data);
   console.log("LOAD ", loading);
 
+  const isManager = useFetch("/dining/checkManager/get/" + user._id);
+
   return (
     <div className="noti">
-      <Sidebar info={SideBarDataStd} />
+      {isManager.loading ? (
+        "Loading"
+      ) : (
+        <>
+          {isManager.data.isManager ? (
+            <Sidebar info={SideBarDataDiningManager} />
+          ) : (
+            <Sidebar info={SideBarDataStd} />
+          )}
       <div className="notiContainer">
         <Navbar />
         <div className="top">
@@ -261,6 +272,9 @@ const NotiStd = () => {
                 </div> */}
         </div>
       </div>
+      
+      </>
+      )}
     </div>
   );
 };

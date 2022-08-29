@@ -247,14 +247,14 @@ const DashboardProvost = () => {
           </div>
         </div>
         <div className="bottom">
-          {/* <div className='progressbar'>
+          <div className='progressbar'>
             <h1 className="title">Room Applications</h1>
-            <Progressbar info={{...progressRoom.data,title:'Room Request This Month'}}/>
+            <Progressbar info={rommRequestProgress}/>
           </div>
           <div className='progressbar'>
             <h1 className="title">Cirtificate Applications</h1>
             <Progressbar  info={cirtificateReqProcess}/>
-          </div> */}
+          </div>
         </div>
         </div>
         </>

@@ -5,6 +5,7 @@ import {
     getRequestDetails,
     deleteRoomRequests,
     updateApprovalStatus,
+    roomRequestProgress,
 } from "../controllers/roomAllotment.js";
 
 
@@ -40,5 +41,6 @@ router.delete("/deleteRoomRequest/:id", deleteRoomRequests);
 router.get("/", getRoomRequests);
 //GET ONE
 router.get("/requestDetails/:id", getRequestDetails);
+router.get("/get/progress", roomRequestProgress);
 //router.post("/requestDetails", getRequestDetails)
 export default router;

@@ -22,7 +22,7 @@ const Login = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(e);/////////////
+    //console.log(e);/////////////
  
     dispatch({ type: "LOGIN_START" });
     try {

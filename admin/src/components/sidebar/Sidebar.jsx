@@ -14,8 +14,20 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+
+  let user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
+
+  function logOut() {
+    localStorage.clear();
+
+    navigate("/login");
+    //history.push("/login");
+  }
+
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
@@ -63,28 +75,12 @@ const Sidebar = () => {
               <span>Rooms</span>
             </li>
           </Link>
-          <li>
-            <CurrencyExchangeIcon className="icon" />
-            <span>Fee List</span>
-          </li>
           <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
           </li>
           <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
@@ -94,8 +90,8 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
-            <ExitToAppIcon className="icon" />
+          <li onClick={logOut}>
+            <ExitToAppIcon className="icon"/>
             <span>Logout</span>
           </li>
         </ul>

@@ -8,6 +8,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import ReportIcon from '@mui/icons-material/Report';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import NotificationsIcon from '@mui/icons-material/Notifications'
 
 export const SideBarDataStd = [
     {
@@ -66,13 +67,25 @@ export const SideBarDataStd = [
     // },
     {
         id : 4,
-        title: 'Notice',
+        title: 'Notices',
         sideBarInfo: [
             {
                 id : 1,
-                name: 'General',
+                name: 'See Notices',
                 path: '/student/noticeStudent',
                 icon: <ContentPasteIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 6,
+        title: 'Notifications',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'See Notifications',
+                path: '/student/notiStudent',
+                icon: <NotificationsIcon className='icon'/>,
             }
         ],
     },
@@ -147,13 +160,25 @@ export const SideBarDataDiningManager = [
     // },
     {
         id : 4,
-        title: 'Notice',
+        title: 'Notices',
         sideBarInfo: [
             {
                 id : 1,
-                name: 'General',
+                name: 'See Notices',
                 path: '/student/noticeStudent',
                 icon: <ContentPasteIcon className='icon'/>,
+            }
+        ],
+    },
+    {
+        id : 6,
+        title: 'Notifications',
+        sideBarInfo: [
+            {
+                id : 1,
+                name: 'See Notifications',
+                path: '/student/notiStudent',
+                icon: <NotificationsIcon className='icon'/>,
             }
         ],
     },
@@ -216,7 +241,7 @@ export const SideBarDataProvost = [
     },
     {
         id : 5,
-        title: 'Notice',
+        title: 'Notices',
         sideBarInfo: [
             {
                 id : 1,
@@ -226,7 +251,7 @@ export const SideBarDataProvost = [
             },
             {
                 id : 2,
-                name: 'See Notice',
+                name: 'See Notices',
                 path: '/provost/noticeProvost',
                 icon: <ContentPasteIcon className='icon'/>,
             }

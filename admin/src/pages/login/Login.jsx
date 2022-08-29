@@ -57,7 +57,7 @@ const Login = () => {
     // <body>
     <div className="login">
       <div className="lContainer">
-      <h1 className="text">Welcome to Titumir Hall</h1>
+      <h1 className="text">Welcome to Admin Panel</h1>
         <input
           type="text"
           placeholder="username"

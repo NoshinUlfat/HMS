@@ -57,7 +57,7 @@ export const login = async (req, res, next) => {
 
     if (!user) return next(createError(404, "User not found!"));
 
-    console.log(user.username);
+    //console.log(user.username);
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
@@ -110,7 +110,7 @@ export const login = async (req, res, next) => {
 export const showData = async (req,res,next)=>{
   try {
     const user = await Student.findOne({username: req.body.username});
-    console.log("B ",user.username);
+    //console.log("B ",user.username);
     res.status(200).json(user);
   } catch (err) {
     next(err);

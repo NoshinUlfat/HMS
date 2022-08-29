@@ -1,36 +1,41 @@
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
-import "./style/dark.scss";
 import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
+import { DarkModeContext } from "./context/darkModeContext";
 import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
+import { userInputs } from "./formSource";
+import Home from "./pages/home/Home";
+import List from "./pages/list/List";
+import Login from "./pages/login/Login";
+import New from "./pages/new/New";
 import NewHotel from "./pages/newHotel/NewHotel";
 import NewRoom from "./pages/newRoom/NewRoom";
-import DashboardProvost from "./pages/provost/dashboard/Dashboard";
-import RoomApplicationList from "./pages/provost/roomApplictionList/RoomApplicationList";
 import AssignNotice from "./pages/provost/assignNotice/AssignNotice";
-import DashboardStd from "./pages/student/dashboard/Dashboard";
-import RoomRequest from "./pages/student/roomrequest/RoomRequest";
-import Dining from "./pages/student/dining/Dining"
-import Service from "./pages/student/service/Service"
-import CertificateStd from "./pages/student/certificate/Certificate"
-import NoticedStd from "./pages/student/noticeStudent/Notice";
 import CertificateProvost from "./pages/provost/certificate/Certificate";
-import FundRequest from "./pages/provost/fundRequest/FundRequest";
+import DashboardProvost from "./pages/provost/dashboard/Dashboard";
 import DefaulterList from "./pages/provost/defaulterList/DefaulterList";
+import FundRequest from "./pages/provost/fundRequest/FundRequest";
 import NoticedProvost from "./pages/provost/noticeProvost/Notice";
-import OnlineStd from "./pages/student/online/Online";
+import RoomApplicationList from "./pages/provost/roomApplictionList/RoomApplicationList";
 import StudentInfoProvost from "./pages/provost/studentInfo/StudentInfo";
+<<<<<<< HEAD
 import DiningMemoProv from "./pages/provost/diningmemo/DiningMemoProv";
 import DiningMemo from "./pages/student/diningmemo/DiningMemo";
 import MessManagerProv from "./pages/provost/messmanager/MessManager";
 import FundRequestStd from "./pages/student/fundrequest/FundRequestStd";
+=======
+import Single from "./pages/single/Single";
+import CertificateStd from "./pages/student/certificate/Certificate";
+import DashboardStd from "./pages/student/dashboard/Dashboard";
+import Dining from "./pages/student/dining/Dining";
+import DiningMemo from "./pages/student/diningmemo/DiningMemo";
+import NoticedStd from "./pages/student/noticeStudent/Notice";
+import NotiStd from "./pages/student/notiStudent/Noti";
+import OnlineStd from "./pages/student/online/Online";
+import RoomRequest from "./pages/student/roomrequest/RoomRequest";
+import Service from "./pages/student/service/Service";
+import "./style/dark.scss";
+>>>>>>> log_out_notification
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -158,7 +163,11 @@ function App() {
                 <Route path="certificate" element={<CertificateStd/>} />
                 <Route path="service" element={<Service/>} />
                 <Route path="noticeStudent" element={<NoticedStd/>} />
+<<<<<<< HEAD
                 <Route path="fundrequest" element={<FundRequestStd/>} />
+=======
+                <Route path="notiStudent" element={<NotiStd/>} />
+>>>>>>> log_out_notification
 
                 <Route path="online" element={<OnlineStd/>} />
               </Route>

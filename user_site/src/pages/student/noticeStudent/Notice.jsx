@@ -6,6 +6,7 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import formatDistance from 'date-fns/formatDistance'
 
 import { SideBarDataDiningManager, SideBarDataProvost, SideBarDataStd } from "../../../components/sidebar/SideBarData";
+
 import "./notice.scss";
 
 import axios from "axios";
@@ -65,6 +66,7 @@ const NoticeStd = () => {
       {isManager.loading?"Loading":(
       <>
       {isManager.data.isManager?<Sidebar info={SideBarDataDiningManager}/>:<Sidebar info={SideBarDataStd}/>}
+
       <div className="noticeContainer">
         <Navbar />
         <div className="top">

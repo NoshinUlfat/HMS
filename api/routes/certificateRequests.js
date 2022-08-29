@@ -22,6 +22,6 @@ router.delete("/delete/:id", deleteCertificate);
 //GET ONE
 //router.get("/requestDetails/:id", getRequestDetails);
 // router.get("/oneStudent/:id", getStudent);
-
+//router.get("/count/", countCertificate);
 
 export default router;

@@ -199,12 +199,6 @@ export const SideBarDataProvost = [
                 name: 'Certificate',
                 path: '/provost/certificates',
                 icon: <CardMembershipIcon className='icon'/>,
-            },
-            {
-                id : 3,
-                name: 'Fund Requests',
-                path: '/provost/fundRequests',
-                icon: <AttachMoneyIcon className='icon'/>,
             }
         ],
     },
@@ -253,6 +247,12 @@ export const SideBarDataProvost = [
                 name: 'Select Mess Manager',
                 path: '/provost/selectMessManager',
                 icon: <NoteAltIcon className='icon'/>,
+            },
+            {
+                id : 3,
+                name: 'Fund Requests',
+                path: '/provost/fundRequests',
+                icon: <AttachMoneyIcon className='icon'/>,
             }
         ],
     },

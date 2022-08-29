@@ -118,7 +118,7 @@ const NotiStd = () => {
                     padding: "5px",
                     fontSize: "12px",
                     fontWeight: "bold",
-                    backgroundColor: "rgb(137,80,166)",
+                    backgroundColor: "rgb(181,152,210)",
                     cursor: "pointer",
                     borderRadius: "10px",
                   }}
@@ -139,7 +139,7 @@ const NotiStd = () => {
                         <ListItem>
                           <ListItemButton
                              //onClick= {()=> updateNoti(!noti.seen,noti._id)}
-                             onClick= {()=> updateNoti(true,noti._id)}
+                            onClick= {()=> updateNoti(true,noti._id)}
                             sx={{
                               display: "block",
                               backgroundColor: "#caccfc",
@@ -154,7 +154,7 @@ const NotiStd = () => {
                                   padding: "5px",
                                   fontSize: "12px",
                                   fontWeight: "bold",
-                                  backgroundColor: "rgb(137,80,166)",
+                                  backgroundColor: "rgb(250,37,37)",
                                   cursor: "pointer",
                                   borderRadius: "10px",
                                 }}

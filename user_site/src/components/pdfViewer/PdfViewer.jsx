@@ -41,7 +41,7 @@ const PdfViewer = ({pdffile,buttonName,randId,styeAll}) => {
   return (
     <div className="modalPdf" >
         <div>
-      <button onClick={openModal} >
+      <button onClick={openModal} style= {styeAll}>
       {/* <PictureAsPdfIcon className='icon'/> */}
       {buttonName}
       </button>

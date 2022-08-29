@@ -27,7 +27,7 @@ const NotiStd = () => {
     setNumPages(numPages);
   };
 
-  function updateNotice(boolData, notiId) {
+  function updateNoti(boolData, notiId) {
     try {
       console.log("notiId ok ", notiId);
 
@@ -38,6 +38,8 @@ const NotiStd = () => {
       var urlConnection = "/notifications/" + notiId;
       const res = axios.put(urlConnection, newRequest);
       console.log("res ", res);
+
+      window.location.reload(false);
 
       //console.log("VCVCccccccccccccc ", response);
     } catch (err) {
@@ -136,7 +138,7 @@ const NotiStd = () => {
                       {noti.seen && show ? null : (
                         <ListItem>
                           <ListItemButton
-                            // onClick= {updateNotice(!noti.seen,noti._id)}
+                             onClick= {()=> updateNoti(!noti.seen,noti._id)}
                             sx={{
                               display: "block",
                               backgroundColor: "#caccfc",

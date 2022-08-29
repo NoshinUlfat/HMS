@@ -83,7 +83,7 @@ export const roomRequestProgress = async (req, res, next) => {
     const totalRequests = await RoomAllotment.find().count();
     const pendingRequests = await RoomAllotment.find({approvalStatus:{$eq:"pending"}}).count();
     const nDone = totalRequests-pendingRequests
-    res.status(200).json({nApplication:totalRequests,nDone:nDone});
+    res.status(200).json({nApplication:totalRequests,nPendingReq:pendingRequests,nDone:nDone,percentPending:((pendingRequests/totalRequests)*100).toFixed(2)});
   } catch (err) {
     next(err);
   }

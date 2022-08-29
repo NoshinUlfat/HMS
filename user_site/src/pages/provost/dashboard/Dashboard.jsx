@@ -14,6 +14,7 @@ import {profileData} from "./../dashboard/dashboardData"
 import { useContext } from "react"
 import { AuthContext } from "../../../context/AuthContext"
 import axios from "axios";
+import useFetch from "../../../hooks/useFetch";
 
 const DashboardProvost = () => {
   const [show, setShow] = useState(false);
@@ -101,10 +102,11 @@ const DashboardProvost = () => {
     }
   };
   
+  const progressRoom = useFetch("/roomAllotments/get/progress")
 
   return (
     <div className='dashboard'>
-      {loading?"Loading":(
+      {loading || progressRoom.loading?"Loading":(
             <>
         <Sidebar info={SideBarDataProvost}/>
         <div className="dashboardContainer">
@@ -245,14 +247,14 @@ const DashboardProvost = () => {
           </div>
         </div>
         <div className="bottom">
-          <div className='progressbar'>
+          {/* <div className='progressbar'>
             <h1 className="title">Room Applications</h1>
-            <Progressbar info={rommRequestProgress}/>
+            <Progressbar info={{...progressRoom.data,title:'Room Request This Month'}}/>
           </div>
           <div className='progressbar'>
             <h1 className="title">Cirtificate Applications</h1>
             <Progressbar  info={cirtificateReqProcess}/>
-          </div>
+          </div> */}
         </div>
         </div>
         </>

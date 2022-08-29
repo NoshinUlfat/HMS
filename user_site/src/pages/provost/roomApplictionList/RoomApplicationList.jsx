@@ -606,12 +606,7 @@ const RoomApplicationList = () => {
                 </div>
                </div>
                   
-                <div className="bottom">
-                  <div className='progressbar'>
-                    <h1 className="title">Room Applications</h1>
-                    <Progressbar info={rommRequestProgress}/>
-                  </div>
-                </div>
+                
       
               </div>
             </>

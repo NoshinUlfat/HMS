@@ -60,7 +60,7 @@ const RoomRequest = () => {
     data.append("upload_preset", "upload");
     try {
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/lamadev/image/upload",
+        "https://api.cloudinary.com/v1_1/fahmid/image/upload",
         data
       );
 

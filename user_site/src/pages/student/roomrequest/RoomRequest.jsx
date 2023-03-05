@@ -67,7 +67,7 @@ const RoomRequest = () => {
       const { url } = uploadRes.data;
       const newRequest = {
         ...info,
-        img: url,
+        file: url,
         studentId: user.studentId,
         studentsId: user._id,
         approvalStatus: "pending",

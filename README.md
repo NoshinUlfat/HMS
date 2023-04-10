@@ -5,10 +5,10 @@
 ## Run the server and backend database api
 
 1.`cd api`
-2.'yarn start'
+2.`yarn start`
 
 
 ## Run the server and user site server
 
 1.`cd user_site`
-2.'yarn start'
+2.`yarn start`

@@ -291,7 +291,7 @@ const RoomApplicationList = () => {
      
       const newNotification = {
         studentsId: singleSelectionStudentsId,
-        title: "Due Payment Notification",
+        title: "Certificate Status Notification",
         description: application_response,
         seen: false,
       };
